@@ -21,6 +21,15 @@
 @synthesize notificationNavigationController = _notificationNavigationController;
 @synthesize peopleNavigationController = _peopleNavigationController;
 
+static BOOL isLoggedIn = NO;
+
++ (BOOL)isLoggedIn
+{
+    return isLoggedIn;
+}
+
+#pragma mark - Life cycle
+
 - (void)dealloc
 {
     [_updateNavigationController release];

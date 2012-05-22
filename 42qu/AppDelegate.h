@@ -17,4 +17,6 @@
 @property (strong, nonatomic) UINavigationController *notificationNavigationController;
 @property (strong, nonatomic) UINavigationController *peopleNavigationController;
 
++ (BOOL)isLoggedIn;
+
 @end
