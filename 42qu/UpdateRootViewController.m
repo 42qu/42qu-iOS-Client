@@ -7,12 +7,31 @@
 //
 
 #import "UpdateRootViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "PublishViewController.h"
 
 @interface UpdateRootViewController ()
 
 @end
 
 @implementation UpdateRootViewController
+
+- (void)publish
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = @"oglFlip";
+    transition.subtype = kCATransitionFromTop;
+    transition.delegate = self;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+    
+    [self.navigationController pushViewController:publishViewController animated:NO]; 
+}
+
+#pragma mark - Life cycle
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(publish)];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

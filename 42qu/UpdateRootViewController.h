@@ -10,4 +10,6 @@
 
 @interface UpdateRootViewController : UITableViewController
 
+- (void)publish;
+
 @end
