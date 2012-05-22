@@ -13,6 +13,9 @@
 		FA7E3D15156B613E00687AB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA7E3D13156B613E00687AB8 /* InfoPlist.strings */; };
 		FA7E3D17156B613E00687AB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E3D16156B613E00687AB8 /* main.m */; };
 		FA7E3D1B156B613E00687AB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E3D1A156B613E00687AB8 /* AppDelegate.m */; };
+		FAB74005156B8103003CBF67 /* UpdateRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB74004156B8103003CBF67 /* UpdateRootViewController.m */; };
+		FAB74008156B817C003CBF67 /* NotificationRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB74007156B817C003CBF67 /* NotificationRootViewController.m */; };
+		FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +23,18 @@
 		FA7E3D0A156B613E00687AB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA7E3D0C156B613E00687AB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA7E3D0E156B613E00687AB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FA7E3D12156B613E00687AB8 /* 42qu-Info.plist */ = {isa = PBXFileReference; path = "42qu-Info.plist"; sourceTree = "<group>"; };
+		FA7E3D12156B613E00687AB8 /* 42qu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "42qu-Info.plist"; sourceTree = "<group>"; };
 		FA7E3D14156B613E00687AB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA7E3D16156B613E00687AB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FA7E3D18156B613E00687AB8 /* 42qu-Prefix.pch */ = {isa = PBXFileReference; path = "42qu-Prefix.pch"; sourceTree = "<group>"; };
-		FA7E3D19156B613E00687AB8 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		FA7E3D18156B613E00687AB8 /* 42qu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "42qu-Prefix.pch"; sourceTree = "<group>"; };
+		FA7E3D19156B613E00687AB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FA7E3D1A156B613E00687AB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FAB74003156B8103003CBF67 /* UpdateRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootViewController.h; sourceTree = "<group>"; };
+		FAB74004156B8103003CBF67 /* UpdateRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootViewController.m; sourceTree = "<group>"; };
+		FAB74006156B817C003CBF67 /* NotificationRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationRootViewController.h; sourceTree = "<group>"; };
+		FAB74007156B817C003CBF67 /* NotificationRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationRootViewController.m; sourceTree = "<group>"; };
+		FAB74009156B818A003CBF67 /* PeopleRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRootViewController.h; sourceTree = "<group>"; };
+		FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +81,10 @@
 		FA7E3D10156B613E00687AB8 /* 42qu */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E3D19156B613E00687AB8 /* AppDelegate.h */,
-				FA7E3D1A156B613E00687AB8 /* AppDelegate.m */,
+				FAB73FF4156B7CE0003CBF67 /* App Delegate */,
+				FAB73FF2156B7CDD003CBF67 /* Update */,
+				FAB73FFB156B7DF6003CBF67 /* Notification */,
+				FAB73FFC156B7DFC003CBF67 /* People */,
 				FA7E3D11156B613E00687AB8 /* Supporting Files */,
 			);
 			path = 42qu;
@@ -88,6 +99,42 @@
 				FA7E3D18156B613E00687AB8 /* 42qu-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAB73FF2156B7CDD003CBF67 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				FAB74003156B8103003CBF67 /* UpdateRootViewController.h */,
+				FAB74004156B8103003CBF67 /* UpdateRootViewController.m */,
+			);
+			name = Update;
+			sourceTree = "<group>";
+		};
+		FAB73FF4156B7CE0003CBF67 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				FA7E3D19156B613E00687AB8 /* AppDelegate.h */,
+				FA7E3D1A156B613E00687AB8 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		FAB73FFB156B7DF6003CBF67 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				FAB74006156B817C003CBF67 /* NotificationRootViewController.h */,
+				FAB74007156B817C003CBF67 /* NotificationRootViewController.m */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
+		FAB73FFC156B7DFC003CBF67 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				FAB74009156B818A003CBF67 /* PeopleRootViewController.h */,
+				FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */,
+			);
+			name = People;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +201,9 @@
 			files = (
 				FA7E3D17156B613E00687AB8 /* main.m in Sources */,
 				FA7E3D1B156B613E00687AB8 /* AppDelegate.m in Sources */,
+				FAB74005156B8103003CBF67 /* UpdateRootViewController.m in Sources */,
+				FAB74008156B817C003CBF67 /* NotificationRootViewController.m in Sources */,
+				FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +305,7 @@
 				FA7E3D20156B613E00687AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,21 +8,51 @@
 
 #import "AppDelegate.h"
 
+#import "UpdateRootViewController.h"
+#import "NotificationRootViewController.h"
+#import "PeopleRootViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize tabBarController = _tabBarController;
+
+@synthesize updateNavigationController = _updateNavigationController;
+@synthesize notificationNavigationController = _notificationNavigationController;
+@synthesize peopleNavigationController = _peopleNavigationController;
 
 - (void)dealloc
 {
+    [_updateNavigationController release];
+    [_notificationNavigationController release];
+    [_peopleNavigationController release];
+    [_tabBarController release];
     [_window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Init window & tab bar controller
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    
+    // Init & add tab bar controller's view controllers
+    UpdateRootViewController *updateRootViewController = [[UpdateRootViewController alloc] init];
+    self.updateNavigationController = [[UINavigationController alloc] initWithRootViewController:updateRootViewController];
+    [updateRootViewController release];
+    
+    NotificationRootViewController *notificationRootViewController = [[NotificationRootViewController alloc] init];
+    self.notificationNavigationController = [[UINavigationController alloc] initWithRootViewController:notificationRootViewController];
+    [notificationRootViewController release];
+    
+    PeopleRootViewController *peopleRootViewController = [[PeopleRootViewController alloc] init];
+    self.peopleNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRootViewController];
+    [peopleRootViewController release];
+    
+    _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, nil];
+    
+    [self.window setRootViewController:_tabBarController];
     [self.window makeKeyAndVisible];
     return YES;
 }
