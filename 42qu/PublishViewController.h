@@ -12,4 +12,9 @@
 
 @property (nonatomic, strong) IBOutlet UITextView *contentTextView;
 
+- (void)dismiss;
+
+- (void)cancel;
+- (void)done;
+
 @end

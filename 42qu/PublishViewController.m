@@ -7,6 +7,7 @@
 //
 
 #import "PublishViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PublishViewController ()
 
@@ -15,6 +16,32 @@
 @implementation PublishViewController
 
 @synthesize contentTextView = _contentTextView;
+
+- (void)dismiss
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromBottom;
+    transition.delegate = self;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    [self.contentTextView resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void)cancel
+{
+    [self dismiss];
+}
+
+- (void)done
+{
+    [self dismiss];
+}
+
+#pragma mark - Life cycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,8 +54,8 @@
 
 - (void)viewDidLoad
 {
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:nil] autorelease];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:nil] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)] autorelease];
     [super viewDidLoad];
     [_contentTextView becomeFirstResponder];
 }
