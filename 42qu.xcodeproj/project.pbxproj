@@ -16,6 +16,8 @@
 		FAB74005156B8103003CBF67 /* UpdateRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB74004156B8103003CBF67 /* UpdateRootViewController.m */; };
 		FAB74008156B817C003CBF67 /* NotificationRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB74007156B817C003CBF67 /* NotificationRootViewController.m */; };
 		FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */; };
+		FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7401A156B9CA1003CBF67 /* PublishViewController.m */; };
+		FAB7401D156B9CA1003CBF67 /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,9 @@
 		FAB74007156B817C003CBF67 /* NotificationRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationRootViewController.m; sourceTree = "<group>"; };
 		FAB74009156B818A003CBF67 /* PeopleRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRootViewController.h; sourceTree = "<group>"; };
 		FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRootViewController.m; sourceTree = "<group>"; };
+		FAB74019156B9CA1003CBF67 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		FAB7401A156B9CA1003CBF67 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +109,7 @@
 		FAB73FF2156B7CDD003CBF67 /* Update */ = {
 			isa = PBXGroup;
 			children = (
+				FAB74014156B9C71003CBF67 /* Publish */,
 				FAB74003156B8103003CBF67 /* UpdateRootViewController.h */,
 				FAB74004156B8103003CBF67 /* UpdateRootViewController.m */,
 			);
@@ -135,6 +141,16 @@
 				FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */,
 			);
 			name = People;
+			sourceTree = "<group>";
+		};
+		FAB74014156B9C71003CBF67 /* Publish */ = {
+			isa = PBXGroup;
+			children = (
+				FAB74019156B9CA1003CBF67 /* PublishViewController.h */,
+				FAB7401A156B9CA1003CBF67 /* PublishViewController.m */,
+				FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */,
+			);
+			name = Publish;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7E3D15156B613E00687AB8 /* InfoPlist.strings in Resources */,
+				FAB7401D156B9CA1003CBF67 /* PublishViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +221,7 @@
 				FAB74005156B8103003CBF67 /* UpdateRootViewController.m in Sources */,
 				FAB74008156B817C003CBF67 /* NotificationRootViewController.m in Sources */,
 				FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */,
+				FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
