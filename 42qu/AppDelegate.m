@@ -21,11 +21,11 @@
 @synthesize notificationNavigationController = _notificationNavigationController;
 @synthesize peopleNavigationController = _peopleNavigationController;
 
-static BOOL isLoggedIn = NO;
-
-+ (BOOL)isLoggedIn
+- (void)tryLogin
 {
-    return isLoggedIn;
+    AccountControl *accountControl = [AccountControl shared];
+    accountControl.delegate = self;
+    [accountControl login];
 }
 
 #pragma mark - Life cycle
@@ -39,6 +39,8 @@ static BOOL isLoggedIn = NO;
     [_window release];
     [super dealloc];
 }
+
+#pragma mark - Application delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -62,6 +64,10 @@ static BOOL isLoggedIn = NO;
     _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, nil];
     
     [self.window setRootViewController:_tabBarController];
+    
+    // Try login
+    [self performSelector:@selector(tryLogin) withObject:nil afterDelay:0.1];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -91,6 +97,40 @@ static BOOL isLoggedIn = NO;
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Account control delegate
+
+- (void)didLogin
+{
+    // Force write defaults to disk
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)didFailLogin
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Failed to login. ", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Quit", nil) otherButtonTitles:NSLocalizedString(@"Try again", nil), nil];
+    [alert show];
+    [alert release];
+}
+
+#pragma mark - Alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            // Quit button
+            abort();
+            break;
+        case 1:
+            // Retry button
+            [self tryLogin];
+            break;
+        default:
+            abort();
+            break;
+    }
 }
 
 @end

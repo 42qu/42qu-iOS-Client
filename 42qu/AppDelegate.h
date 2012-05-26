@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountControl.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, AccountControlDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;
@@ -17,6 +18,6 @@
 @property (strong, nonatomic) UINavigationController *notificationNavigationController;
 @property (strong, nonatomic) UINavigationController *peopleNavigationController;
 
-+ (BOOL)isLoggedIn;
+- (void)tryLogin;
 
 @end
