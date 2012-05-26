@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "service.h"
 
 // API Key
 #define CLIENT_ID @"10299882"
 #define CLIENT_SECRET @"df36723f6bc246f0a485e74ff852a6c3"
 
+/*
 // API URL
 #define API_ROOT @"http://api.42qu.com"
 #define API_AUTH_LOGIN @"/user/oauth/login"
@@ -38,7 +40,12 @@
 
 #define API_PO_WORD_ID @"id"
 #define API_PO_WORD_LINK @"link"
+ */
+
+@class SnsClient;
 
 @interface API : NSObject
+
++ (SnsClient *)shared;
 
 @end

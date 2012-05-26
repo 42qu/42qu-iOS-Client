@@ -8,9 +8,9 @@
 
 #import "PublishViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "HTTPUtils.h"
+//#import "HTTPUtils.h"
 #import "API.h"
-#import "SBJson.h"
+//#import "SBJson.h"
 #import "AccountControl.h"
 
 @interface PublishViewController ()
@@ -47,6 +47,7 @@
 
 - (void)done
 {
+    /*
     // Create login API URL
     NSString *loginURLString = [NSString stringWithFormat:@"%@%@", API_ROOT, API_PO_WORD];
     NSURL *loginURL = [NSURL URLWithString:loginURLString];
@@ -64,6 +65,7 @@
     
     if (connection) {
     }
+     */
     [self dismiss];
 }
 
@@ -136,19 +138,22 @@
     if (originalStatus != _textLengthLabel.hidden) {
         CGRect contentTextViewFrame = _contentTextView.frame;
         if (originalStatus && !_textLengthLabel.hidden) {
-            contentTextViewFrame.origin.y -= _textLengthLabel.frame.size.height;
+            contentTextViewFrame.size.height -= (_textLengthLabel.frame.size.height + 9.0);
         } else if (!originalStatus && _textLengthLabel.hidden) {
-            contentTextViewFrame.origin.y += _textLengthLabel.frame.size.height;
+            contentTextViewFrame.size.height += (_textLengthLabel.frame.size.height + 9.0);
         }
         _contentTextView.frame = contentTextViewFrame;
+        // Fit the position of text length indicator
+        CGRect textLengthLabelFrame = _textLengthLabel.frame;
+        textLengthLabelFrame.origin.x = _contentTextView.frame.origin.x + _contentTextView.frame.size.width - _textLengthLabel.frame.size.width - 6.0;
+        textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height + 3.0;
+        _textLengthLabel.frame = textLengthLabelFrame;
+        NSLog(@"%f %f %f %f", _contentTextView.frame.origin.x, _contentTextView.frame.origin.y, _contentTextView.frame.size.width, _contentTextView.frame.size.height);
+        NSLog(@"%f %f %f %f", _textLengthLabel.frame.origin.x, _textLengthLabel.frame.origin.y, _textLengthLabel.frame.size.width, _textLengthLabel.frame.size.height);
     }
-    // Fit the position of text length indicator
-    CGRect textLengthLabelFrame = _textLengthLabel.frame;
-    textLengthLabelFrame.origin.x = _contentTextView.frame.origin.x + _contentTextView.frame.size.width - _textLengthLabel.frame.size.width - 6.0;
-    textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height - 6.0;
-    _textLengthLabel.frame = textLengthLabelFrame;
 }
 
+/*
 #pragma mark - URL connection delegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -166,6 +171,7 @@
 {
     NSLog(@"Failed posting");
 }
+ */
 
 #pragma mark - Keyboard notification
 
@@ -180,12 +186,12 @@
     // Fit the height of text view
     CGRect contentTextViewFrame = _contentTextView.frame;
     contentTextViewFrame.size.height = applicationHeight - navigationBarHeight - keyboardHeight;
-    contentTextViewFrame.size.height -= _textLengthLabel.hidden?0:_textLengthLabel.frame.size.height; // Adjust with text length indicator
+    contentTextViewFrame.size.height -= _textLengthLabel.hidden?0:(_textLengthLabel.frame.size.height+9.0);
     _contentTextView.frame = contentTextViewFrame;
     // Fit the position of text length indicator
     CGRect textLengthLabelFrame = _textLengthLabel.frame;
     textLengthLabelFrame.origin.x = _contentTextView.frame.origin.x + _contentTextView.frame.size.width - _textLengthLabel.frame.size.width - 6.0;
-    textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height - 6.0;
+    textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height + 3.0;
     _textLengthLabel.frame = textLengthLabelFrame;
 }
 

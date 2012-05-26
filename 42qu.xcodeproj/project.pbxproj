@@ -22,7 +22,6 @@
 		FA402A82156C9F5A009EC4FA /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A74156C9F5A009EC4FA /* SBJsonTokeniser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FA402A83156C9F5A009EC4FA /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A76156C9F5A009EC4FA /* SBJsonUTF8Stream.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FA402A84156C9F5A009EC4FA /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A78156C9F5A009EC4FA /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A88156CA02C009EC4FA /* HTTPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A87156CA02C009EC4FA /* HTTPUtils.m */; };
 		FA402A9F156CDE5A009EC4FA /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A9E156CDE5A009EC4FA /* API.m */; };
 		FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402AAE156D0B04009EC4FA /* LoginView.m */; };
 		FA402ABC156D0EAD009EC4FA /* LoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABA156D0EAD009EC4FA /* LoginBG.png */; };
@@ -38,9 +37,22 @@
 		FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */; };
 		FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7401A156B9CA1003CBF67 /* PublishViewController.m */; };
 		FAB7401D156B9CA1003CBF67 /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */; };
-		FAF57A111570C4F2002B26CE /* error.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A031570AFE8002B26CE /* error.m */; };
-		FAF57A121570C4F2002B26CE /* service.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A051570AFE8002B26CE /* service.m */; };
-		FAF57A131570C4F2002B26CE /* type.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A071570AFE8002B26CE /* type.m */; };
+		FAF57A441570D289002B26CE /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A241570D289002B26CE /* TBinaryProtocol.m */; };
+		FAF57A451570D289002B26CE /* TProtocolException.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A271570D289002B26CE /* TProtocolException.m */; };
+		FAF57A461570D289002B26CE /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A2A1570D289002B26CE /* TProtocolUtil.m */; };
+		FAF57A471570D289002B26CE /* TSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A2D1570D289002B26CE /* TSocketServer.m */; };
+		FAF57A481570D289002B26CE /* TApplicationException.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A2F1570D289002B26CE /* TApplicationException.m */; };
+		FAF57A491570D289002B26CE /* TException.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A311570D289002B26CE /* TException.m */; };
+		FAF57A4A1570D289002B26CE /* THTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A361570D289002B26CE /* THTTPClient.m */; };
+		FAF57A4B1570D289002B26CE /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A381570D289002B26CE /* TMemoryBuffer.m */; };
+		FAF57A4C1570D289002B26CE /* TNSFileHandleTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A3A1570D289002B26CE /* TNSFileHandleTransport.m */; };
+		FAF57A4D1570D289002B26CE /* TNSStreamTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A3C1570D289002B26CE /* TNSStreamTransport.m */; };
+		FAF57A4E1570D289002B26CE /* TSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A3E1570D289002B26CE /* TSocketClient.m */; };
+		FAF57A4F1570D289002B26CE /* TTransportException.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A411570D289002B26CE /* TTransportException.m */; };
+		FAF57A501570D289002B26CE /* TSharedProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A431570D289002B26CE /* TSharedProcessorFactory.m */; };
+		FAF57A521570D294002B26CE /* error.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A031570AFE8002B26CE /* error.m */; };
+		FAF57A531570D294002B26CE /* service.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A051570AFE8002B26CE /* service.m */; };
+		FAF57A541570D294002B26CE /* type.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A071570AFE8002B26CE /* type.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +118,37 @@
 		FAF57A051570AFE8002B26CE /* service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = service.m; sourceTree = "<group>"; };
 		FAF57A061570AFE8002B26CE /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
 		FAF57A071570AFE8002B26CE /* type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = type.m; sourceTree = "<group>"; };
+		FAF57A231570D289002B26CE /* TBinaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBinaryProtocol.h; sourceTree = "<group>"; };
+		FAF57A241570D289002B26CE /* TBinaryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBinaryProtocol.m; sourceTree = "<group>"; };
+		FAF57A251570D289002B26CE /* TProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocol.h; sourceTree = "<group>"; };
+		FAF57A261570D289002B26CE /* TProtocolException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolException.h; sourceTree = "<group>"; };
+		FAF57A271570D289002B26CE /* TProtocolException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolException.m; sourceTree = "<group>"; };
+		FAF57A281570D289002B26CE /* TProtocolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolFactory.h; sourceTree = "<group>"; };
+		FAF57A291570D289002B26CE /* TProtocolUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolUtil.h; sourceTree = "<group>"; };
+		FAF57A2A1570D289002B26CE /* TProtocolUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolUtil.m; sourceTree = "<group>"; };
+		FAF57A2C1570D289002B26CE /* TSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSocketServer.h; sourceTree = "<group>"; };
+		FAF57A2D1570D289002B26CE /* TSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSocketServer.m; sourceTree = "<group>"; };
+		FAF57A2E1570D289002B26CE /* TApplicationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TApplicationException.h; sourceTree = "<group>"; };
+		FAF57A2F1570D289002B26CE /* TApplicationException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TApplicationException.m; sourceTree = "<group>"; };
+		FAF57A301570D289002B26CE /* TException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TException.h; sourceTree = "<group>"; };
+		FAF57A311570D289002B26CE /* TException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TException.m; sourceTree = "<group>"; };
+		FAF57A321570D289002B26CE /* TProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProcessor.h; sourceTree = "<group>"; };
+		FAF57A331570D289002B26CE /* TProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProcessorFactory.h; sourceTree = "<group>"; };
+		FAF57A351570D289002B26CE /* THTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTTPClient.h; sourceTree = "<group>"; };
+		FAF57A361570D289002B26CE /* THTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTTPClient.m; sourceTree = "<group>"; };
+		FAF57A371570D289002B26CE /* TMemoryBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemoryBuffer.h; sourceTree = "<group>"; };
+		FAF57A381570D289002B26CE /* TMemoryBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemoryBuffer.m; sourceTree = "<group>"; };
+		FAF57A391570D289002B26CE /* TNSFileHandleTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNSFileHandleTransport.h; sourceTree = "<group>"; };
+		FAF57A3A1570D289002B26CE /* TNSFileHandleTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TNSFileHandleTransport.m; sourceTree = "<group>"; };
+		FAF57A3B1570D289002B26CE /* TNSStreamTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNSStreamTransport.h; sourceTree = "<group>"; };
+		FAF57A3C1570D289002B26CE /* TNSStreamTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TNSStreamTransport.m; sourceTree = "<group>"; };
+		FAF57A3D1570D289002B26CE /* TSocketClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSocketClient.h; sourceTree = "<group>"; };
+		FAF57A3E1570D289002B26CE /* TSocketClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSocketClient.m; sourceTree = "<group>"; };
+		FAF57A3F1570D289002B26CE /* TTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTransport.h; sourceTree = "<group>"; };
+		FAF57A401570D289002B26CE /* TTransportException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTransportException.h; sourceTree = "<group>"; };
+		FAF57A411570D289002B26CE /* TTransportException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTransportException.m; sourceTree = "<group>"; };
+		FAF57A421570D289002B26CE /* TSharedProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSharedProcessorFactory.h; sourceTree = "<group>"; };
+		FAF57A431570D289002B26CE /* TSharedProcessorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSharedProcessorFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +251,7 @@
 		FA7E3D09156B613D00687AB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAF57A211570D289002B26CE /* thrift */,
 				FAF57A011570AFE8002B26CE /* thrift-gen */,
 				FA402A5F156C9F5A009EC4FA /* SBJson */,
 				FA402A36156BA3F4009EC4FA /* QuartzCore.framework */,
@@ -303,6 +347,68 @@
 			path = "thrift-gen";
 			sourceTree = "<group>";
 		};
+		FAF57A211570D289002B26CE /* thrift */ = {
+			isa = PBXGroup;
+			children = (
+				FAF57A221570D289002B26CE /* protocol */,
+				FAF57A2B1570D289002B26CE /* server */,
+				FAF57A2E1570D289002B26CE /* TApplicationException.h */,
+				FAF57A2F1570D289002B26CE /* TApplicationException.m */,
+				FAF57A301570D289002B26CE /* TException.h */,
+				FAF57A311570D289002B26CE /* TException.m */,
+				FAF57A321570D289002B26CE /* TProcessor.h */,
+				FAF57A331570D289002B26CE /* TProcessorFactory.h */,
+				FAF57A341570D289002B26CE /* transport */,
+				FAF57A421570D289002B26CE /* TSharedProcessorFactory.h */,
+				FAF57A431570D289002B26CE /* TSharedProcessorFactory.m */,
+			);
+			path = thrift;
+			sourceTree = "<group>";
+		};
+		FAF57A221570D289002B26CE /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FAF57A231570D289002B26CE /* TBinaryProtocol.h */,
+				FAF57A241570D289002B26CE /* TBinaryProtocol.m */,
+				FAF57A251570D289002B26CE /* TProtocol.h */,
+				FAF57A261570D289002B26CE /* TProtocolException.h */,
+				FAF57A271570D289002B26CE /* TProtocolException.m */,
+				FAF57A281570D289002B26CE /* TProtocolFactory.h */,
+				FAF57A291570D289002B26CE /* TProtocolUtil.h */,
+				FAF57A2A1570D289002B26CE /* TProtocolUtil.m */,
+			);
+			path = protocol;
+			sourceTree = "<group>";
+		};
+		FAF57A2B1570D289002B26CE /* server */ = {
+			isa = PBXGroup;
+			children = (
+				FAF57A2C1570D289002B26CE /* TSocketServer.h */,
+				FAF57A2D1570D289002B26CE /* TSocketServer.m */,
+			);
+			path = server;
+			sourceTree = "<group>";
+		};
+		FAF57A341570D289002B26CE /* transport */ = {
+			isa = PBXGroup;
+			children = (
+				FAF57A351570D289002B26CE /* THTTPClient.h */,
+				FAF57A361570D289002B26CE /* THTTPClient.m */,
+				FAF57A371570D289002B26CE /* TMemoryBuffer.h */,
+				FAF57A381570D289002B26CE /* TMemoryBuffer.m */,
+				FAF57A391570D289002B26CE /* TNSFileHandleTransport.h */,
+				FAF57A3A1570D289002B26CE /* TNSFileHandleTransport.m */,
+				FAF57A3B1570D289002B26CE /* TNSStreamTransport.h */,
+				FAF57A3C1570D289002B26CE /* TNSStreamTransport.m */,
+				FAF57A3D1570D289002B26CE /* TSocketClient.h */,
+				FAF57A3E1570D289002B26CE /* TSocketClient.m */,
+				FAF57A3F1570D289002B26CE /* TTransport.h */,
+				FAF57A401570D289002B26CE /* TTransportException.h */,
+				FAF57A411570D289002B26CE /* TTransportException.m */,
+			);
+			path = transport;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,12 +494,24 @@
 				FA402A82156C9F5A009EC4FA /* SBJsonTokeniser.m in Sources */,
 				FA402A83156C9F5A009EC4FA /* SBJsonUTF8Stream.m in Sources */,
 				FA402A84156C9F5A009EC4FA /* SBJsonWriter.m in Sources */,
-				FA402A88156CA02C009EC4FA /* HTTPUtils.m in Sources */,
 				FA402A9F156CDE5A009EC4FA /* API.m in Sources */,
 				FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */,
-				FAF57A111570C4F2002B26CE /* error.m in Sources */,
-				FAF57A121570C4F2002B26CE /* service.m in Sources */,
-				FAF57A131570C4F2002B26CE /* type.m in Sources */,
+				FAF57A441570D289002B26CE /* TBinaryProtocol.m in Sources */,
+				FAF57A451570D289002B26CE /* TProtocolException.m in Sources */,
+				FAF57A461570D289002B26CE /* TProtocolUtil.m in Sources */,
+				FAF57A471570D289002B26CE /* TSocketServer.m in Sources */,
+				FAF57A481570D289002B26CE /* TApplicationException.m in Sources */,
+				FAF57A491570D289002B26CE /* TException.m in Sources */,
+				FAF57A4A1570D289002B26CE /* THTTPClient.m in Sources */,
+				FAF57A4B1570D289002B26CE /* TMemoryBuffer.m in Sources */,
+				FAF57A4C1570D289002B26CE /* TNSFileHandleTransport.m in Sources */,
+				FAF57A4D1570D289002B26CE /* TNSStreamTransport.m in Sources */,
+				FAF57A4E1570D289002B26CE /* TSocketClient.m in Sources */,
+				FAF57A4F1570D289002B26CE /* TTransportException.m in Sources */,
+				FAF57A501570D289002B26CE /* TSharedProcessorFactory.m in Sources */,
+				FAF57A521570D294002B26CE /* error.m in Sources */,
+				FAF57A531570D294002B26CE /* service.m in Sources */,
+				FAF57A541570D294002B26CE /* type.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +575,11 @@
 		FA7E3D1F156B613E00687AB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "42qu/42qu-Prefix.pch";
 				INFOPLIST_FILE = "42qu/42qu-Info.plist";
@@ -468,6 +591,11 @@
 		FA7E3D20156B613E00687AB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "42qu/42qu-Prefix.pch";
 				INFOPLIST_FILE = "42qu/42qu-Info.plist";

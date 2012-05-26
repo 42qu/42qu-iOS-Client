@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PublishViewController : UIViewController <UITextViewDelegate, NSURLConnectionDelegate>
+@interface PublishViewController : UIViewController <UITextViewDelegate/*, NSURLConnectionDelegate*/>
 
 @property (nonatomic, strong) IBOutlet UITextView *contentTextView;
 @property (nonatomic, strong) IBOutlet UILabel *textLengthLabel;

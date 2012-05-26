@@ -16,12 +16,14 @@
 
 @end
 
-@interface AccountControl : NSObject <NSURLConnectionDelegate, LoginViewDelegate>
+@interface AccountControl : NSObject </*NSURLConnectionDelegate, */LoginViewDelegate>
 
+/*
 enum {
     URLConnectionTypeUnknown = 0,
     URLConnectionTypeLogin
 }; typedef NSUInteger URLConnectionType;
+ */
 
 @property (nonatomic, assign) id<AccountControlDelegate> delegate;
 

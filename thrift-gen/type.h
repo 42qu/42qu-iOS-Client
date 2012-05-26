@@ -56,32 +56,32 @@ enum EventType {
 typedef int64_t TimeStamp;
 
 @interface Auth : NSObject <NSCoding> {
-  int64_t __id;
+  NSString * __user;
   NSString * __password;
   NSString * __clientKey;
   NSString * __clientSecret;
 
-  BOOL __id_isset;
+  BOOL __user_isset;
   BOOL __password_isset;
   BOOL __clientKey_isset;
   BOOL __clientSecret_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, getter=id, setter=setId:) int64_t id;
+@property (nonatomic, retain, getter=user, setter=setUser:) NSString * user;
 @property (nonatomic, retain, getter=password, setter=setPassword:) NSString * password;
 @property (nonatomic, retain, getter=clientKey, setter=setClientKey:) NSString * clientKey;
 @property (nonatomic, retain, getter=clientSecret, setter=setClientSecret:) NSString * clientSecret;
 #endif
 
-- (id) initWithId: (int64_t) id password: (NSString *) password clientKey: (NSString *) clientKey clientSecret: (NSString *) clientSecret;
+- (id) initWithUser: (NSString *) user password: (NSString *) password clientKey: (NSString *) clientKey clientSecret: (NSString *) clientSecret;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-- (int64_t) id;
-- (void) setId: (int64_t) id;
-- (BOOL) idIsSet;
+- (NSString *) user;
+- (void) setUser: (NSString *) user;
+- (BOOL) userIsSet;
 
 - (NSString *) password;
 - (void) setPassword: (NSString *) password;
@@ -345,7 +345,7 @@ typedef int64_t TimeStamp;
 @interface EventInfo : NSObject <NSCoding> {
   int64_t __id;
   NSString * __title;
-  NSString * __description;
+  NSString * __intro;
   int __eventType;
   TimeStamp __startDate;
   TimeStamp __expireDate;
@@ -358,7 +358,7 @@ typedef int64_t TimeStamp;
 
   BOOL __id_isset;
   BOOL __title_isset;
-  BOOL __description_isset;
+  BOOL __intro_isset;
   BOOL __eventType_isset;
   BOOL __startDate_isset;
   BOOL __expireDate_isset;
@@ -373,7 +373,7 @@ typedef int64_t TimeStamp;
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, getter=id, setter=setId:) int64_t id;
 @property (nonatomic, retain, getter=title, setter=setTitle:) NSString * title;
-@property (nonatomic, retain, getter=description, setter=setDescription:) NSString * description;
+@property (nonatomic, retain, getter=intro, setter=setIntro:) NSString * intro;
 @property (nonatomic, getter=eventType, setter=setEventType:) int eventType;
 @property (nonatomic, getter=startDate, setter=setStartDate:) TimeStamp startDate;
 @property (nonatomic, getter=expireDate, setter=setExpireDate:) TimeStamp expireDate;
@@ -385,7 +385,7 @@ typedef int64_t TimeStamp;
 @property (nonatomic, retain, getter=participantUnauthedList, setter=setParticipantUnauthedList:) NSArray * participantUnauthedList;
 #endif
 
-- (id) initWithId: (int64_t) id title: (NSString *) title description: (NSString *) description eventType: (int) eventType startDate: (TimeStamp) startDate expireDate: (TimeStamp) expireDate initiator: (UserInfo *) initiator guestList: (NSArray *) guestList participantAuthedCount: (int64_t) participantAuthedCount participantUnauthedCount: (int64_t) participantUnauthedCount participantAuthedList: (NSArray *) participantAuthedList participantUnauthedList: (NSArray *) participantUnauthedList;
+- (id) initWithId: (int64_t) id title: (NSString *) title intro: (NSString *) intro eventType: (int) eventType startDate: (TimeStamp) startDate expireDate: (TimeStamp) expireDate initiator: (UserInfo *) initiator guestList: (NSArray *) guestList participantAuthedCount: (int64_t) participantAuthedCount participantUnauthedCount: (int64_t) participantUnauthedCount participantAuthedList: (NSArray *) participantAuthedList participantUnauthedList: (NSArray *) participantUnauthedList;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -398,9 +398,9 @@ typedef int64_t TimeStamp;
 - (void) setTitle: (NSString *) title;
 - (BOOL) titleIsSet;
 
-- (NSString *) description;
-- (void) setDescription: (NSString *) description;
-- (BOOL) descriptionIsSet;
+- (NSString *) intro;
+- (void) setIntro: (NSString *) intro;
+- (BOOL) introIsSet;
 
 - (int) eventType;
 - (void) setEventType: (int) eventType;

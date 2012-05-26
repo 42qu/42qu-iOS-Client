@@ -6,8 +6,10 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
-#import "SBJson.h"
-#import "HTTPUtils.h"
+#import <TSocketClient.h>
+#import <TBinaryProtocol.h>
+//#import "SBJson.h"
+//#import "HTTPUtils.h"
 #import "API.h"
 
 #import "AppDelegate.h"
@@ -19,7 +21,7 @@
 
 @implementation AccountControl
 
-static URLConnectionType connectionType = URLConnectionTypeUnknown;
+//static URLConnectionType connectionType = URLConnectionTypeUnknown;
 
 @synthesize delegate = _delegate;
 
@@ -50,6 +52,7 @@ static AccountControl *accountControl = nil;
 
 - (void)loginWithMail:(NSString *)mail andPassword:(NSString *)password
 {
+    /*
     // Create login API URL
     NSString *loginURLString = [NSString stringWithFormat:@"%@%@", API_ROOT, API_AUTH_LOGIN];
     NSURL *loginURL = [NSURL URLWithString:loginURLString];
@@ -67,6 +70,10 @@ static AccountControl *accountControl = nil;
     
     if (connection) {
     }
+     */
+    Auth *auth = [[Auth alloc] initWithUser:mail password:password clientKey:CLIENT_ID clientSecret:CLIENT_SECRET];
+    AuthResponse *authResponse = [[API shared] login:auth];
+    [auth release];
 }
 
 - (void)login
@@ -131,6 +138,7 @@ static NSUInteger i = 0;
     [self performSelector:@selector(login) withObject:nil afterDelay:0.1];
 }
 
+/*
 #pragma mark - URL connection delegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -180,5 +188,6 @@ static NSUInteger i = 0;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
 }
+ */
 
 @end
