@@ -74,6 +74,7 @@ static AccountControl *accountControl = nil;
     Auth *auth = [[Auth alloc] initWithUser:mail password:password clientKey:CLIENT_ID clientSecret:CLIENT_SECRET];
     AuthResponse *authResponse = [[API shared] login:auth];
     [auth release];
+    authResponse = nil;
 }
 
 - (void)login
@@ -102,11 +103,16 @@ static NSUInteger i = 0;
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *mail = [userDefaults stringForKey:USER_DEFAULT_KEY_MAIL];
-    i = mail.length;
-    [self mailDisplay:mail];
+    if ([self respondsToSelector:@selector(mailDisplay:)]) {
+        i = mail.length;
+        [self performSelector:@selector(mailDisplay:) withObject:mail];
+    } else {
+        _loginView.nameField.text = mail;
+    }
 }
 
-// The eastern egg
+/*
+// The easter egg
 - (void)mailDisplay:(NSString *)mail
 {
     if (i == 0) {
@@ -122,6 +128,7 @@ static NSUInteger i = 0;
         }];
     }
 }
+ */
 
 - (void)onDismiss
 {
