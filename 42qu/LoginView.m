@@ -112,6 +112,7 @@
         [_passwordField setBorderStyle:UITextBorderStyleRoundedRect];
         _passwordField.placeholder = NSLocalizedString(@"Enter your password", nil);
         [_passwordField setReturnKeyType:UIReturnKeyDone];
+        _passwordField.secureTextEntry = YES;
         [_passwordField addTarget:self action:@selector(login) forControlEvents:UIControlEventEditingDidEndOnExit];
         [self addSubview:_passwordField];
         
