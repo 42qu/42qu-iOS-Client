@@ -10,8 +10,8 @@
 #import "service.h"
 
 // API Key
-#define CLIENT_ID @"10299882"
-#define CLIENT_SECRET @"df36723f6bc246f0a485e74ff852a6c3"
+#define CLIENT_ID @"10046352"
+#define CLIENT_SECRET @"1f082771f7c940849f6fd02ba5d3519f"
 
 /*
 // API URL

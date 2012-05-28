@@ -71,10 +71,15 @@ static AccountControl *accountControl = nil;
     if (connection) {
     }
      */
-    Auth *auth = [[Auth alloc] initWithUser:mail password:password clientKey:CLIENT_ID clientSecret:CLIENT_SECRET];
-    AuthResponse *authResponse = [[API shared] login:auth];
-    [auth release];
-    authResponse = nil;
+    SnsClient *snsClient = [API shared];
+    AuthResponse *authResponse = nil;
+    @try {
+        AuthRequestMail *authRequestMail = [[[AuthRequestMail alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET mail:mail password:password] autorelease];
+        authResponse = [snsClient login_by_mail:authRequestMail];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
 }
 
 - (void)login
@@ -87,7 +92,7 @@ static AccountControl *accountControl = nil;
             self.loginView = [[[LoginView alloc] init] autorelease];
             _loginView.delegate = self;
             AppDelegate *delegate = (AppDelegate *)self.delegate;
-            [delegate.window.rootViewController.view addSubview:_loginView];
+            [delegate.window addSubview:_loginView];
         }
         [_loginView show];
         return;

@@ -16,13 +16,17 @@
 #import "type.h"
 
 @protocol Sns <NSObject>
-- (AuthResponse *) login: (Auth *) auth;  // throws UserException *, SystemException *, TException
-- (UserInfo *) userInfo_get: (NSString *) accessToken : (int64_t) id;  // throws UserException *, SystemException *, NotFoundException *, TException
-- (UserInfo *) userInfo_set: (NSString *) accessToken : (UserInfo *) userInfo;  // throws UserException *, SystemException *, TException
-- (EventInfo *) eventInfo_get: (NSString *) accessToken : (int64_t) id;  // throws UserException *, SystemException *, NotFoundException *, TException
-- (EventInfo *) eventInfo_set: (NSString *) accessToken : (EventInfo *) eventInfo;  // throws UserException *, SystemException *, TException
-- (int64_t) eventPublish: (NSString *) accessToken;  // throws UserException *, SystemException *, TException
-- (EventInfo *) eventApply: (NSString *) accessToken : (int64_t) id;  // throws UserException *, SystemException *, NotFoundException *, TException
+- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth_request_mail;  // throws TException
+- (AuthResponse *) login_by_oauth: (NSString *) client_key : (NSString *) client_secret;  // throws TException
+- (AuthResponse *) login_by_oauth2: (NSString *) client_key : (NSString *) client_secret;  // throws TException
+- (void) logout: (NSString *) access_token;  // throws TException
+- (UserInfo *) user_info_get: (NSString *) access_token : (int64_t) id;  // throws TException
+- (UserInfo *) user_info_set: (NSString *) access_token : (UserInfo *) user_info;  // throws TException
+- (Task *) task_get: (NSString *) access_token : (int64_t) id;  // throws TException
+- (int64_t) task_new: (NSString *) access_token : (Task *) task;  // throws TException
+- (void) task_apply: (NSString *) access_token : (int64_t) task_id;  // throws TException
+- (void) task_reject: (NSString *) access_token : (int64_t) user_id;  // throws TException
+- (void) task_accept: (NSString *) access_token : (int64_t) user_id;  // throws TException
 @end
 
 @interface SnsClient : NSObject <Sns> {

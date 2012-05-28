@@ -15,176 +15,17 @@
 
 #import "error.h"
 
-@implementation UserException
+@implementation Exception
 
 - (id) init
 {
-  return [super initWithName: @"UserException" reason: @"unknown" userInfo: nil];
+  return [super initWithName: @"Exception" reason: @"unknown" userInfo: nil];
 }
-- (id) initWithErrorCode: (int) errorCode parameter: (NSString *) parameter
+- (id) initWithCode: (int) code message: (NSString *) message
 {
   self = [self init];
-  __errorCode = errorCode;
-  __errorCode_isset = YES;
-  __parameter = [parameter retain];
-  __parameter_isset = YES;
-  return self;
-}
-
-- (id) initWithCoder: (NSCoder *) decoder
-{
-  self = [super initWithCoder: decoder];
-  if ([decoder containsValueForKey: @"errorCode"])
-  {
-    __errorCode = [decoder decodeIntForKey: @"errorCode"];
-    __errorCode_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"parameter"])
-  {
-    __parameter = [[decoder decodeObjectForKey: @"parameter"] retain];
-    __parameter_isset = YES;
-  }
-  return self;
-}
-
-- (void) encodeWithCoder: (NSCoder *) encoder
-{
-  [super encodeWithCoder: encoder];
-  if (__errorCode_isset)
-  {
-    [encoder encodeInt: __errorCode forKey: @"errorCode"];
-  }
-  if (__parameter_isset)
-  {
-    [encoder encodeObject: __parameter forKey: @"parameter"];
-  }
-}
-
-- (void) dealloc
-{
-  [__parameter release];
-  [super dealloc];
-}
-
-- (int) errorCode {
-  return __errorCode;
-}
-
-- (void) setErrorCode: (int) errorCode {
-  __errorCode = errorCode;
-  __errorCode_isset = YES;
-}
-
-- (BOOL) errorCodeIsSet {
-  return __errorCode_isset;
-}
-
-- (void) unsetErrorCode {
-  __errorCode_isset = NO;
-}
-
-- (NSString *) parameter {
-  return [[__parameter retain] autorelease];
-}
-
-- (void) setParameter: (NSString *) parameter {
-  [parameter retain];
-  [__parameter release];
-  __parameter = parameter;
-  __parameter_isset = YES;
-}
-
-- (BOOL) parameterIsSet {
-  return __parameter_isset;
-}
-
-- (void) unsetParameter {
-  [__parameter release];
-  __parameter = nil;
-  __parameter_isset = NO;
-}
-
-- (void) read: (id <TProtocol>) inProtocol
-{
-  NSString * fieldName;
-  int fieldType;
-  int fieldID;
-
-  [inProtocol readStructBeginReturningName: NULL];
-  while (true)
-  {
-    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
-    if (fieldType == TType_STOP) { 
-      break;
-    }
-    switch (fieldID)
-    {
-      case 1:
-        if (fieldType == TType_I32) {
-          int fieldValue = [inProtocol readI32];
-          [self setErrorCode: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 2:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setParameter: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      default:
-        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        break;
-    }
-    [inProtocol readFieldEnd];
-  }
-  [inProtocol readStructEnd];
-}
-
-- (void) write: (id <TProtocol>) outProtocol {
-  [outProtocol writeStructBeginWithName: @"UserException"];
-  if (__errorCode_isset) {
-    [outProtocol writeFieldBeginWithName: @"errorCode" type: TType_I32 fieldID: 1];
-    [outProtocol writeI32: __errorCode];
-    [outProtocol writeFieldEnd];
-  }
-  if (__parameter_isset) {
-    if (__parameter != nil) {
-      [outProtocol writeFieldBeginWithName: @"parameter" type: TType_STRING fieldID: 2];
-      [outProtocol writeString: __parameter];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  [outProtocol writeFieldStop];
-  [outProtocol writeStructEnd];
-}
-
-- (NSString *) description {
-  NSMutableString * ms = [NSMutableString stringWithString: @"UserException("];
-  [ms appendString: @"errorCode:"];
-  [ms appendFormat: @"%i", __errorCode];
-  [ms appendString: @",parameter:"];
-  [ms appendFormat: @"\"%@\"", __parameter];
-  [ms appendString: @")"];
-  return [NSString stringWithString: ms];
-}
-
-@end
-
-@implementation SystemException
-
-- (id) init
-{
-  return [super initWithName: @"SystemException" reason: @"unknown" userInfo: nil];
-}
-- (id) initWithErrorCode: (int) errorCode message: (NSString *) message
-{
-  self = [self init];
-  __errorCode = errorCode;
-  __errorCode_isset = YES;
+  __code = code;
+  __code_isset = YES;
   __message = [message retain];
   __message_isset = YES;
   return self;
@@ -193,10 +34,10 @@
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super initWithCoder: decoder];
-  if ([decoder containsValueForKey: @"errorCode"])
+  if ([decoder containsValueForKey: @"code"])
   {
-    __errorCode = [decoder decodeIntForKey: @"errorCode"];
-    __errorCode_isset = YES;
+    __code = [decoder decodeIntForKey: @"code"];
+    __code_isset = YES;
   }
   if ([decoder containsValueForKey: @"message"])
   {
@@ -209,9 +50,9 @@
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
   [super encodeWithCoder: encoder];
-  if (__errorCode_isset)
+  if (__code_isset)
   {
-    [encoder encodeInt: __errorCode forKey: @"errorCode"];
+    [encoder encodeInt: __code forKey: @"code"];
   }
   if (__message_isset)
   {
@@ -225,21 +66,21 @@
   [super dealloc];
 }
 
-- (int) errorCode {
-  return __errorCode;
+- (int) code {
+  return __code;
 }
 
-- (void) setErrorCode: (int) errorCode {
-  __errorCode = errorCode;
-  __errorCode_isset = YES;
+- (void) setCode: (int) code {
+  __code = code;
+  __code_isset = YES;
 }
 
-- (BOOL) errorCodeIsSet {
-  return __errorCode_isset;
+- (BOOL) codeIsSet {
+  return __code_isset;
 }
 
-- (void) unsetErrorCode {
-  __errorCode_isset = NO;
+- (void) unsetCode {
+  __code_isset = NO;
 }
 
 - (NSString *) message {
@@ -281,7 +122,7 @@
       case 1:
         if (fieldType == TType_I32) {
           int fieldValue = [inProtocol readI32];
-          [self setErrorCode: fieldValue];
+          [self setCode: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -304,10 +145,10 @@
 }
 
 - (void) write: (id <TProtocol>) outProtocol {
-  [outProtocol writeStructBeginWithName: @"SystemException"];
-  if (__errorCode_isset) {
-    [outProtocol writeFieldBeginWithName: @"errorCode" type: TType_I32 fieldID: 1];
-    [outProtocol writeI32: __errorCode];
+  [outProtocol writeStructBeginWithName: @"Exception"];
+  if (__code_isset) {
+    [outProtocol writeFieldBeginWithName: @"code" type: TType_I32 fieldID: 1];
+    [outProtocol writeI32: __code];
     [outProtocol writeFieldEnd];
   }
   if (__message_isset) {
@@ -322,177 +163,11 @@
 }
 
 - (NSString *) description {
-  NSMutableString * ms = [NSMutableString stringWithString: @"SystemException("];
-  [ms appendString: @"errorCode:"];
-  [ms appendFormat: @"%i", __errorCode];
+  NSMutableString * ms = [NSMutableString stringWithString: @"Exception("];
+  [ms appendString: @"code:"];
+  [ms appendFormat: @"%i", __code];
   [ms appendString: @",message:"];
   [ms appendFormat: @"\"%@\"", __message];
-  [ms appendString: @")"];
-  return [NSString stringWithString: ms];
-}
-
-@end
-
-@implementation NotFoundException
-
-- (id) init
-{
-  return [super initWithName: @"NotFoundException" reason: @"unknown" userInfo: nil];
-}
-- (id) initWithIdentifier: (NSString *) identifier key: (NSString *) key
-{
-  self = [self init];
-  __identifier = [identifier retain];
-  __identifier_isset = YES;
-  __key = [key retain];
-  __key_isset = YES;
-  return self;
-}
-
-- (id) initWithCoder: (NSCoder *) decoder
-{
-  self = [super initWithCoder: decoder];
-  if ([decoder containsValueForKey: @"identifier"])
-  {
-    __identifier = [[decoder decodeObjectForKey: @"identifier"] retain];
-    __identifier_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"key"])
-  {
-    __key = [[decoder decodeObjectForKey: @"key"] retain];
-    __key_isset = YES;
-  }
-  return self;
-}
-
-- (void) encodeWithCoder: (NSCoder *) encoder
-{
-  [super encodeWithCoder: encoder];
-  if (__identifier_isset)
-  {
-    [encoder encodeObject: __identifier forKey: @"identifier"];
-  }
-  if (__key_isset)
-  {
-    [encoder encodeObject: __key forKey: @"key"];
-  }
-}
-
-- (void) dealloc
-{
-  [__identifier release];
-  [__key release];
-  [super dealloc];
-}
-
-- (NSString *) identifier {
-  return [[__identifier retain] autorelease];
-}
-
-- (void) setIdentifier: (NSString *) identifier {
-  [identifier retain];
-  [__identifier release];
-  __identifier = identifier;
-  __identifier_isset = YES;
-}
-
-- (BOOL) identifierIsSet {
-  return __identifier_isset;
-}
-
-- (void) unsetIdentifier {
-  [__identifier release];
-  __identifier = nil;
-  __identifier_isset = NO;
-}
-
-- (NSString *) key {
-  return [[__key retain] autorelease];
-}
-
-- (void) setKey: (NSString *) key {
-  [key retain];
-  [__key release];
-  __key = key;
-  __key_isset = YES;
-}
-
-- (BOOL) keyIsSet {
-  return __key_isset;
-}
-
-- (void) unsetKey {
-  [__key release];
-  __key = nil;
-  __key_isset = NO;
-}
-
-- (void) read: (id <TProtocol>) inProtocol
-{
-  NSString * fieldName;
-  int fieldType;
-  int fieldID;
-
-  [inProtocol readStructBeginReturningName: NULL];
-  while (true)
-  {
-    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
-    if (fieldType == TType_STOP) { 
-      break;
-    }
-    switch (fieldID)
-    {
-      case 1:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setIdentifier: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 2:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setKey: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      default:
-        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        break;
-    }
-    [inProtocol readFieldEnd];
-  }
-  [inProtocol readStructEnd];
-}
-
-- (void) write: (id <TProtocol>) outProtocol {
-  [outProtocol writeStructBeginWithName: @"NotFoundException"];
-  if (__identifier_isset) {
-    if (__identifier != nil) {
-      [outProtocol writeFieldBeginWithName: @"identifier" type: TType_STRING fieldID: 1];
-      [outProtocol writeString: __identifier];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  if (__key_isset) {
-    if (__key != nil) {
-      [outProtocol writeFieldBeginWithName: @"key" type: TType_STRING fieldID: 2];
-      [outProtocol writeString: __key];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  [outProtocol writeFieldStop];
-  [outProtocol writeStructEnd];
-}
-
-- (NSString *) description {
-  NSMutableString * ms = [NSMutableString stringWithString: @"NotFoundException("];
-  [ms appendString: @"identifier:"];
-  [ms appendFormat: @"\"%@\"", __identifier];
-  [ms appendString: @",key:"];
-  [ms appendFormat: @"\"%@\"", __key];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }

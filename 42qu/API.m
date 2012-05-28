@@ -10,8 +10,8 @@
 #import <TSocketClient.h>
 #import <TBinaryProtocol.h>
 
-#define API_HOSTNAME @""
-#define API_PORT 0
+#define API_HOSTNAME @"fycd.tk"
+#define API_PORT 50042
 
 @implementation API
 
@@ -23,7 +23,7 @@ static SnsClient *snsClient = nil;
         TSocketClient *transport = [[TSocketClient alloc] initWithHostname:API_HOSTNAME port:API_PORT];
         TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:transport strictRead:YES strictWrite:YES];
         [transport release];
-        snsClient = [[[SnsClient alloc] initWithProtocol:protocol] autorelease];
+        snsClient = [[SnsClient alloc] initWithProtocol:protocol];
         [protocol release];
     }
     return snsClient;
