@@ -102,7 +102,8 @@ static AccountControl *accountControl = nil;
     if ([self loginWithMail:mail andPassword:password]) {
         [self.delegate didLogin];
     } else {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
+        [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
+        [userDefaults synchronize];
         [self.delegate didFailLogin];
     }
 }
@@ -154,6 +155,7 @@ static NSUInteger i = 0;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:mail forKey:USER_DEFAULT_KEY_MAIL];
     [userDefaults setValue:password forKey:USER_DEFAULT_KEY_PASSWORD];
+    [userDefaults synchronize];
     [self performSelector:@selector(login) withObject:nil afterDelay:0.1];
 }
 
