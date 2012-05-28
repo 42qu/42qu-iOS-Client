@@ -50,7 +50,7 @@ static AccountControl *accountControl = nil;
 
 #pragma mark - Basic operation
 
-- (void)loginWithMail:(NSString *)mail andPassword:(NSString *)password
+- (BOOL)loginWithMail:(NSString *)mail andPassword:(NSString *)password
 {
     /*
     // Create login API URL
@@ -79,7 +79,9 @@ static AccountControl *accountControl = nil;
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
+        return NO;
     }
+    return YES;
 }
 
 - (void)login
@@ -97,7 +99,11 @@ static AccountControl *accountControl = nil;
         [_loginView show];
         return;
     }
-    [self loginWithMail:mail andPassword:password];
+    if ([self loginWithMail:mail andPassword:password]) {
+        [self.delegate didLogin];
+    } else {
+        [self.delegate didFailLogin];
+    }
 }
 
 #pragma mark - Login view delegate

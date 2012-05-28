@@ -38,7 +38,7 @@ enum {
 
 + (AccountControl *)shared;
 
-- (void)loginWithMail:(NSString *)mail andPassword:(NSString *)password;
+- (BOOL)loginWithMail:(NSString *)mail andPassword:(NSString *)password;
 - (void)login;
 
 @end
