@@ -102,6 +102,7 @@ static AccountControl *accountControl = nil;
     if ([self loginWithMail:mail andPassword:password]) {
         [self.delegate didLogin];
     } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
         [self.delegate didFailLogin];
     }
 }
