@@ -73,7 +73,7 @@
     }
     
     // Begin animations
-    [UIView animateWithDuration:0.35f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         [self setFrame:kFrameLoginViewOrigin];
     } completion:^(BOOL finished) {
         [self.delegate onDismiss];
