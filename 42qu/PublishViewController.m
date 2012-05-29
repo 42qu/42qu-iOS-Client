@@ -148,8 +148,6 @@
         textLengthLabelFrame.origin.x = _contentTextView.frame.origin.x + _contentTextView.frame.size.width - _textLengthLabel.frame.size.width - 6.0;
         textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height + 3.0;
         _textLengthLabel.frame = textLengthLabelFrame;
-        NSLog(@"%f %f %f %f", _contentTextView.frame.origin.x, _contentTextView.frame.origin.y, _contentTextView.frame.size.width, _contentTextView.frame.size.height);
-        NSLog(@"%f %f %f %f", _textLengthLabel.frame.origin.x, _textLengthLabel.frame.origin.y, _textLengthLabel.frame.size.width, _textLengthLabel.frame.size.height);
     }
 }
 
@@ -177,22 +175,24 @@
 
 - (void)keyboardHeightChanged:(NSNotification *)notification
 {
-    // Get the height of application & navigation bar & keyboard height
-    CGFloat applicationHeight = [UIScreen mainScreen].applicationFrame.size.height;
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    NSDictionary *info = notification.userInfo;
-    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGFloat keyboardHeight = value.CGRectValue.size.height;
-    // Fit the height of text view
-    CGRect contentTextViewFrame = _contentTextView.frame;
-    contentTextViewFrame.size.height = applicationHeight - navigationBarHeight - keyboardHeight;
-    contentTextViewFrame.size.height -= _textLengthLabel.hidden?0:(_textLengthLabel.frame.size.height+9.0);
-    _contentTextView.frame = contentTextViewFrame;
-    // Fit the position of text length indicator
-    CGRect textLengthLabelFrame = _textLengthLabel.frame;
-    textLengthLabelFrame.origin.x = _contentTextView.frame.origin.x + _contentTextView.frame.size.width - _textLengthLabel.frame.size.width - 6.0;
-    textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height + 3.0;
-    _textLengthLabel.frame = textLengthLabelFrame;
+    [UIView animateWithDuration:0.2f animations:^{
+        // Get the height of application & navigation bar & keyboard height
+        CGFloat applicationHeight = [UIScreen mainScreen].applicationFrame.size.height;
+        CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+        NSDictionary *info = notification.userInfo;
+        NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+        CGFloat keyboardHeight = value.CGRectValue.size.height;
+        // Fit the height of text view
+        CGRect contentTextViewFrame = _contentTextView.frame;
+        contentTextViewFrame.size.height = applicationHeight - navigationBarHeight - keyboardHeight;
+        contentTextViewFrame.size.height -= _textLengthLabel.hidden?0:(_textLengthLabel.frame.size.height+9.0);
+        _contentTextView.frame = contentTextViewFrame;
+        // Fit the position of text length indicator
+        CGRect textLengthLabelFrame = _textLengthLabel.frame;
+        textLengthLabelFrame.origin.x = _contentTextView.frame.origin.x + _contentTextView.frame.size.width - _textLengthLabel.frame.size.width - 6.0;
+        textLengthLabelFrame.origin.y = _contentTextView.frame.origin.y + _contentTextView.frame.size.height + 3.0;
+        _textLengthLabel.frame = textLengthLabelFrame;
+    }];
 }
 
 @end
