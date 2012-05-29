@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA210B3A156D1B2B00DDACE9 /* logo.png */; };
+		FA3A4B24157485BE0070FB1C /* top-bar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B22157485BE0070FB1C /* top-bar-bg.png */; };
+		FA3A4B25157485BE0070FB1C /* top-bar-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B23157485BE0070FB1C /* top-bar-bg@2x.png */; };
 		FA402A37156BA3F4009EC4FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA402A36156BA3F4009EC4FA /* QuartzCore.framework */; };
 		FA402A5E156C919E009EC4FA /* AccountControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A5D156C919E009EC4FA /* AccountControl.m */; };
 		FA402A79156C9F5A009EC4FA /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A61156C9F5A009EC4FA /* NSObject+SBJson.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		FA210B3A156D1B2B00DDACE9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		FA3A4B22157485BE0070FB1C /* top-bar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-bar-bg.png"; sourceTree = "<group>"; };
+		FA3A4B23157485BE0070FB1C /* top-bar-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-bar-bg@2x.png"; sourceTree = "<group>"; };
 		FA402A36156BA3F4009EC4FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FA402A5C156C919E009EC4FA /* AccountControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountControl.h; sourceTree = "<group>"; };
 		FA402A5D156C919E009EC4FA /* AccountControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountControl.m; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 				FAB74014156B9C71003CBF67 /* Publish */,
 				FAB74003156B8103003CBF67 /* UpdateRootViewController.h */,
 				FAB74004156B8103003CBF67 /* UpdateRootViewController.m */,
+				FA3A4B22157485BE0070FB1C /* top-bar-bg.png */,
+				FA3A4B23157485BE0070FB1C /* top-bar-bg@2x.png */,
 			);
 			name = Update;
 			sourceTree = "<group>";
@@ -467,6 +473,8 @@
 				FA402ABC156D0EAD009EC4FA /* LoginBG.png in Resources */,
 				FA402ABD156D0EAD009EC4FA /* LoginBG@2x.png in Resources */,
 				FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */,
+				FA3A4B24157485BE0070FB1C /* top-bar-bg.png in Resources */,
+				FA3A4B25157485BE0070FB1C /* top-bar-bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
