@@ -112,7 +112,7 @@ static AccountControl *accountControl = nil;
 
 static NSUInteger i = 0;
 
-- (void)onShow
+- (void)loginViewOnShow:(LoginView *)loginView
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *mail = [userDefaults stringForKey:USER_DEFAULT_KEY_MAIL];
@@ -143,15 +143,13 @@ static NSUInteger i = 0;
 }
  */
 
-- (void)onDismiss
+- (void)loginViewOnDismiss:(LoginView *)loginView
 {
     _loginView = nil;
 }
 
-- (void)onLogin
+- (void)loginView:(LoginView *)loginView onLoginWithMail:(NSString *)mail andPassword:(NSString *)password
 {
-    NSString *mail = _loginView.nameField.text;
-    NSString *password = _loginView.passwordField.text;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:mail forKey:USER_DEFAULT_KEY_MAIL];
     [userDefaults setValue:password forKey:USER_DEFAULT_KEY_PASSWORD];
@@ -159,7 +157,7 @@ static NSUInteger i = 0;
     [self performSelector:@selector(login) withObject:nil afterDelay:0.1];
 }
 
-- (void)onRegister
+- (void)loginViewOnRegisterButtonPressed:(LoginView *)loginView
 {
 #warning unfinished method
     NSLog(@"Show register view. ");

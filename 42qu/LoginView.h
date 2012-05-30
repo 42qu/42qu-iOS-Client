@@ -10,17 +10,19 @@
 
 #define kFrameLoginViewOrigin CGRectMake(0, -224, 320, 244)
 
+@class LoginView;
+
 @protocol LoginViewDelegate <NSObject>
 
-- (void)onLogin;
+- (void)loginViewOnShow:(LoginView *)loginView;
+- (void)loginViewOnDismiss:(LoginView *)loginView;
 
-- (void)onShow;
-- (void)onDismiss;
+- (void)loginView:(LoginView *)loginView onLoginWithMail:(NSString *)mail andPassword:(NSString *)password;
 
 @optional
 - (BOOL)onLogout;
 
-- (void)onRegister;
+- (void)loginViewOnRegisterButtonPressed:(LoginView *)loginView;
 
 @end
 

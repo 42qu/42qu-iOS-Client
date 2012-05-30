@@ -41,14 +41,14 @@
 
 - (void)login
 {
-    [self.delegate onLogin];
+    [self.delegate loginView:self onLoginWithMail:_nameField.text andPassword:_passwordField.text];
     [self dismiss];
 }
 
 - (void)register
 {
     if ([self.delegate respondsToSelector:@selector(onRegister)]) {
-        [self.delegate onRegister];
+        [self.delegate loginViewOnRegisterButtonPressed:self];
     }
     [self dismiss];
 }
@@ -66,7 +66,7 @@
         [self setFrame:loginViewFrame];
         [_nameField becomeFirstResponder];
     } completion:^(BOOL finished) {
-        [self.delegate onShow];
+        [self.delegate loginViewOnShow:self];
     }];
 }
 
@@ -84,7 +84,7 @@
     [UIView animateWithDuration:0.3f animations:^{
         [self setFrame:kFrameLoginViewOrigin];
     } completion:^(BOOL finished) {
-        [self.delegate onDismiss];
+        [self.delegate loginViewOnDismiss:self];
         [self removeFromSuperview];
     }];
     // Remove keyboard notification

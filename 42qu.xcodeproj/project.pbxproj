@@ -32,7 +32,6 @@
 		FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402AAE156D0B04009EC4FA /* LoginView.m */; };
 		FA402ABC156D0EAD009EC4FA /* LoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABA156D0EAD009EC4FA /* LoginBG.png */; };
 		FA402ABD156D0EAD009EC4FA /* LoginBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABB156D0EAD009EC4FA /* LoginBG@2x.png */; };
-		FA54C6911575FBC400ACED7B /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA54C6901575FBC400ACED7B /* RegisterView.m */; };
 		FA7E3D0B156B613E00687AB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0A156B613E00687AB8 /* UIKit.framework */; };
 		FA7E3D0D156B613E00687AB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0C156B613E00687AB8 /* Foundation.framework */; };
 		FA7E3D0F156B613E00687AB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0E156B613E00687AB8 /* CoreGraphics.framework */; };
@@ -543,7 +542,6 @@
 				FAB692B81571306000AF0951 /* TSocketClient.m in Sources */,
 				FAB692B91571306000AF0951 /* TTransportException.m in Sources */,
 				FAB692BA1571306000AF0951 /* TSharedProcessorFactory.m in Sources */,
-				FA54C6911575FBC400ACED7B /* RegisterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
