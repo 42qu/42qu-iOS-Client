@@ -20,6 +20,8 @@
 @optional
 - (BOOL)onLogout;
 
+- (void)onRegister;
+
 @end
 
 @interface LoginView : UIView <UITextFieldDelegate>
@@ -36,6 +38,7 @@
 - (void)jumpToNextField;
 
 - (void)login;
+- (void)register;
 
 - (void)show;
 - (void)dismiss;

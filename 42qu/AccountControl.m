@@ -159,6 +159,12 @@ static NSUInteger i = 0;
     [self performSelector:@selector(login) withObject:nil afterDelay:0.1];
 }
 
+- (void)onRegister
+{
+#warning unfinished method
+    NSLog(@"Show register view. ");
+}
+
 /*
 #pragma mark - URL connection delegate
 

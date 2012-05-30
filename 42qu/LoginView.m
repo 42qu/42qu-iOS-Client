@@ -45,6 +45,14 @@
     [self dismiss];
 }
 
+- (void)register
+{
+    if ([self.delegate respondsToSelector:@selector(onRegister)]) {
+        [self.delegate onRegister];
+    }
+    [self dismiss];
+}
+
 #pragma mark - Animation
 
 - (void)show
@@ -120,6 +128,7 @@
         [_registerButton setFrame:kFrameButtonRegister];
         [_registerButton setAlpha:0.8f];
         [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
+        [_registerButton addTarget:self action:@selector(register) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_registerButton];
         
         self.otherLoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
