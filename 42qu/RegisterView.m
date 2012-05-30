@@ -10,11 +10,14 @@
 
 @implementation RegisterView
 
+@synthesize webView = _webView;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.webView = [[[UIWebView alloc] initWithFrame:self.frame] autorelease];
+        [self addSubview:_webView];
     }
     return self;
 }

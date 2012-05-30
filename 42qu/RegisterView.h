@@ -10,4 +10,6 @@
 
 @interface RegisterView : UIView
 
+@property (nonatomic, strong) UIWebView *webView;
+
 @end
