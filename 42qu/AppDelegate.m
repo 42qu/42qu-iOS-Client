@@ -50,15 +50,15 @@
     
     // Init & add tab bar controller's view controllers
     UpdateRootViewController *updateRootViewController = [[UpdateRootViewController alloc] init];
-    self.updateNavigationController = [[UINavigationController alloc] initWithRootViewController:updateRootViewController];
+    self.updateNavigationController = [[[UINavigationController alloc] initWithRootViewController:updateRootViewController] autorelease];
     [updateRootViewController release];
     
     NotificationRootViewController *notificationRootViewController = [[NotificationRootViewController alloc] init];
-    self.notificationNavigationController = [[UINavigationController alloc] initWithRootViewController:notificationRootViewController];
+    self.notificationNavigationController = [[[UINavigationController alloc] initWithRootViewController:notificationRootViewController] autorelease];
     [notificationRootViewController release];
     
     PeopleRootViewController *peopleRootViewController = [[PeopleRootViewController alloc] init];
-    self.peopleNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRootViewController];
+    self.peopleNavigationController = [[[UINavigationController alloc] initWithRootViewController:peopleRootViewController] autorelease];
     [peopleRootViewController release];
     
     _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, nil];

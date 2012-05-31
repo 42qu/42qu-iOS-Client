@@ -13,6 +13,7 @@
 		FA1783141577C576005C9ECE /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = FA17830F1577C576005C9ECE /* renren.png */; };
 		FA1783151577C576005C9ECE /* tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1783101577C576005C9ECE /* tencent.png */; };
 		FA1783181577C65F005C9ECE /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1783171577C65F005C9ECE /* weibo.png */; };
+		FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17831B1577D827005C9ECE /* LaunchViewController.m */; };
 		FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA210B3A156D1B2B00DDACE9 /* logo.png */; };
 		FA3A4B24157485BE0070FB1C /* top-bar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B22157485BE0070FB1C /* top-bar-bg.png */; };
 		FA3A4B25157485BE0070FB1C /* top-bar-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B23157485BE0070FB1C /* top-bar-bg@2x.png */; };
@@ -76,6 +77,8 @@
 		FA17830F1577C576005C9ECE /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
 		FA1783101577C576005C9ECE /* tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tencent.png; sourceTree = "<group>"; };
 		FA1783171577C65F005C9ECE /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
+		FA17831A1577D827005C9ECE /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
+		FA17831B1577D827005C9ECE /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		FA210B3A156D1B2B00DDACE9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA3A4B22157485BE0070FB1C /* top-bar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-bar-bg.png"; sourceTree = "<group>"; };
 		FA3A4B23157485BE0070FB1C /* top-bar-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-bar-bg@2x.png"; sourceTree = "<group>"; };
@@ -207,6 +210,15 @@
 			name = "SNS Image";
 			sourceTree = "<group>";
 		};
+		FA1783191577D7C6005C9ECE /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				FA17831A1577D827005C9ECE /* LaunchViewController.h */,
+				FA17831B1577D827005C9ECE /* LaunchViewController.m */,
+			);
+			name = Launch;
+			sourceTree = "<group>";
+		};
 		FA402A3D156BAE37009EC4FA /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +325,7 @@
 			children = (
 				FA402A85156CA012009EC4FA /* API Utils */,
 				FAB73FF4156B7CE0003CBF67 /* App Delegate */,
+				FA1783191577D7C6005C9ECE /* Launch */,
 				FA402A3D156BAE37009EC4FA /* Account */,
 				FAB73FF2156B7CDD003CBF67 /* Update */,
 				FAB73FFB156B7DF6003CBF67 /* Notification */,
@@ -578,6 +591,7 @@
 				FA5885681576636700F46BD8 /* exception.m in Sources */,
 				FA58857115767D6300F46BD8 /* RegisterView.m in Sources */,
 				FA1783051577B38B005C9ECE /* RegisterListViewController.m in Sources */,
+				FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

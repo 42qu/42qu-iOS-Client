@@ -40,11 +40,11 @@ static AccountControl *accountControl = nil;
 + (AccountControl *)shared
 {
     if (!accountControl) {
-        accountControl = [AccountControl new];
-        accountControl.userID = [[NSMutableString alloc] init];
-        accountControl.name = [[NSMutableString alloc] init];
-        accountControl.accessToken = [[NSMutableString alloc] init];
-        accountControl.refreshToken = [[NSMutableString alloc] init];
+        accountControl = [[AccountControl alloc] init];
+        accountControl.userID = [[[NSMutableString alloc] init] autorelease];
+        accountControl.name = [[[NSMutableString alloc] init] autorelease];
+        accountControl.accessToken = [[[NSMutableString alloc] init] autorelease];
+        accountControl.refreshToken = [[[NSMutableString alloc] init] autorelease];
     }
     return accountControl;
 }

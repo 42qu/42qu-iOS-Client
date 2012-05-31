@@ -26,7 +26,7 @@
     transition.delegate = self;
     [self.navigationController.view.layer addAnimation:transition forKey:nil];
     
-    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+    PublishViewController *publishViewController = [[[PublishViewController alloc] init] autorelease];
     
     [self.navigationController pushViewController:publishViewController animated:NO]; 
 }
