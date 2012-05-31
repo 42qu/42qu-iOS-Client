@@ -47,7 +47,7 @@
 
 - (void)register
 {
-    if ([self.delegate respondsToSelector:@selector(onRegister)]) {
+    if ([self.delegate respondsToSelector:@selector(loginViewOnRegisterButtonPressed:)]) {
         [self.delegate loginViewOnRegisterButtonPressed:self];
     }
     [self dismiss];
