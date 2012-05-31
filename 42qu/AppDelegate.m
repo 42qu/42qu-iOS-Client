@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+#import "LaunchViewController.h"
 #import "UpdateRootViewController.h"
 #import "NotificationRootViewController.h"
 #import "PeopleRootViewController.h"
