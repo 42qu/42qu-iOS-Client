@@ -14,6 +14,7 @@
 
 #import "AppDelegate.h"
 #import "AccountControl.h"
+#import "RegisterListViewController.h"
 
 // User Default Key
 #define USER_DEFAULT_KEY_MAIL @"mail"
