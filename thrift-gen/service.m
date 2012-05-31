@@ -12,7 +12,7 @@
 #import <TProtocolUtil.h>
 #import <TProcessor.h>
 
-#import "error.h"
+#import "exception.h"
 #import "type.h"
 
 #import "service.h"
@@ -24,80 +24,80 @@
 @end
 
 @interface login_by_mail_args : NSObject <NSCoding> {
-  AuthRequestMail * __auth_request_mail;
+  AuthRequestMail * __auth;
 
-  BOOL __auth_request_mail_isset;
+  BOOL __auth_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=auth_request_mail, setter=setAuth_request_mail:) AuthRequestMail * auth_request_mail;
+@property (nonatomic, retain, getter=auth, setter=setAuth:) AuthRequestMail * auth;
 #endif
 
-- (id) initWithAuth_request_mail: (AuthRequestMail *) auth_request_mail;
+- (id) initWithAuth: (AuthRequestMail *) auth;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-- (AuthRequestMail *) auth_request_mail;
-- (void) setAuth_request_mail: (AuthRequestMail *) auth_request_mail;
-- (BOOL) auth_request_mailIsSet;
+- (AuthRequestMail *) auth;
+- (void) setAuth: (AuthRequestMail *) auth;
+- (BOOL) authIsSet;
 
 @end
 
 @implementation login_by_mail_args
 
-- (id) initWithAuth_request_mail: (AuthRequestMail *) auth_request_mail
+- (id) initWithAuth: (AuthRequestMail *) auth
 {
   self = [super init];
-  __auth_request_mail = [auth_request_mail retain];
-  __auth_request_mail_isset = YES;
+  __auth = [auth retain];
+  __auth_isset = YES;
   return self;
 }
 
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super init];
-  if ([decoder containsValueForKey: @"auth_request_mail"])
+  if ([decoder containsValueForKey: @"auth"])
   {
-    __auth_request_mail = [[decoder decodeObjectForKey: @"auth_request_mail"] retain];
-    __auth_request_mail_isset = YES;
+    __auth = [[decoder decodeObjectForKey: @"auth"] retain];
+    __auth_isset = YES;
   }
   return self;
 }
 
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
-  if (__auth_request_mail_isset)
+  if (__auth_isset)
   {
-    [encoder encodeObject: __auth_request_mail forKey: @"auth_request_mail"];
+    [encoder encodeObject: __auth forKey: @"auth"];
   }
 }
 
 - (void) dealloc
 {
-  [__auth_request_mail release];
+  [__auth release];
   [super dealloc];
 }
 
-- (AuthRequestMail *) auth_request_mail {
-  return [[__auth_request_mail retain] autorelease];
+- (AuthRequestMail *) auth {
+  return [[__auth retain] autorelease];
 }
 
-- (void) setAuth_request_mail: (AuthRequestMail *) auth_request_mail {
-  [auth_request_mail retain];
-  [__auth_request_mail release];
-  __auth_request_mail = auth_request_mail;
-  __auth_request_mail_isset = YES;
+- (void) setAuth: (AuthRequestMail *) auth {
+  [auth retain];
+  [__auth release];
+  __auth = auth;
+  __auth_isset = YES;
 }
 
-- (BOOL) auth_request_mailIsSet {
-  return __auth_request_mail_isset;
+- (BOOL) authIsSet {
+  return __auth_isset;
 }
 
-- (void) unsetAuth_request_mail {
-  [__auth_request_mail release];
-  __auth_request_mail = nil;
-  __auth_request_mail_isset = NO;
+- (void) unsetAuth {
+  [__auth release];
+  __auth = nil;
+  __auth_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -119,7 +119,7 @@
         if (fieldType == TType_STRUCT) {
           AuthRequestMail *fieldValue = [[AuthRequestMail alloc] init];
           [fieldValue read: inProtocol];
-          [self setAuth_request_mail: fieldValue];
+          [self setAuth: fieldValue];
           [fieldValue release];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
@@ -136,10 +136,10 @@
 
 - (void) write: (id <TProtocol>) outProtocol {
   [outProtocol writeStructBeginWithName: @"login_by_mail_args"];
-  if (__auth_request_mail_isset) {
-    if (__auth_request_mail != nil) {
-      [outProtocol writeFieldBeginWithName: @"auth_request_mail" type: TType_STRUCT fieldID: 1];
-      [__auth_request_mail write: outProtocol];
+  if (__auth_isset) {
+    if (__auth != nil) {
+      [outProtocol writeFieldBeginWithName: @"auth" type: TType_STRUCT fieldID: 1];
+      [__auth write: outProtocol];
       [outProtocol writeFieldEnd];
     }
   }
@@ -149,8 +149,8 @@
 
 - (NSString *) description {
   NSMutableString * ms = [NSMutableString stringWithString: @"login_by_mail_args("];
-  [ms appendString: @"auth_request_mail:"];
-  [ms appendFormat: @"%@", __auth_request_mail];
+  [ms appendString: @"auth:"];
+  [ms appendFormat: @"%@", __auth];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -293,99 +293,137 @@
 @end
 
 @interface login_by_oauth_args : NSObject <NSCoding> {
-  NSString * __client_key;
+  NSString * __client_id;
   NSString * __client_secret;
+  NSString * __access_token;
+  NSString * __mail;
 
-  BOOL __client_key_isset;
+  BOOL __client_id_isset;
   BOOL __client_secret_isset;
+  BOOL __access_token_isset;
+  BOOL __mail_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=client_key, setter=setClient_key:) NSString * client_key;
+@property (nonatomic, retain, getter=client_id, setter=setClient_id:) NSString * client_id;
 @property (nonatomic, retain, getter=client_secret, setter=setClient_secret:) NSString * client_secret;
+@property (nonatomic, retain, getter=access_token, setter=setAccess_token:) NSString * access_token;
+@property (nonatomic, retain, getter=mail, setter=setMail:) NSString * mail;
 #endif
 
-- (id) initWithClient_key: (NSString *) client_key client_secret: (NSString *) client_secret;
+- (id) initWithClient_id: (NSString *) client_id client_secret: (NSString *) client_secret access_token: (NSString *) access_token mail: (NSString *) mail;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-- (NSString *) client_key;
-- (void) setClient_key: (NSString *) client_key;
-- (BOOL) client_keyIsSet;
+- (NSString *) client_id;
+- (void) setClient_id: (NSString *) client_id;
+- (BOOL) client_idIsSet;
 
 - (NSString *) client_secret;
 - (void) setClient_secret: (NSString *) client_secret;
 - (BOOL) client_secretIsSet;
 
+- (NSString *) access_token;
+- (void) setAccess_token: (NSString *) access_token;
+- (BOOL) access_tokenIsSet;
+
+- (NSString *) mail;
+- (void) setMail: (NSString *) mail;
+- (BOOL) mailIsSet;
+
 @end
 
 @implementation login_by_oauth_args
 
-- (id) initWithClient_key: (NSString *) client_key client_secret: (NSString *) client_secret
+- (id) initWithClient_id: (NSString *) client_id client_secret: (NSString *) client_secret access_token: (NSString *) access_token mail: (NSString *) mail
 {
   self = [super init];
-  __client_key = [client_key retain];
-  __client_key_isset = YES;
+  __client_id = [client_id retain];
+  __client_id_isset = YES;
   __client_secret = [client_secret retain];
   __client_secret_isset = YES;
+  __access_token = [access_token retain];
+  __access_token_isset = YES;
+  __mail = [mail retain];
+  __mail_isset = YES;
   return self;
 }
 
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super init];
-  if ([decoder containsValueForKey: @"client_key"])
+  if ([decoder containsValueForKey: @"client_id"])
   {
-    __client_key = [[decoder decodeObjectForKey: @"client_key"] retain];
-    __client_key_isset = YES;
+    __client_id = [[decoder decodeObjectForKey: @"client_id"] retain];
+    __client_id_isset = YES;
   }
   if ([decoder containsValueForKey: @"client_secret"])
   {
     __client_secret = [[decoder decodeObjectForKey: @"client_secret"] retain];
     __client_secret_isset = YES;
   }
+  if ([decoder containsValueForKey: @"access_token"])
+  {
+    __access_token = [[decoder decodeObjectForKey: @"access_token"] retain];
+    __access_token_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"mail"])
+  {
+    __mail = [[decoder decodeObjectForKey: @"mail"] retain];
+    __mail_isset = YES;
+  }
   return self;
 }
 
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
-  if (__client_key_isset)
+  if (__client_id_isset)
   {
-    [encoder encodeObject: __client_key forKey: @"client_key"];
+    [encoder encodeObject: __client_id forKey: @"client_id"];
   }
   if (__client_secret_isset)
   {
     [encoder encodeObject: __client_secret forKey: @"client_secret"];
   }
+  if (__access_token_isset)
+  {
+    [encoder encodeObject: __access_token forKey: @"access_token"];
+  }
+  if (__mail_isset)
+  {
+    [encoder encodeObject: __mail forKey: @"mail"];
+  }
 }
 
 - (void) dealloc
 {
-  [__client_key release];
+  [__client_id release];
   [__client_secret release];
+  [__access_token release];
+  [__mail release];
   [super dealloc];
 }
 
-- (NSString *) client_key {
-  return [[__client_key retain] autorelease];
+- (NSString *) client_id {
+  return [[__client_id retain] autorelease];
 }
 
-- (void) setClient_key: (NSString *) client_key {
-  [client_key retain];
-  [__client_key release];
-  __client_key = client_key;
-  __client_key_isset = YES;
+- (void) setClient_id: (NSString *) client_id {
+  [client_id retain];
+  [__client_id release];
+  __client_id = client_id;
+  __client_id_isset = YES;
 }
 
-- (BOOL) client_keyIsSet {
-  return __client_key_isset;
+- (BOOL) client_idIsSet {
+  return __client_id_isset;
 }
 
-- (void) unsetClient_key {
-  [__client_key release];
-  __client_key = nil;
-  __client_key_isset = NO;
+- (void) unsetClient_id {
+  [__client_id release];
+  __client_id = nil;
+  __client_id_isset = NO;
 }
 
 - (NSString *) client_secret {
@@ -409,6 +447,48 @@
   __client_secret_isset = NO;
 }
 
+- (NSString *) access_token {
+  return [[__access_token retain] autorelease];
+}
+
+- (void) setAccess_token: (NSString *) access_token {
+  [access_token retain];
+  [__access_token release];
+  __access_token = access_token;
+  __access_token_isset = YES;
+}
+
+- (BOOL) access_tokenIsSet {
+  return __access_token_isset;
+}
+
+- (void) unsetAccess_token {
+  [__access_token release];
+  __access_token = nil;
+  __access_token_isset = NO;
+}
+
+- (NSString *) mail {
+  return [[__mail retain] autorelease];
+}
+
+- (void) setMail: (NSString *) mail {
+  [mail retain];
+  [__mail release];
+  __mail = mail;
+  __mail_isset = YES;
+}
+
+- (BOOL) mailIsSet {
+  return __mail_isset;
+}
+
+- (void) unsetMail {
+  [__mail release];
+  __mail = nil;
+  __mail_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -427,7 +507,7 @@
       case 1:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setClient_key: fieldValue];
+          [self setClient_id: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -436,6 +516,22 @@
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
           [self setClient_secret: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setAccess_token: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setMail: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -451,10 +547,10 @@
 
 - (void) write: (id <TProtocol>) outProtocol {
   [outProtocol writeStructBeginWithName: @"login_by_oauth_args"];
-  if (__client_key_isset) {
-    if (__client_key != nil) {
-      [outProtocol writeFieldBeginWithName: @"client_key" type: TType_STRING fieldID: 1];
-      [outProtocol writeString: __client_key];
+  if (__client_id_isset) {
+    if (__client_id != nil) {
+      [outProtocol writeFieldBeginWithName: @"client_id" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __client_id];
       [outProtocol writeFieldEnd];
     }
   }
@@ -465,16 +561,34 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__access_token_isset) {
+    if (__access_token != nil) {
+      [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 3];
+      [outProtocol writeString: __access_token];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__mail_isset) {
+    if (__mail != nil) {
+      [outProtocol writeFieldBeginWithName: @"mail" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __mail];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
 
 - (NSString *) description {
   NSMutableString * ms = [NSMutableString stringWithString: @"login_by_oauth_args("];
-  [ms appendString: @"client_key:"];
-  [ms appendFormat: @"\"%@\"", __client_key];
+  [ms appendString: @"client_id:"];
+  [ms appendFormat: @"\"%@\"", __client_id];
   [ms appendString: @",client_secret:"];
   [ms appendFormat: @"\"%@\"", __client_secret];
+  [ms appendString: @",access_token:"];
+  [ms appendFormat: @"\"%@\"", __access_token];
+  [ms appendString: @",mail:"];
+  [ms appendFormat: @"\"%@\"", __mail];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -617,99 +731,137 @@
 @end
 
 @interface login_by_oauth2_args : NSObject <NSCoding> {
-  NSString * __client_key;
+  NSString * __client_id;
   NSString * __client_secret;
+  NSString * __access_token;
+  NSString * __mail;
 
-  BOOL __client_key_isset;
+  BOOL __client_id_isset;
   BOOL __client_secret_isset;
+  BOOL __access_token_isset;
+  BOOL __mail_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=client_key, setter=setClient_key:) NSString * client_key;
+@property (nonatomic, retain, getter=client_id, setter=setClient_id:) NSString * client_id;
 @property (nonatomic, retain, getter=client_secret, setter=setClient_secret:) NSString * client_secret;
+@property (nonatomic, retain, getter=access_token, setter=setAccess_token:) NSString * access_token;
+@property (nonatomic, retain, getter=mail, setter=setMail:) NSString * mail;
 #endif
 
-- (id) initWithClient_key: (NSString *) client_key client_secret: (NSString *) client_secret;
+- (id) initWithClient_id: (NSString *) client_id client_secret: (NSString *) client_secret access_token: (NSString *) access_token mail: (NSString *) mail;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-- (NSString *) client_key;
-- (void) setClient_key: (NSString *) client_key;
-- (BOOL) client_keyIsSet;
+- (NSString *) client_id;
+- (void) setClient_id: (NSString *) client_id;
+- (BOOL) client_idIsSet;
 
 - (NSString *) client_secret;
 - (void) setClient_secret: (NSString *) client_secret;
 - (BOOL) client_secretIsSet;
 
+- (NSString *) access_token;
+- (void) setAccess_token: (NSString *) access_token;
+- (BOOL) access_tokenIsSet;
+
+- (NSString *) mail;
+- (void) setMail: (NSString *) mail;
+- (BOOL) mailIsSet;
+
 @end
 
 @implementation login_by_oauth2_args
 
-- (id) initWithClient_key: (NSString *) client_key client_secret: (NSString *) client_secret
+- (id) initWithClient_id: (NSString *) client_id client_secret: (NSString *) client_secret access_token: (NSString *) access_token mail: (NSString *) mail
 {
   self = [super init];
-  __client_key = [client_key retain];
-  __client_key_isset = YES;
+  __client_id = [client_id retain];
+  __client_id_isset = YES;
   __client_secret = [client_secret retain];
   __client_secret_isset = YES;
+  __access_token = [access_token retain];
+  __access_token_isset = YES;
+  __mail = [mail retain];
+  __mail_isset = YES;
   return self;
 }
 
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super init];
-  if ([decoder containsValueForKey: @"client_key"])
+  if ([decoder containsValueForKey: @"client_id"])
   {
-    __client_key = [[decoder decodeObjectForKey: @"client_key"] retain];
-    __client_key_isset = YES;
+    __client_id = [[decoder decodeObjectForKey: @"client_id"] retain];
+    __client_id_isset = YES;
   }
   if ([decoder containsValueForKey: @"client_secret"])
   {
     __client_secret = [[decoder decodeObjectForKey: @"client_secret"] retain];
     __client_secret_isset = YES;
   }
+  if ([decoder containsValueForKey: @"access_token"])
+  {
+    __access_token = [[decoder decodeObjectForKey: @"access_token"] retain];
+    __access_token_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"mail"])
+  {
+    __mail = [[decoder decodeObjectForKey: @"mail"] retain];
+    __mail_isset = YES;
+  }
   return self;
 }
 
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
-  if (__client_key_isset)
+  if (__client_id_isset)
   {
-    [encoder encodeObject: __client_key forKey: @"client_key"];
+    [encoder encodeObject: __client_id forKey: @"client_id"];
   }
   if (__client_secret_isset)
   {
     [encoder encodeObject: __client_secret forKey: @"client_secret"];
   }
+  if (__access_token_isset)
+  {
+    [encoder encodeObject: __access_token forKey: @"access_token"];
+  }
+  if (__mail_isset)
+  {
+    [encoder encodeObject: __mail forKey: @"mail"];
+  }
 }
 
 - (void) dealloc
 {
-  [__client_key release];
+  [__client_id release];
   [__client_secret release];
+  [__access_token release];
+  [__mail release];
   [super dealloc];
 }
 
-- (NSString *) client_key {
-  return [[__client_key retain] autorelease];
+- (NSString *) client_id {
+  return [[__client_id retain] autorelease];
 }
 
-- (void) setClient_key: (NSString *) client_key {
-  [client_key retain];
-  [__client_key release];
-  __client_key = client_key;
-  __client_key_isset = YES;
+- (void) setClient_id: (NSString *) client_id {
+  [client_id retain];
+  [__client_id release];
+  __client_id = client_id;
+  __client_id_isset = YES;
 }
 
-- (BOOL) client_keyIsSet {
-  return __client_key_isset;
+- (BOOL) client_idIsSet {
+  return __client_id_isset;
 }
 
-- (void) unsetClient_key {
-  [__client_key release];
-  __client_key = nil;
-  __client_key_isset = NO;
+- (void) unsetClient_id {
+  [__client_id release];
+  __client_id = nil;
+  __client_id_isset = NO;
 }
 
 - (NSString *) client_secret {
@@ -733,6 +885,48 @@
   __client_secret_isset = NO;
 }
 
+- (NSString *) access_token {
+  return [[__access_token retain] autorelease];
+}
+
+- (void) setAccess_token: (NSString *) access_token {
+  [access_token retain];
+  [__access_token release];
+  __access_token = access_token;
+  __access_token_isset = YES;
+}
+
+- (BOOL) access_tokenIsSet {
+  return __access_token_isset;
+}
+
+- (void) unsetAccess_token {
+  [__access_token release];
+  __access_token = nil;
+  __access_token_isset = NO;
+}
+
+- (NSString *) mail {
+  return [[__mail retain] autorelease];
+}
+
+- (void) setMail: (NSString *) mail {
+  [mail retain];
+  [__mail release];
+  __mail = mail;
+  __mail_isset = YES;
+}
+
+- (BOOL) mailIsSet {
+  return __mail_isset;
+}
+
+- (void) unsetMail {
+  [__mail release];
+  __mail = nil;
+  __mail_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -751,7 +945,7 @@
       case 1:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setClient_key: fieldValue];
+          [self setClient_id: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -760,6 +954,22 @@
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
           [self setClient_secret: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setAccess_token: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setMail: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -775,10 +985,10 @@
 
 - (void) write: (id <TProtocol>) outProtocol {
   [outProtocol writeStructBeginWithName: @"login_by_oauth2_args"];
-  if (__client_key_isset) {
-    if (__client_key != nil) {
-      [outProtocol writeFieldBeginWithName: @"client_key" type: TType_STRING fieldID: 1];
-      [outProtocol writeString: __client_key];
+  if (__client_id_isset) {
+    if (__client_id != nil) {
+      [outProtocol writeFieldBeginWithName: @"client_id" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __client_id];
       [outProtocol writeFieldEnd];
     }
   }
@@ -789,16 +999,34 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__access_token_isset) {
+    if (__access_token != nil) {
+      [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 3];
+      [outProtocol writeString: __access_token];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__mail_isset) {
+    if (__mail != nil) {
+      [outProtocol writeFieldBeginWithName: @"mail" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __mail];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
 
 - (NSString *) description {
   NSMutableString * ms = [NSMutableString stringWithString: @"login_by_oauth2_args("];
-  [ms appendString: @"client_key:"];
-  [ms appendFormat: @"\"%@\"", __client_key];
+  [ms appendString: @"client_id:"];
+  [ms appendFormat: @"\"%@\"", __client_id];
   [ms appendString: @",client_secret:"];
   [ms appendFormat: @"\"%@\"", __client_secret];
+  [ms appendString: @",access_token:"];
+  [ms appendFormat: @"\"%@\"", __access_token];
+  [ms appendString: @",mail:"];
+  [ms appendFormat: @"\"%@\"", __mail];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -3156,13 +3384,13 @@
   [super dealloc];
 }
 
-- (void) send_login_by_mail: (AuthRequestMail *) auth_request_mail
+- (void) send_login_by_mail: (AuthRequestMail *) auth
 {
   [outProtocol writeMessageBeginWithName: @"login_by_mail" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"login_by_mail_args"];
-  if (auth_request_mail != nil)  {
-    [outProtocol writeFieldBeginWithName: @"auth_request_mail" type: TType_STRUCT fieldID: 1];
-    [auth_request_mail write: outProtocol];
+  if (auth != nil)  {
+    [outProtocol writeFieldBeginWithName: @"auth" type: TType_STRUCT fieldID: 1];
+    [auth write: outProtocol];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -3190,24 +3418,34 @@
                                            reason: @"login_by_mail failed: unknown result"];
 }
 
-- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth_request_mail
+- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth
 {
-  [self send_login_by_mail: auth_request_mail];
+  [self send_login_by_mail: auth];
   return [self recv_login_by_mail];
 }
 
-- (void) send_login_by_oauth: (NSString *) client_key : (NSString *) client_secret
+- (void) send_login_by_oauth: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail
 {
   [outProtocol writeMessageBeginWithName: @"login_by_oauth" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"login_by_oauth_args"];
-  if (client_key != nil)  {
-    [outProtocol writeFieldBeginWithName: @"client_key" type: TType_STRING fieldID: 1];
-    [outProtocol writeString: client_key];
+  if (client_id != nil)  {
+    [outProtocol writeFieldBeginWithName: @"client_id" type: TType_STRING fieldID: 1];
+    [outProtocol writeString: client_id];
     [outProtocol writeFieldEnd];
   }
   if (client_secret != nil)  {
     [outProtocol writeFieldBeginWithName: @"client_secret" type: TType_STRING fieldID: 2];
     [outProtocol writeString: client_secret];
+    [outProtocol writeFieldEnd];
+  }
+  if (access_token != nil)  {
+    [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 3];
+    [outProtocol writeString: access_token];
+    [outProtocol writeFieldEnd];
+  }
+  if (mail != nil)  {
+    [outProtocol writeFieldBeginWithName: @"mail" type: TType_STRING fieldID: 4];
+    [outProtocol writeString: mail];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -3235,24 +3473,34 @@
                                            reason: @"login_by_oauth failed: unknown result"];
 }
 
-- (AuthResponse *) login_by_oauth: (NSString *) client_key : (NSString *) client_secret
+- (AuthResponse *) login_by_oauth: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail
 {
-  [self send_login_by_oauth: client_key : client_secret];
+  [self send_login_by_oauth: client_id : client_secret : access_token : mail];
   return [self recv_login_by_oauth];
 }
 
-- (void) send_login_by_oauth2: (NSString *) client_key : (NSString *) client_secret
+- (void) send_login_by_oauth2: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail
 {
   [outProtocol writeMessageBeginWithName: @"login_by_oauth2" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"login_by_oauth2_args"];
-  if (client_key != nil)  {
-    [outProtocol writeFieldBeginWithName: @"client_key" type: TType_STRING fieldID: 1];
-    [outProtocol writeString: client_key];
+  if (client_id != nil)  {
+    [outProtocol writeFieldBeginWithName: @"client_id" type: TType_STRING fieldID: 1];
+    [outProtocol writeString: client_id];
     [outProtocol writeFieldEnd];
   }
   if (client_secret != nil)  {
     [outProtocol writeFieldBeginWithName: @"client_secret" type: TType_STRING fieldID: 2];
     [outProtocol writeString: client_secret];
+    [outProtocol writeFieldEnd];
+  }
+  if (access_token != nil)  {
+    [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 3];
+    [outProtocol writeString: access_token];
+    [outProtocol writeFieldEnd];
+  }
+  if (mail != nil)  {
+    [outProtocol writeFieldBeginWithName: @"mail" type: TType_STRING fieldID: 4];
+    [outProtocol writeString: mail];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -3280,9 +3528,9 @@
                                            reason: @"login_by_oauth2 failed: unknown result"];
 }
 
-- (AuthResponse *) login_by_oauth2: (NSString *) client_key : (NSString *) client_secret
+- (AuthResponse *) login_by_oauth2: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail
 {
-  [self send_login_by_oauth2: client_key : client_secret];
+  [self send_login_by_oauth2: client_id : client_secret : access_token : mail];
   return [self recv_login_by_oauth2];
 }
 
@@ -3762,7 +4010,7 @@
   [args read: inProtocol];
   [inProtocol readMessageEnd];
   Login_by_mail_result * result = [[Login_by_mail_result alloc] init];
-  [result setSuccess: [mService login_by_mail: [args auth_request_mail]]];
+  [result setSuccess: [mService login_by_mail: [args auth]]];
   [outProtocol writeMessageBeginWithName: @"login_by_mail"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];
@@ -3779,7 +4027,7 @@
   [args read: inProtocol];
   [inProtocol readMessageEnd];
   Login_by_oauth_result * result = [[Login_by_oauth_result alloc] init];
-  [result setSuccess: [mService login_by_oauth: [args client_key]: [args client_secret]]];
+  [result setSuccess: [mService login_by_oauth: [args client_id]: [args client_secret]: [args access_token]: [args mail]]];
   [outProtocol writeMessageBeginWithName: @"login_by_oauth"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];
@@ -3796,7 +4044,7 @@
   [args read: inProtocol];
   [inProtocol readMessageEnd];
   Login_by_oauth2_result * result = [[Login_by_oauth2_result alloc] init];
-  [result setSuccess: [mService login_by_oauth2: [args client_key]: [args client_secret]]];
+  [result setSuccess: [mService login_by_oauth2: [args client_id]: [args client_secret]: [args access_token]: [args mail]]];
   [outProtocol writeMessageBeginWithName: @"login_by_oauth2"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];

@@ -12,13 +12,13 @@
 #import <TProtocolUtil.h>
 #import <TProcessor.h>
 
-#import "error.h"
+#import "exception.h"
 #import "type.h"
 
 @protocol Sns <NSObject>
-- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth_request_mail;  // throws TException
-- (AuthResponse *) login_by_oauth: (NSString *) client_key : (NSString *) client_secret;  // throws TException
-- (AuthResponse *) login_by_oauth2: (NSString *) client_key : (NSString *) client_secret;  // throws TException
+- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth;  // throws TException
+- (AuthResponse *) login_by_oauth: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail;  // throws TException
+- (AuthResponse *) login_by_oauth2: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail;  // throws TException
 - (void) logout: (NSString *) access_token;  // throws TException
 - (UserInfo *) user_info_get: (NSString *) access_token : (int64_t) id;  // throws TException
 - (UserInfo *) user_info_set: (NSString *) access_token : (UserInfo *) user_info;  // throws TException

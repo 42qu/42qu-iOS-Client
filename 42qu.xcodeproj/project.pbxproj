@@ -32,6 +32,8 @@
 		FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402AAE156D0B04009EC4FA /* LoginView.m */; };
 		FA402ABC156D0EAD009EC4FA /* LoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABA156D0EAD009EC4FA /* LoginBG.png */; };
 		FA402ABD156D0EAD009EC4FA /* LoginBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABB156D0EAD009EC4FA /* LoginBG@2x.png */; };
+		FA5885681576636700F46BD8 /* exception.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5885671576636700F46BD8 /* exception.m */; };
+		FA58857115767D6300F46BD8 /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58857015767D6300F46BD8 /* RegisterView.m */; };
 		FA7E3D0B156B613E00687AB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0A156B613E00687AB8 /* UIKit.framework */; };
 		FA7E3D0D156B613E00687AB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0C156B613E00687AB8 /* Foundation.framework */; };
 		FA7E3D0F156B613E00687AB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0E156B613E00687AB8 /* CoreGraphics.framework */; };
@@ -56,7 +58,6 @@
 		FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */; };
 		FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7401A156B9CA1003CBF67 /* PublishViewController.m */; };
 		FAB7401D156B9CA1003CBF67 /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */; };
-		FAF57A521570D294002B26CE /* error.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A031570AFE8002B26CE /* error.m */; };
 		FAF57A531570D294002B26CE /* service.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A051570AFE8002B26CE /* service.m */; };
 		FAF57A541570D294002B26CE /* type.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A071570AFE8002B26CE /* type.m */; };
 /* End PBXBuildFile section */
@@ -105,8 +106,10 @@
 		FA402AAE156D0B04009EC4FA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		FA402ABA156D0EAD009EC4FA /* LoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBG.png; sourceTree = "<group>"; };
 		FA402ABB156D0EAD009EC4FA /* LoginBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBG@2x.png"; sourceTree = "<group>"; };
-		FA54C68F1575FBC400ACED7B /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
-		FA54C6901575FBC400ACED7B /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
+		FA5885661576636700F46BD8 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
+		FA5885671576636700F46BD8 /* exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exception.m; sourceTree = "<group>"; };
+		FA58856F15767D6300F46BD8 /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
+		FA58857015767D6300F46BD8 /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
 		FA7E3D06156B613D00687AB8 /* 42qu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 42qu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7E3D0A156B613E00687AB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA7E3D0C156B613E00687AB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,8 +161,6 @@
 		FAB74019156B9CA1003CBF67 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		FAB7401A156B9CA1003CBF67 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishViewController.xib; sourceTree = "<group>"; };
-		FAF57A021570AFE8002B26CE /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
-		FAF57A031570AFE8002B26CE /* error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = error.m; sourceTree = "<group>"; };
 		FAF57A041570AFE8002B26CE /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
 		FAF57A051570AFE8002B26CE /* service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = service.m; sourceTree = "<group>"; };
 		FAF57A061570AFE8002B26CE /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
@@ -189,8 +190,8 @@
 				FA402A5D156C919E009EC4FA /* AccountControl.m */,
 				FA402AAD156D0B04009EC4FA /* LoginView.h */,
 				FA402AAE156D0B04009EC4FA /* LoginView.m */,
-				FA54C68F1575FBC400ACED7B /* RegisterView.h */,
-				FA54C6901575FBC400ACED7B /* RegisterView.m */,
+				FA58856F15767D6300F46BD8 /* RegisterView.h */,
+				FA58857015767D6300F46BD8 /* RegisterView.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -423,8 +424,8 @@
 		FAF57A011570AFE8002B26CE /* thrift-gen */ = {
 			isa = PBXGroup;
 			children = (
-				FAF57A021570AFE8002B26CE /* error.h */,
-				FAF57A031570AFE8002B26CE /* error.m */,
+				FA5885661576636700F46BD8 /* exception.h */,
+				FA5885671576636700F46BD8 /* exception.m */,
 				FAF57A041570AFE8002B26CE /* service.h */,
 				FAF57A051570AFE8002B26CE /* service.m */,
 				FAF57A061570AFE8002B26CE /* type.h */,
@@ -526,7 +527,6 @@
 				FA402A84156C9F5A009EC4FA /* SBJsonWriter.m in Sources */,
 				FA402A9F156CDE5A009EC4FA /* API.m in Sources */,
 				FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */,
-				FAF57A521570D294002B26CE /* error.m in Sources */,
 				FAF57A531570D294002B26CE /* service.m in Sources */,
 				FAF57A541570D294002B26CE /* type.m in Sources */,
 				FAB692AE1571306000AF0951 /* TBinaryProtocol.m in Sources */,
@@ -542,6 +542,8 @@
 				FAB692B81571306000AF0951 /* TSocketClient.m in Sources */,
 				FAB692B91571306000AF0951 /* TTransportException.m in Sources */,
 				FAB692BA1571306000AF0951 /* TSharedProcessorFactory.m in Sources */,
+				FA5885681576636700F46BD8 /* exception.m in Sources */,
+				FA58857115767D6300F46BD8 /* RegisterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

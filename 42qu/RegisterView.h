@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class RegisterView;
+
+@protocol RegisterViewDelegate <NSObject>
+
+- (void)registerViewOnShow:(RegisterView *)registerView;
+- (void)registerViewOnDismiss:(RegisterView *)registerView;
+
+@optional
+
+- (void)registerView:(RegisterView *)registerView onRegisterWithCid:(NSUInteger)cid andAccessToken:(NSString *)accessToken;
+
+@end
+
 @interface RegisterView : UIView
 
 @property (nonatomic, strong) UIWebView *webView;

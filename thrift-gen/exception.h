@@ -14,8 +14,10 @@
 
 
 enum ExceptionCode {
-  ExceptionCode_NOT_EXIST = 1,
-  ExceptionCode_NO_PRIVILEGE = 2
+  ExceptionCode_PERMISSION_DENIED = 101,
+  ExceptionCode_INNER_ERROR = 102,
+  ExceptionCode_USER_VERIFY_FAILED = 103,
+  ExceptionCode_USER_NOT_EXIST = 104
 };
 
 @interface Exception : NSException <NSCoding> {
@@ -46,6 +48,6 @@ enum ExceptionCode {
 
 @end
 
-@interface errorConstants : NSObject {
+@interface exceptionConstants : NSObject {
 }
 @end

@@ -13,7 +13,7 @@
 #import <TProcessor.h>
 
 
-#import "error.h"
+#import "exception.h"
 
 @implementation Exception
 
@@ -175,7 +175,7 @@
 @end
 
 
-@implementation errorConstants
+@implementation exceptionConstants
 + (void) initialize {
 }
 @end

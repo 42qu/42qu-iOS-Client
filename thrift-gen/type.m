@@ -276,34 +276,331 @@
 
 @end
 
-@implementation AuthResponse
+@implementation AuthRequestPartner
 
-- (id) initWithStatus: (int) status id: (int64_t) id name: (NSString *) name access_token: (NSString *) access_token expire_time: (int64_t) expire_time refresh_token: (NSString *) refresh_token
+- (id) initWithClient_id: (NSString *) client_id client_secret: (NSString *) client_secret partner: (int) partner access_token: (NSString *) access_token mail: (NSString *) mail
 {
   self = [super init];
-  __status = status;
-  __status_isset = YES;
-  __id = id;
-  __id_isset = YES;
-  __name = [name retain];
-  __name_isset = YES;
+  __client_id = [client_id retain];
+  __client_id_isset = YES;
+  __client_secret = [client_secret retain];
+  __client_secret_isset = YES;
+  __partner = partner;
+  __partner_isset = YES;
   __access_token = [access_token retain];
   __access_token_isset = YES;
-  __expire_time = expire_time;
-  __expire_time_isset = YES;
-  __refresh_token = [refresh_token retain];
-  __refresh_token_isset = YES;
+  __mail = [mail retain];
+  __mail_isset = YES;
   return self;
 }
 
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super init];
-  if ([decoder containsValueForKey: @"status"])
+  if ([decoder containsValueForKey: @"client_id"])
   {
-    __status = [decoder decodeIntForKey: @"status"];
-    __status_isset = YES;
+    __client_id = [[decoder decodeObjectForKey: @"client_id"] retain];
+    __client_id_isset = YES;
   }
+  if ([decoder containsValueForKey: @"client_secret"])
+  {
+    __client_secret = [[decoder decodeObjectForKey: @"client_secret"] retain];
+    __client_secret_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"partner"])
+  {
+    __partner = [decoder decodeIntForKey: @"partner"];
+    __partner_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"access_token"])
+  {
+    __access_token = [[decoder decodeObjectForKey: @"access_token"] retain];
+    __access_token_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"mail"])
+  {
+    __mail = [[decoder decodeObjectForKey: @"mail"] retain];
+    __mail_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__client_id_isset)
+  {
+    [encoder encodeObject: __client_id forKey: @"client_id"];
+  }
+  if (__client_secret_isset)
+  {
+    [encoder encodeObject: __client_secret forKey: @"client_secret"];
+  }
+  if (__partner_isset)
+  {
+    [encoder encodeInt: __partner forKey: @"partner"];
+  }
+  if (__access_token_isset)
+  {
+    [encoder encodeObject: __access_token forKey: @"access_token"];
+  }
+  if (__mail_isset)
+  {
+    [encoder encodeObject: __mail forKey: @"mail"];
+  }
+}
+
+- (void) dealloc
+{
+  [__client_id release];
+  [__client_secret release];
+  [__access_token release];
+  [__mail release];
+  [super dealloc];
+}
+
+- (NSString *) client_id {
+  return [[__client_id retain] autorelease];
+}
+
+- (void) setClient_id: (NSString *) client_id {
+  [client_id retain];
+  [__client_id release];
+  __client_id = client_id;
+  __client_id_isset = YES;
+}
+
+- (BOOL) client_idIsSet {
+  return __client_id_isset;
+}
+
+- (void) unsetClient_id {
+  [__client_id release];
+  __client_id = nil;
+  __client_id_isset = NO;
+}
+
+- (NSString *) client_secret {
+  return [[__client_secret retain] autorelease];
+}
+
+- (void) setClient_secret: (NSString *) client_secret {
+  [client_secret retain];
+  [__client_secret release];
+  __client_secret = client_secret;
+  __client_secret_isset = YES;
+}
+
+- (BOOL) client_secretIsSet {
+  return __client_secret_isset;
+}
+
+- (void) unsetClient_secret {
+  [__client_secret release];
+  __client_secret = nil;
+  __client_secret_isset = NO;
+}
+
+- (int) partner {
+  return __partner;
+}
+
+- (void) setPartner: (int) partner {
+  __partner = partner;
+  __partner_isset = YES;
+}
+
+- (BOOL) partnerIsSet {
+  return __partner_isset;
+}
+
+- (void) unsetPartner {
+  __partner_isset = NO;
+}
+
+- (NSString *) access_token {
+  return [[__access_token retain] autorelease];
+}
+
+- (void) setAccess_token: (NSString *) access_token {
+  [access_token retain];
+  [__access_token release];
+  __access_token = access_token;
+  __access_token_isset = YES;
+}
+
+- (BOOL) access_tokenIsSet {
+  return __access_token_isset;
+}
+
+- (void) unsetAccess_token {
+  [__access_token release];
+  __access_token = nil;
+  __access_token_isset = NO;
+}
+
+- (NSString *) mail {
+  return [[__mail retain] autorelease];
+}
+
+- (void) setMail: (NSString *) mail {
+  [mail retain];
+  [__mail release];
+  __mail = mail;
+  __mail_isset = YES;
+}
+
+- (BOOL) mailIsSet {
+  return __mail_isset;
+}
+
+- (void) unsetMail {
+  [__mail release];
+  __mail = nil;
+  __mail_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setClient_id: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setClient_secret: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_I32) {
+          int fieldValue = [inProtocol readI32];
+          [self setPartner: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setAccess_token: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 5:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setMail: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"AuthRequestPartner"];
+  if (__client_id_isset) {
+    if (__client_id != nil) {
+      [outProtocol writeFieldBeginWithName: @"client_id" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __client_id];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__client_secret_isset) {
+    if (__client_secret != nil) {
+      [outProtocol writeFieldBeginWithName: @"client_secret" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __client_secret];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__partner_isset) {
+    [outProtocol writeFieldBeginWithName: @"partner" type: TType_I32 fieldID: 3];
+    [outProtocol writeI32: __partner];
+    [outProtocol writeFieldEnd];
+  }
+  if (__access_token_isset) {
+    if (__access_token != nil) {
+      [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __access_token];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__mail_isset) {
+    if (__mail != nil) {
+      [outProtocol writeFieldBeginWithName: @"mail" type: TType_STRING fieldID: 5];
+      [outProtocol writeString: __mail];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"AuthRequestPartner("];
+  [ms appendString: @"client_id:"];
+  [ms appendFormat: @"\"%@\"", __client_id];
+  [ms appendString: @",client_secret:"];
+  [ms appendFormat: @"\"%@\"", __client_secret];
+  [ms appendString: @",partner:"];
+  [ms appendFormat: @"%i", __partner];
+  [ms appendString: @",access_token:"];
+  [ms appendFormat: @"\"%@\"", __access_token];
+  [ms appendString: @",mail:"];
+  [ms appendFormat: @"\"%@\"", __mail];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation AuthResponse
+
+- (id) initWithId: (int64_t) id name: (NSString *) name access_token: (NSString *) access_token refresh_token: (NSString *) refresh_token expire_time: (int64_t) expire_time
+{
+  self = [super init];
+  __id = id;
+  __id_isset = YES;
+  __name = [name retain];
+  __name_isset = YES;
+  __access_token = [access_token retain];
+  __access_token_isset = YES;
+  __refresh_token = [refresh_token retain];
+  __refresh_token_isset = YES;
+  __expire_time = expire_time;
+  __expire_time_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
   if ([decoder containsValueForKey: @"id"])
   {
     __id = [decoder decodeInt64ForKey: @"id"];
@@ -319,25 +616,21 @@
     __access_token = [[decoder decodeObjectForKey: @"access_token"] retain];
     __access_token_isset = YES;
   }
-  if ([decoder containsValueForKey: @"expire_time"])
-  {
-    __expire_time = [decoder decodeInt64ForKey: @"expire_time"];
-    __expire_time_isset = YES;
-  }
   if ([decoder containsValueForKey: @"refresh_token"])
   {
     __refresh_token = [[decoder decodeObjectForKey: @"refresh_token"] retain];
     __refresh_token_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"expire_time"])
+  {
+    __expire_time = [decoder decodeInt64ForKey: @"expire_time"];
+    __expire_time_isset = YES;
   }
   return self;
 }
 
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
-  if (__status_isset)
-  {
-    [encoder encodeInt: __status forKey: @"status"];
-  }
   if (__id_isset)
   {
     [encoder encodeInt64: __id forKey: @"id"];
@@ -350,13 +643,13 @@
   {
     [encoder encodeObject: __access_token forKey: @"access_token"];
   }
-  if (__expire_time_isset)
-  {
-    [encoder encodeInt64: __expire_time forKey: @"expire_time"];
-  }
   if (__refresh_token_isset)
   {
     [encoder encodeObject: __refresh_token forKey: @"refresh_token"];
+  }
+  if (__expire_time_isset)
+  {
+    [encoder encodeInt64: __expire_time forKey: @"expire_time"];
   }
 }
 
@@ -366,23 +659,6 @@
   [__access_token release];
   [__refresh_token release];
   [super dealloc];
-}
-
-- (int) status {
-  return __status;
-}
-
-- (void) setStatus: (int) status {
-  __status = status;
-  __status_isset = YES;
-}
-
-- (BOOL) statusIsSet {
-  return __status_isset;
-}
-
-- (void) unsetStatus {
-  __status_isset = NO;
 }
 
 - (int64_t) id {
@@ -444,23 +720,6 @@
   __access_token_isset = NO;
 }
 
-- (int64_t) expire_time {
-  return __expire_time;
-}
-
-- (void) setExpire_time: (int64_t) expire_time {
-  __expire_time = expire_time;
-  __expire_time_isset = YES;
-}
-
-- (BOOL) expire_timeIsSet {
-  return __expire_time_isset;
-}
-
-- (void) unsetExpire_time {
-  __expire_time_isset = NO;
-}
-
 - (NSString *) refresh_token {
   return [[__refresh_token retain] autorelease];
 }
@@ -482,6 +741,23 @@
   __refresh_token_isset = NO;
 }
 
+- (int64_t) expire_time {
+  return __expire_time;
+}
+
+- (void) setExpire_time: (int64_t) expire_time {
+  __expire_time = expire_time;
+  __expire_time_isset = YES;
+}
+
+- (BOOL) expire_timeIsSet {
+  return __expire_time_isset;
+}
+
+- (void) unsetExpire_time {
+  __expire_time_isset = NO;
+}
+
 - (void) read: (id <TProtocol>) inProtocol
 {
   NSString * fieldName;
@@ -498,14 +774,6 @@
     switch (fieldID)
     {
       case 1:
-        if (fieldType == TType_I32) {
-          int fieldValue = [inProtocol readI32];
-          [self setStatus: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 2:
         if (fieldType == TType_I64) {
           int64_t fieldValue = [inProtocol readI64];
           [self setId: fieldValue];
@@ -513,7 +781,7 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
-      case 3:
+      case 2:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
           [self setName: fieldValue];
@@ -521,10 +789,18 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
-      case 4:
+      case 3:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
           [self setAccess_token: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setRefresh_token: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -533,14 +809,6 @@
         if (fieldType == TType_I64) {
           int64_t fieldValue = [inProtocol readI64];
           [self setExpire_time: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 6:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setRefresh_token: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -556,27 +824,29 @@
 
 - (void) write: (id <TProtocol>) outProtocol {
   [outProtocol writeStructBeginWithName: @"AuthResponse"];
-  if (__status_isset) {
-    [outProtocol writeFieldBeginWithName: @"status" type: TType_I32 fieldID: 1];
-    [outProtocol writeI32: __status];
-    [outProtocol writeFieldEnd];
-  }
   if (__id_isset) {
-    [outProtocol writeFieldBeginWithName: @"id" type: TType_I64 fieldID: 2];
+    [outProtocol writeFieldBeginWithName: @"id" type: TType_I64 fieldID: 1];
     [outProtocol writeI64: __id];
     [outProtocol writeFieldEnd];
   }
   if (__name_isset) {
     if (__name != nil) {
-      [outProtocol writeFieldBeginWithName: @"name" type: TType_STRING fieldID: 3];
+      [outProtocol writeFieldBeginWithName: @"name" type: TType_STRING fieldID: 2];
       [outProtocol writeString: __name];
       [outProtocol writeFieldEnd];
     }
   }
   if (__access_token_isset) {
     if (__access_token != nil) {
-      [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 4];
+      [outProtocol writeFieldBeginWithName: @"access_token" type: TType_STRING fieldID: 3];
       [outProtocol writeString: __access_token];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__refresh_token_isset) {
+    if (__refresh_token != nil) {
+      [outProtocol writeFieldBeginWithName: @"refresh_token" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __refresh_token];
       [outProtocol writeFieldEnd];
     }
   }
@@ -585,31 +855,22 @@
     [outProtocol writeI64: __expire_time];
     [outProtocol writeFieldEnd];
   }
-  if (__refresh_token_isset) {
-    if (__refresh_token != nil) {
-      [outProtocol writeFieldBeginWithName: @"refresh_token" type: TType_STRING fieldID: 6];
-      [outProtocol writeString: __refresh_token];
-      [outProtocol writeFieldEnd];
-    }
-  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
 
 - (NSString *) description {
   NSMutableString * ms = [NSMutableString stringWithString: @"AuthResponse("];
-  [ms appendString: @"status:"];
-  [ms appendFormat: @"%i", __status];
-  [ms appendString: @",id:"];
+  [ms appendString: @"id:"];
   [ms appendFormat: @"%qi", __id];
   [ms appendString: @",name:"];
   [ms appendFormat: @"\"%@\"", __name];
   [ms appendString: @",access_token:"];
   [ms appendFormat: @"\"%@\"", __access_token];
-  [ms appendString: @",expire_time:"];
-  [ms appendFormat: @"%qi", __expire_time];
   [ms appendString: @",refresh_token:"];
   [ms appendFormat: @"\"%@\"", __refresh_token];
+  [ms appendString: @",expire_time:"];
+  [ms appendFormat: @"%qi", __expire_time];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
