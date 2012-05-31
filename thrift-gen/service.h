@@ -16,11 +16,11 @@
 #import "type.h"
 
 @protocol Sns <NSObject>
-- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth;  // throws TException
+- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth;  // throws Exception *, TException
 - (AuthResponse *) login_by_oauth: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail;  // throws TException
 - (AuthResponse *) login_by_oauth2: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail;  // throws TException
 - (void) logout: (NSString *) access_token;  // throws TException
-- (UserInfo *) user_info_get: (NSString *) access_token : (int64_t) id;  // throws TException
+- (UserInfo *) user_info_get: (NSString *) access_token : (int64_t) id;  // throws Exception *, TException
 - (UserInfo *) user_info_set: (NSString *) access_token : (UserInfo *) user_info;  // throws TException
 - (Task *) task_get: (NSString *) access_token : (int64_t) id;  // throws TException
 - (int64_t) task_new: (NSString *) access_token : (Task *) task;  // throws TException

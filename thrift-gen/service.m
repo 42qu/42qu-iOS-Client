@@ -159,15 +159,18 @@
 
 @interface Login_by_mail_result : NSObject <NSCoding> {
   AuthResponse * __success;
+  Exception * __e;
 
   BOOL __success_isset;
+  BOOL __e_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=success, setter=setSuccess:) AuthResponse * success;
+@property (nonatomic, retain, getter=e, setter=setE:) Exception * e;
 #endif
 
-- (id) initWithSuccess: (AuthResponse *) success;
+- (id) initWithSuccess: (AuthResponse *) success e: (Exception *) e;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -176,15 +179,21 @@
 - (void) setSuccess: (AuthResponse *) success;
 - (BOOL) successIsSet;
 
+- (Exception *) e;
+- (void) setE: (Exception *) e;
+- (BOOL) eIsSet;
+
 @end
 
 @implementation Login_by_mail_result
 
-- (id) initWithSuccess: (AuthResponse *) success
+- (id) initWithSuccess: (AuthResponse *) success e: (Exception *) e
 {
   self = [super init];
   __success = [success retain];
   __success_isset = YES;
+  __e = [e retain];
+  __e_isset = YES;
   return self;
 }
 
@@ -196,6 +205,11 @@
     __success = [[decoder decodeObjectForKey: @"success"] retain];
     __success_isset = YES;
   }
+  if ([decoder containsValueForKey: @"e"])
+  {
+    __e = [[decoder decodeObjectForKey: @"e"] retain];
+    __e_isset = YES;
+  }
   return self;
 }
 
@@ -205,11 +219,16 @@
   {
     [encoder encodeObject: __success forKey: @"success"];
   }
+  if (__e_isset)
+  {
+    [encoder encodeObject: __e forKey: @"e"];
+  }
 }
 
 - (void) dealloc
 {
   [__success release];
+  [__e release];
   [super dealloc];
 }
 
@@ -232,6 +251,27 @@
   [__success release];
   __success = nil;
   __success_isset = NO;
+}
+
+- (Exception *) e {
+  return [[__e retain] autorelease];
+}
+
+- (void) setE: (Exception *) e {
+  [e retain];
+  [__e release];
+  __e = e;
+  __e_isset = YES;
+}
+
+- (BOOL) eIsSet {
+  return __e_isset;
+}
+
+- (void) unsetE {
+  [__e release];
+  __e = nil;
+  __e_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -259,6 +299,16 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Exception *fieldValue = [[Exception alloc] init];
+          [fieldValue read: inProtocol];
+          [self setE: fieldValue];
+          [fieldValue release];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -277,6 +327,12 @@
       [__success write: outProtocol];
       [outProtocol writeFieldEnd];
     }
+  } else if (__e_isset) {
+    if (__e != nil) {
+      [outProtocol writeFieldBeginWithName: @"e" type: TType_STRUCT fieldID: 1];
+      [__e write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
   }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
@@ -286,6 +342,8 @@
   NSMutableString * ms = [NSMutableString stringWithString: @"Login_by_mail_result("];
   [ms appendString: @"success:"];
   [ms appendFormat: @"%@", __success];
+  [ms appendString: @",e:"];
+  [ms appendFormat: @"%@", __e];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -1544,15 +1602,18 @@
 
 @interface User_info_get_result : NSObject <NSCoding> {
   UserInfo * __success;
+  Exception * __e;
 
   BOOL __success_isset;
+  BOOL __e_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=success, setter=setSuccess:) UserInfo * success;
+@property (nonatomic, retain, getter=e, setter=setE:) Exception * e;
 #endif
 
-- (id) initWithSuccess: (UserInfo *) success;
+- (id) initWithSuccess: (UserInfo *) success e: (Exception *) e;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -1561,15 +1622,21 @@
 - (void) setSuccess: (UserInfo *) success;
 - (BOOL) successIsSet;
 
+- (Exception *) e;
+- (void) setE: (Exception *) e;
+- (BOOL) eIsSet;
+
 @end
 
 @implementation User_info_get_result
 
-- (id) initWithSuccess: (UserInfo *) success
+- (id) initWithSuccess: (UserInfo *) success e: (Exception *) e
 {
   self = [super init];
   __success = [success retain];
   __success_isset = YES;
+  __e = [e retain];
+  __e_isset = YES;
   return self;
 }
 
@@ -1581,6 +1648,11 @@
     __success = [[decoder decodeObjectForKey: @"success"] retain];
     __success_isset = YES;
   }
+  if ([decoder containsValueForKey: @"e"])
+  {
+    __e = [[decoder decodeObjectForKey: @"e"] retain];
+    __e_isset = YES;
+  }
   return self;
 }
 
@@ -1590,11 +1662,16 @@
   {
     [encoder encodeObject: __success forKey: @"success"];
   }
+  if (__e_isset)
+  {
+    [encoder encodeObject: __e forKey: @"e"];
+  }
 }
 
 - (void) dealloc
 {
   [__success release];
+  [__e release];
   [super dealloc];
 }
 
@@ -1617,6 +1694,27 @@
   [__success release];
   __success = nil;
   __success_isset = NO;
+}
+
+- (Exception *) e {
+  return [[__e retain] autorelease];
+}
+
+- (void) setE: (Exception *) e {
+  [e retain];
+  [__e release];
+  __e = e;
+  __e_isset = YES;
+}
+
+- (BOOL) eIsSet {
+  return __e_isset;
+}
+
+- (void) unsetE {
+  [__e release];
+  __e = nil;
+  __e_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -1644,6 +1742,16 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Exception *fieldValue = [[Exception alloc] init];
+          [fieldValue read: inProtocol];
+          [self setE: fieldValue];
+          [fieldValue release];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -1662,6 +1770,12 @@
       [__success write: outProtocol];
       [outProtocol writeFieldEnd];
     }
+  } else if (__e_isset) {
+    if (__e != nil) {
+      [outProtocol writeFieldBeginWithName: @"e" type: TType_STRUCT fieldID: 1];
+      [__e write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
   }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
@@ -1671,6 +1785,8 @@
   NSMutableString * ms = [NSMutableString stringWithString: @"User_info_get_result("];
   [ms appendString: @"success:"];
   [ms appendFormat: @"%@", __success];
+  [ms appendString: @",e:"];
+  [ms appendFormat: @"%@", __e];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -3414,6 +3530,9 @@
   if ([result successIsSet]) {
     return [result success];
   }
+  if ([result eIsSet]) {
+    @throw [result e];
+  }
   @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
                                            reason: @"login_by_mail failed: unknown result"];
 }
@@ -3602,6 +3721,9 @@
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
     return [result success];
+  }
+  if ([result eIsSet]) {
+    @throw [result e];
   }
   @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
                                            reason: @"user_info_get failed: unknown result"];
