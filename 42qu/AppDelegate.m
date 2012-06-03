@@ -64,7 +64,7 @@
     
     _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, nil];
     
-    [self.window setRootViewController:_tabBarController];
+    [self.window addSubview:_tabBarController.view];
     
     // Try login
     [self performSelector:@selector(tryLogin) withObject:nil afterDelay:0.1];
