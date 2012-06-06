@@ -74,14 +74,11 @@
     CATransition *transition = [CATransition animation];
     transition.duration = 0.3f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
-    [self.view.layer addAnimation:transition forKey:nil];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromTop;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
     RegisterListViewController *registerListViewController = [[[RegisterListViewController alloc] init] autorelease];
-    NSLog(@"%@", self.navigationController);
-    [self.navigationController pushViewController:registerListViewController animated:YES];
-//    [UIView animateWithDuration:0.3f animations:^{
-//        [self.view addSubview:registerListViewController.view];
-//    }];
+    [self.navigationController pushViewController:registerListViewController animated:NO];
 }
 
 #pragma mark - User action
