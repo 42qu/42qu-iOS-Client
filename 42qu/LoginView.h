@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kFrameLoginViewOrigin CGRectMake(0, -224, 320, 244)
+#define kFrameLoginViewOrigin CGRectMake(0, -244, 320, 244)
 
 @class LoginView;
 

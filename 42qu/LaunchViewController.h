@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LaunchViewController : UIViewController
+#import "AccountControl.h"
+#import "LoginView.h"
+#import "RegisterView.h"
+
+@interface LaunchViewController : UIViewController <AccountControlDelegate, LoginViewDelegate, RegisterViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate>
+
+@property (nonatomic, assign) LoginView *loginView;
+
+@property (nonatomic, strong) UIButton *selectCityButton;
+@property (nonatomic, strong) UIButton *startButton;
+@property (nonatomic, strong) UIButton *loginButton;
+@property (nonatomic, strong) UIButton *registerButton;
+
+- (void)selectCityButtonPressed;
+- (void)startButtonPressed;
+- (void)loginButtonPressed;
+- (void)registerButtonPressed;
 
 @end

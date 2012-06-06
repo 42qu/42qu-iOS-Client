@@ -49,6 +49,44 @@ static AccountControl *accountControl = nil;
     return accountControl;
 }
 
++ (NSString *)savedMail
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_MAIL];
+}
+
++ (NSString *)savedPassword
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_PASSWORD];
+}
+
++ (void)saveMail:(NSString *)mail
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:mail forKey:USER_DEFAULT_KEY_MAIL];
+    [userDefaults synchronize];
+}
+
++ (void)savePassword:(NSString *)password
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:password forKey:USER_DEFAULT_KEY_PASSWORD];
+    [userDefaults synchronize];
+}
+
++ (void)removeSavedMail
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_MAIL];
+    [userDefaults synchronize];
+}
+
++ (void)removeSavedPassword
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
+    [userDefaults synchronize];
+}
+
 #pragma mark - Basic operation
 
 - (BOOL)loginWithMail:(NSString *)mail andPassword:(NSString *)password
@@ -85,83 +123,22 @@ static AccountControl *accountControl = nil;
     return YES;
 }
 
-- (void)login
+- (BOOL)login
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *mail = [userDefaults stringForKey:USER_DEFAULT_KEY_MAIL];
-    NSString *password = [userDefaults stringForKey:USER_DEFAULT_KEY_PASSWORD];
+    NSString *mail = [AccountControl savedMail];
+    NSString *password = [AccountControl savedPassword];
     if (!mail || !password) {
-        if (!_loginView) {
-            self.loginView = [[[LoginView alloc] init] autorelease];
-            _loginView.delegate = self;
-            AppDelegate *delegate = (AppDelegate *)self.delegate;
-            [delegate.window addSubview:_loginView];
-        }
-        [_loginView show];
-        return;
+        return NO;
     }
     if ([self loginWithMail:mail andPassword:password]) {
         [self.delegate didLogin];
     } else {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
         [userDefaults synchronize];
         [self.delegate didFailLogin];
     }
-}
-
-#pragma mark - Login view delegate
-
-static NSUInteger i = 0;
-
-- (void)loginViewOnShow:(LoginView *)loginView
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *mail = [userDefaults stringForKey:USER_DEFAULT_KEY_MAIL];
-    if ([self respondsToSelector:@selector(mailDisplay:)]) {
-        i = mail.length;
-        [self performSelector:@selector(mailDisplay:) withObject:mail];
-    } else {
-        _loginView.nameField.text = mail;
-    }
-}
-
-/*
-// The easter egg
-- (void)mailDisplay:(NSString *)mail
-{
-    if (i == 0) {
-        return;
-    } else {
-        [UIView animateWithDuration:0.003 animations:^{
-            i--;
-            NSMutableString *mailDisplay = [NSMutableString stringWithString:_loginView.nameField.text];
-            [mailDisplay appendFormat:@"%c", [mail characterAtIndex:mail.length - 1 - i]];
-            _loginView.nameField.text = mailDisplay;
-        } completion:^(BOOL finished) {
-            [self mailDisplay:mail];
-        }];
-    }
-}
- */
-
-- (void)loginViewOnDismiss:(LoginView *)loginView
-{
-    _loginView = nil;
-}
-
-- (void)loginView:(LoginView *)loginView onLoginWithMail:(NSString *)mail andPassword:(NSString *)password
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:mail forKey:USER_DEFAULT_KEY_MAIL];
-    [userDefaults setValue:password forKey:USER_DEFAULT_KEY_PASSWORD];
-    [userDefaults synchronize];
-    [self performSelector:@selector(login) withObject:nil afterDelay:0.1];
-}
-
-- (void)loginViewOnRegisterButtonPressed:(LoginView *)loginView
-{
-#warning unfinished method
-    NSLog(@"Show register view. ");
+    return YES;
 }
 
 /*

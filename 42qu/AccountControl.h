@@ -14,9 +14,12 @@
 - (void)didLogin;
 - (void)didFailLogin;
 
+@optional
+- (void)showRegisterView;
+
 @end
 
-@interface AccountControl : NSObject </*NSURLConnectionDelegate, */LoginViewDelegate>
+@interface AccountControl : NSObject /*<NSURLConnectionDelegate>*/
 
 /*
 enum {
@@ -38,7 +41,14 @@ enum {
 
 + (AccountControl *)shared;
 
++ (NSString *)savedMail;
++ (NSString *)savedPassword;
++ (void)saveMail:(NSString *)mail;
++ (void)savePassword:(NSString *)password;
++ (void)removeSavedMail;
++ (void)removeSavedPassword;
+
 - (BOOL)loginWithMail:(NSString *)mail andPassword:(NSString *)password;
-- (void)login;
+- (BOOL)login;
 
 @end

@@ -17,17 +17,12 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+@synthesize launchNavigationController = _launchNavigationController;
+@synthesize launchViewController = _launchViewController;
 
 @synthesize updateNavigationController = _updateNavigationController;
 @synthesize notificationNavigationController = _notificationNavigationController;
 @synthesize peopleNavigationController = _peopleNavigationController;
-
-- (void)tryLogin
-{
-    AccountControl *accountControl = [AccountControl shared];
-    accountControl.delegate = self;
-    [accountControl login];
-}
 
 #pragma mark - Life cycle
 
@@ -37,6 +32,8 @@
     [_notificationNavigationController release];
     [_peopleNavigationController release];
     [_tabBarController release];
+    [_launchViewController release];
+    [_launchNavigationController release];
     [_window release];
     [super dealloc];
 }
@@ -66,8 +63,11 @@
     
     [self.window addSubview:_tabBarController.view];
     
-    // Try login
-    [self performSelector:@selector(tryLogin) withObject:nil afterDelay:0.1];
+    // Add launch view controller
+    self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
+    self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
+    _launchNavigationController.navigationBarHidden = YES;
+    [self.window addSubview:_launchNavigationController.view];
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -98,40 +98,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-#pragma mark - Account control delegate
-
-- (void)didLogin
-{
-    // Force write defaults to disk
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)didFailLogin
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Failed to login. ", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Quit", nil) otherButtonTitles:NSLocalizedString(@"Try again", nil), nil];
-    [alert show];
-    [alert release];
-}
-
-#pragma mark - Alert view delegate
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            // Quit button
-            abort();
-            break;
-        case 1:
-            // Retry button
-            [self tryLogin];
-            break;
-        default:
-            abort();
-            break;
-    }
 }
 
 @end
