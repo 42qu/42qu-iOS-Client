@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA02A74E158CA62300DA275C /* PeopleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */; };
+		FA02A74F158CA62300DA275C /* PeopleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */; };
+		FA02A75E158CABBC00DA275C /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02A75D158CABBC00DA275C /* CustomSegmentedControl.m */; };
 		FA1783051577B38B005C9ECE /* RegisterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1783041577B38B005C9ECE /* RegisterListViewController.m */; };
 		FA1783121577C576005C9ECE /* 42qu.png in Resources */ = {isa = PBXBuildFile; fileRef = FA17830D1577C576005C9ECE /* 42qu.png */; };
 		FA1783131577C576005C9ECE /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = FA17830E1577C576005C9ECE /* google.png */; };
@@ -72,6 +75,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA02A74B158CA62300DA275C /* PeopleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailViewController.h; sourceTree = "<group>"; };
+		FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailViewController.m; sourceTree = "<group>"; };
+		FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleDetailViewController.xib; sourceTree = "<group>"; };
+		FA02A75C158CABBC00DA275C /* CustomSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
+		FA02A75D158CABBC00DA275C /* CustomSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControl.m; sourceTree = "<group>"; };
 		FA1783031577B38B005C9ECE /* RegisterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterListViewController.h; sourceTree = "<group>"; };
 		FA1783041577B38B005C9ECE /* RegisterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterListViewController.m; sourceTree = "<group>"; };
 		FA17830D1577C576005C9ECE /* 42qu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 42qu.png; sourceTree = "<group>"; };
@@ -202,6 +210,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA02A75B158CAB9500DA275C /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				FA02A75C158CABBC00DA275C /* CustomSegmentedControl.h */,
+				FA02A75D158CABBC00DA275C /* CustomSegmentedControl.m */,
+			);
+			name = "Custom Objects";
+			sourceTree = "<group>";
+		};
 		FA17830C1577C52D005C9ECE /* SNS Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA5CA68157C89E800912D9E /* Resources */,
+				FA02A75B158CAB9500DA275C /* Custom Objects */,
 				FA402A85156CA012009EC4FA /* API Utils */,
 				FAB73FF4156B7CE0003CBF67 /* App Delegate */,
 				FA1783191577D7C6005C9ECE /* Launch */,
@@ -454,6 +472,9 @@
 			children = (
 				FAB74009156B818A003CBF67 /* PeopleRootViewController.h */,
 				FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */,
+				FA02A74B158CA62300DA275C /* PeopleDetailViewController.h */,
+				FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */,
+				FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -550,6 +571,7 @@
 				FA1783181577C65F005C9ECE /* weibo.png in Resources */,
 				FAC856C1157B1D5500B42DF6 /* start-button.png in Resources */,
 				FAC856C2157B1D5500B42DF6 /* start-button@2x.png in Resources */,
+				FA02A74F158CA62300DA275C /* PeopleDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +622,8 @@
 				FA58857115767D6300F46BD8 /* RegisterView.m in Sources */,
 				FA1783051577B38B005C9ECE /* RegisterListViewController.m in Sources */,
 				FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */,
+				FA02A74E158CA62300DA275C /* PeopleDetailViewController.m in Sources */,
+				FA02A75E158CABBC00DA275C /* CustomSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
