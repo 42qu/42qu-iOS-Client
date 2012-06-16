@@ -22,11 +22,15 @@
 - (void) logout: (NSString *) access_token;  // throws TException
 - (UserInfo *) user_info_get: (NSString *) access_token : (int64_t) id;  // throws Exception *, TException
 - (UserInfo *) user_info_set: (NSString *) access_token : (UserInfo *) user_info;  // throws TException
-- (Task *) task_get: (NSString *) access_token : (int64_t) id;  // throws TException
+- (TaskList *) task_list: (NSString *) access_token : (int64_t) start : (int64_t) limit;  // throws TException
+- (Task *) task_info: (NSString *) access_token : (int64_t) id;  // throws TException
 - (int64_t) task_new: (NSString *) access_token : (Task *) task;  // throws TException
 - (void) task_apply: (NSString *) access_token : (int64_t) task_id;  // throws TException
 - (void) task_reject: (NSString *) access_token : (int64_t) user_id;  // throws TException
 - (void) task_accept: (NSString *) access_token : (int64_t) user_id;  // throws TException
+- (CommentList *) comment_get: (NSString *) access_token : (int64_t) id;  // throws TException
+- (void) comment_make: (NSString *) access_token : (int64_t) id : (NSString *) text;  // throws TException
+- (PersonList *) person_page: (NSString *) access_token : (int64_t) start : (int64_t) limit;  // throws TException
 @end
 
 @interface SnsClient : NSObject <Sns> {

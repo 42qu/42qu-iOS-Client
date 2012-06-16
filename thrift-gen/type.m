@@ -3549,6 +3549,1095 @@
 
 @end
 
+@implementation TaskList
+
+- (id) initWithNum: (int64_t) num data: (NSArray *) data
+{
+  self = [super init];
+  __num = num;
+  __num_isset = YES;
+  __data = [data retain];
+  __data_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"num"])
+  {
+    __num = [decoder decodeInt64ForKey: @"num"];
+    __num_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"data"])
+  {
+    __data = [[decoder decodeObjectForKey: @"data"] retain];
+    __data_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__num_isset)
+  {
+    [encoder encodeInt64: __num forKey: @"num"];
+  }
+  if (__data_isset)
+  {
+    [encoder encodeObject: __data forKey: @"data"];
+  }
+}
+
+- (void) dealloc
+{
+  [__data release];
+  [super dealloc];
+}
+
+- (int64_t) num {
+  return __num;
+}
+
+- (void) setNum: (int64_t) num {
+  __num = num;
+  __num_isset = YES;
+}
+
+- (BOOL) numIsSet {
+  return __num_isset;
+}
+
+- (void) unsetNum {
+  __num_isset = NO;
+}
+
+- (NSArray *) data {
+  return [[__data retain] autorelease];
+}
+
+- (void) setData: (NSArray *) data {
+  [data retain];
+  [__data release];
+  __data = data;
+  __data_isset = YES;
+}
+
+- (BOOL) dataIsSet {
+  return __data_isset;
+}
+
+- (void) unsetData {
+  [__data release];
+  __data = nil;
+  __data_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setNum: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_LIST) {
+          int _size40;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size40];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size40];
+          int _i41;
+          for (_i41 = 0; _i41 < _size40; ++_i41)
+          {
+            Task *_elem42 = [[Task alloc] init];
+            [_elem42 read: inProtocol];
+            [fieldValue addObject: _elem42];
+            [_elem42 release];
+          }
+          [inProtocol readListEnd];
+          [self setData: fieldValue];
+          [fieldValue release];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"TaskList"];
+  if (__num_isset) {
+    [outProtocol writeFieldBeginWithName: @"num" type: TType_I64 fieldID: 1];
+    [outProtocol writeI64: __num];
+    [outProtocol writeFieldEnd];
+  }
+  if (__data_isset) {
+    if (__data != nil) {
+      [outProtocol writeFieldBeginWithName: @"data" type: TType_LIST fieldID: 2];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__data count]];
+        int i44;
+        for (i44 = 0; i44 < [__data count]; i44++)
+        {
+          [[__data objectAtIndex: i44] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"TaskList("];
+  [ms appendString: @"num:"];
+  [ms appendFormat: @"%qi", __num];
+  [ms appendString: @",data:"];
+  [ms appendFormat: @"%@", __data];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation Person
+
+- (id) initWithName: (NSString *) name org: (NSString *) org job: (NSString *) job page: (NSString *) page url_avatar: (NSString *) url_avatar url_avarar_small: (NSString *) url_avarar_small
+{
+  self = [super init];
+  __name = [name retain];
+  __name_isset = YES;
+  __org = [org retain];
+  __org_isset = YES;
+  __job = [job retain];
+  __job_isset = YES;
+  __page = [page retain];
+  __page_isset = YES;
+  __url_avatar = [url_avatar retain];
+  __url_avatar_isset = YES;
+  __url_avarar_small = [url_avarar_small retain];
+  __url_avarar_small_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"name"])
+  {
+    __name = [[decoder decodeObjectForKey: @"name"] retain];
+    __name_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"org"])
+  {
+    __org = [[decoder decodeObjectForKey: @"org"] retain];
+    __org_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"job"])
+  {
+    __job = [[decoder decodeObjectForKey: @"job"] retain];
+    __job_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain];
+    __page_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"url_avatar"])
+  {
+    __url_avatar = [[decoder decodeObjectForKey: @"url_avatar"] retain];
+    __url_avatar_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"url_avarar_small"])
+  {
+    __url_avarar_small = [[decoder decodeObjectForKey: @"url_avarar_small"] retain];
+    __url_avarar_small_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__name_isset)
+  {
+    [encoder encodeObject: __name forKey: @"name"];
+  }
+  if (__org_isset)
+  {
+    [encoder encodeObject: __org forKey: @"org"];
+  }
+  if (__job_isset)
+  {
+    [encoder encodeObject: __job forKey: @"job"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+  if (__url_avatar_isset)
+  {
+    [encoder encodeObject: __url_avatar forKey: @"url_avatar"];
+  }
+  if (__url_avarar_small_isset)
+  {
+    [encoder encodeObject: __url_avarar_small forKey: @"url_avarar_small"];
+  }
+}
+
+- (void) dealloc
+{
+  [__name release];
+  [__org release];
+  [__job release];
+  [__page release];
+  [__url_avatar release];
+  [__url_avarar_small release];
+  [super dealloc];
+}
+
+- (NSString *) name {
+  return [[__name retain] autorelease];
+}
+
+- (void) setName: (NSString *) name {
+  [name retain];
+  [__name release];
+  __name = name;
+  __name_isset = YES;
+}
+
+- (BOOL) nameIsSet {
+  return __name_isset;
+}
+
+- (void) unsetName {
+  [__name release];
+  __name = nil;
+  __name_isset = NO;
+}
+
+- (NSString *) org {
+  return [[__org retain] autorelease];
+}
+
+- (void) setOrg: (NSString *) org {
+  [org retain];
+  [__org release];
+  __org = org;
+  __org_isset = YES;
+}
+
+- (BOOL) orgIsSet {
+  return __org_isset;
+}
+
+- (void) unsetOrg {
+  [__org release];
+  __org = nil;
+  __org_isset = NO;
+}
+
+- (NSString *) job {
+  return [[__job retain] autorelease];
+}
+
+- (void) setJob: (NSString *) job {
+  [job retain];
+  [__job release];
+  __job = job;
+  __job_isset = YES;
+}
+
+- (BOOL) jobIsSet {
+  return __job_isset;
+}
+
+- (void) unsetJob {
+  [__job release];
+  __job = nil;
+  __job_isset = NO;
+}
+
+- (NSString *) page {
+  return [[__page retain] autorelease];
+}
+
+- (void) setPage: (NSString *) page {
+  [page retain];
+  [__page release];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (NSString *) url_avatar {
+  return [[__url_avatar retain] autorelease];
+}
+
+- (void) setUrl_avatar: (NSString *) url_avatar {
+  [url_avatar retain];
+  [__url_avatar release];
+  __url_avatar = url_avatar;
+  __url_avatar_isset = YES;
+}
+
+- (BOOL) url_avatarIsSet {
+  return __url_avatar_isset;
+}
+
+- (void) unsetUrl_avatar {
+  [__url_avatar release];
+  __url_avatar = nil;
+  __url_avatar_isset = NO;
+}
+
+- (NSString *) url_avarar_small {
+  return [[__url_avarar_small retain] autorelease];
+}
+
+- (void) setUrl_avarar_small: (NSString *) url_avarar_small {
+  [url_avarar_small retain];
+  [__url_avarar_small release];
+  __url_avarar_small = url_avarar_small;
+  __url_avarar_small_isset = YES;
+}
+
+- (BOOL) url_avarar_smallIsSet {
+  return __url_avarar_small_isset;
+}
+
+- (void) unsetUrl_avarar_small {
+  [__url_avarar_small release];
+  __url_avarar_small = nil;
+  __url_avarar_small_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setName: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setOrg: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setJob: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setPage: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 5:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setUrl_avatar: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 6:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setUrl_avarar_small: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"Person"];
+  if (__name_isset) {
+    if (__name != nil) {
+      [outProtocol writeFieldBeginWithName: @"name" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __name];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__org_isset) {
+    if (__org != nil) {
+      [outProtocol writeFieldBeginWithName: @"org" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __org];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__job_isset) {
+    if (__job != nil) {
+      [outProtocol writeFieldBeginWithName: @"job" type: TType_STRING fieldID: 3];
+      [outProtocol writeString: __job];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __page];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__url_avatar_isset) {
+    if (__url_avatar != nil) {
+      [outProtocol writeFieldBeginWithName: @"url_avatar" type: TType_STRING fieldID: 5];
+      [outProtocol writeString: __url_avatar];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__url_avarar_small_isset) {
+    if (__url_avarar_small != nil) {
+      [outProtocol writeFieldBeginWithName: @"url_avarar_small" type: TType_STRING fieldID: 6];
+      [outProtocol writeString: __url_avarar_small];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"Person("];
+  [ms appendString: @"name:"];
+  [ms appendFormat: @"\"%@\"", __name];
+  [ms appendString: @",org:"];
+  [ms appendFormat: @"\"%@\"", __org];
+  [ms appendString: @",job:"];
+  [ms appendFormat: @"\"%@\"", __job];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"\"%@\"", __page];
+  [ms appendString: @",url_avatar:"];
+  [ms appendFormat: @"\"%@\"", __url_avatar];
+  [ms appendString: @",url_avarar_small:"];
+  [ms appendFormat: @"\"%@\"", __url_avarar_small];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation PersonList
+
+- (id) initWithNum: (int64_t) num data: (NSArray *) data
+{
+  self = [super init];
+  __num = num;
+  __num_isset = YES;
+  __data = [data retain];
+  __data_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"num"])
+  {
+    __num = [decoder decodeInt64ForKey: @"num"];
+    __num_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"data"])
+  {
+    __data = [[decoder decodeObjectForKey: @"data"] retain];
+    __data_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__num_isset)
+  {
+    [encoder encodeInt64: __num forKey: @"num"];
+  }
+  if (__data_isset)
+  {
+    [encoder encodeObject: __data forKey: @"data"];
+  }
+}
+
+- (void) dealloc
+{
+  [__data release];
+  [super dealloc];
+}
+
+- (int64_t) num {
+  return __num;
+}
+
+- (void) setNum: (int64_t) num {
+  __num = num;
+  __num_isset = YES;
+}
+
+- (BOOL) numIsSet {
+  return __num_isset;
+}
+
+- (void) unsetNum {
+  __num_isset = NO;
+}
+
+- (NSArray *) data {
+  return [[__data retain] autorelease];
+}
+
+- (void) setData: (NSArray *) data {
+  [data retain];
+  [__data release];
+  __data = data;
+  __data_isset = YES;
+}
+
+- (BOOL) dataIsSet {
+  return __data_isset;
+}
+
+- (void) unsetData {
+  [__data release];
+  __data = nil;
+  __data_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setNum: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_LIST) {
+          int _size45;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size45];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size45];
+          int _i46;
+          for (_i46 = 0; _i46 < _size45; ++_i46)
+          {
+            Person *_elem47 = [[Person alloc] init];
+            [_elem47 read: inProtocol];
+            [fieldValue addObject: _elem47];
+            [_elem47 release];
+          }
+          [inProtocol readListEnd];
+          [self setData: fieldValue];
+          [fieldValue release];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"PersonList"];
+  if (__num_isset) {
+    [outProtocol writeFieldBeginWithName: @"num" type: TType_I64 fieldID: 1];
+    [outProtocol writeI64: __num];
+    [outProtocol writeFieldEnd];
+  }
+  if (__data_isset) {
+    if (__data != nil) {
+      [outProtocol writeFieldBeginWithName: @"data" type: TType_LIST fieldID: 2];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__data count]];
+        int i49;
+        for (i49 = 0; i49 < [__data count]; i49++)
+        {
+          [[__data objectAtIndex: i49] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"PersonList("];
+  [ms appendString: @"num:"];
+  [ms appendFormat: @"%qi", __num];
+  [ms appendString: @",data:"];
+  [ms appendFormat: @"%@", __data];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation Comment
+
+- (id) initWithWho: (Person *) who text: (NSString *) text time: (timestamp) time
+{
+  self = [super init];
+  __who = [who retain];
+  __who_isset = YES;
+  __text = [text retain];
+  __text_isset = YES;
+  __time = time;
+  __time_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"who"])
+  {
+    __who = [[decoder decodeObjectForKey: @"who"] retain];
+    __who_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"text"])
+  {
+    __text = [[decoder decodeObjectForKey: @"text"] retain];
+    __text_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"time"])
+  {
+    __time = [decoder decodeInt64ForKey: @"time"];
+    __time_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__who_isset)
+  {
+    [encoder encodeObject: __who forKey: @"who"];
+  }
+  if (__text_isset)
+  {
+    [encoder encodeObject: __text forKey: @"text"];
+  }
+  if (__time_isset)
+  {
+    [encoder encodeInt64: __time forKey: @"time"];
+  }
+}
+
+- (void) dealloc
+{
+  [__who release];
+  [__text release];
+  [super dealloc];
+}
+
+- (Person *) who {
+  return [[__who retain] autorelease];
+}
+
+- (void) setWho: (Person *) who {
+  [who retain];
+  [__who release];
+  __who = who;
+  __who_isset = YES;
+}
+
+- (BOOL) whoIsSet {
+  return __who_isset;
+}
+
+- (void) unsetWho {
+  [__who release];
+  __who = nil;
+  __who_isset = NO;
+}
+
+- (NSString *) text {
+  return [[__text retain] autorelease];
+}
+
+- (void) setText: (NSString *) text {
+  [text retain];
+  [__text release];
+  __text = text;
+  __text_isset = YES;
+}
+
+- (BOOL) textIsSet {
+  return __text_isset;
+}
+
+- (void) unsetText {
+  [__text release];
+  __text = nil;
+  __text_isset = NO;
+}
+
+- (int64_t) time {
+  return __time;
+}
+
+- (void) setTime: (int64_t) time {
+  __time = time;
+  __time_isset = YES;
+}
+
+- (BOOL) timeIsSet {
+  return __time_isset;
+}
+
+- (void) unsetTime {
+  __time_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Person *fieldValue = [[Person alloc] init];
+          [fieldValue read: inProtocol];
+          [self setWho: fieldValue];
+          [fieldValue release];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setText: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setTime: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"Comment"];
+  if (__who_isset) {
+    if (__who != nil) {
+      [outProtocol writeFieldBeginWithName: @"who" type: TType_STRUCT fieldID: 1];
+      [__who write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__text_isset) {
+    if (__text != nil) {
+      [outProtocol writeFieldBeginWithName: @"text" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __text];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__time_isset) {
+    [outProtocol writeFieldBeginWithName: @"time" type: TType_I64 fieldID: 3];
+    [outProtocol writeI64: __time];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"Comment("];
+  [ms appendString: @"who:"];
+  [ms appendFormat: @"%@", __who];
+  [ms appendString: @",text:"];
+  [ms appendFormat: @"\"%@\"", __text];
+  [ms appendString: @",time:"];
+  [ms appendFormat: @"%qi", __time];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation CommentList
+
+- (id) initWithNum: (int64_t) num data: (NSArray *) data
+{
+  self = [super init];
+  __num = num;
+  __num_isset = YES;
+  __data = [data retain];
+  __data_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"num"])
+  {
+    __num = [decoder decodeInt64ForKey: @"num"];
+    __num_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"data"])
+  {
+    __data = [[decoder decodeObjectForKey: @"data"] retain];
+    __data_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__num_isset)
+  {
+    [encoder encodeInt64: __num forKey: @"num"];
+  }
+  if (__data_isset)
+  {
+    [encoder encodeObject: __data forKey: @"data"];
+  }
+}
+
+- (void) dealloc
+{
+  [__data release];
+  [super dealloc];
+}
+
+- (int64_t) num {
+  return __num;
+}
+
+- (void) setNum: (int64_t) num {
+  __num = num;
+  __num_isset = YES;
+}
+
+- (BOOL) numIsSet {
+  return __num_isset;
+}
+
+- (void) unsetNum {
+  __num_isset = NO;
+}
+
+- (NSArray *) data {
+  return [[__data retain] autorelease];
+}
+
+- (void) setData: (NSArray *) data {
+  [data retain];
+  [__data release];
+  __data = data;
+  __data_isset = YES;
+}
+
+- (BOOL) dataIsSet {
+  return __data_isset;
+}
+
+- (void) unsetData {
+  [__data release];
+  __data = nil;
+  __data_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setNum: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_LIST) {
+          int _size50;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size50];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size50];
+          int _i51;
+          for (_i51 = 0; _i51 < _size50; ++_i51)
+          {
+            Comment *_elem52 = [[Comment alloc] init];
+            [_elem52 read: inProtocol];
+            [fieldValue addObject: _elem52];
+            [_elem52 release];
+          }
+          [inProtocol readListEnd];
+          [self setData: fieldValue];
+          [fieldValue release];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"CommentList"];
+  if (__num_isset) {
+    [outProtocol writeFieldBeginWithName: @"num" type: TType_I64 fieldID: 1];
+    [outProtocol writeI64: __num];
+    [outProtocol writeFieldEnd];
+  }
+  if (__data_isset) {
+    if (__data != nil) {
+      [outProtocol writeFieldBeginWithName: @"data" type: TType_LIST fieldID: 2];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__data count]];
+        int i54;
+        for (i54 = 0; i54 < [__data count]; i54++)
+        {
+          [[__data objectAtIndex: i54] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"CommentList("];
+  [ms appendString: @"num:"];
+  [ms appendFormat: @"%qi", __num];
+  [ms appendString: @",data:"];
+  [ms appendFormat: @"%@", __data];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 
 @implementation typeConstants
 + (void) initialize {

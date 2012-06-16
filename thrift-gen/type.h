@@ -618,6 +618,181 @@ typedef int64_t timestamp;
 
 @end
 
+@interface TaskList : NSObject <NSCoding> {
+  int64_t __num;
+  NSArray * __data;
+
+  BOOL __num_isset;
+  BOOL __data_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, getter=num, setter=setNum:) int64_t num;
+@property (nonatomic, retain, getter=data, setter=setData:) NSArray * data;
+#endif
+
+- (id) initWithNum: (int64_t) num data: (NSArray *) data;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (int64_t) num;
+- (void) setNum: (int64_t) num;
+- (BOOL) numIsSet;
+
+- (NSArray *) data;
+- (void) setData: (NSArray *) data;
+- (BOOL) dataIsSet;
+
+@end
+
+@interface Person : NSObject <NSCoding> {
+  NSString * __name;
+  NSString * __org;
+  NSString * __job;
+  NSString * __page;
+  NSString * __url_avatar;
+  NSString * __url_avarar_small;
+
+  BOOL __name_isset;
+  BOOL __org_isset;
+  BOOL __job_isset;
+  BOOL __page_isset;
+  BOOL __url_avatar_isset;
+  BOOL __url_avarar_small_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
+@property (nonatomic, retain, getter=org, setter=setOrg:) NSString * org;
+@property (nonatomic, retain, getter=job, setter=setJob:) NSString * job;
+@property (nonatomic, retain, getter=page, setter=setPage:) NSString * page;
+@property (nonatomic, retain, getter=url_avatar, setter=setUrl_avatar:) NSString * url_avatar;
+@property (nonatomic, retain, getter=url_avarar_small, setter=setUrl_avarar_small:) NSString * url_avarar_small;
+#endif
+
+- (id) initWithName: (NSString *) name org: (NSString *) org job: (NSString *) job page: (NSString *) page url_avatar: (NSString *) url_avatar url_avarar_small: (NSString *) url_avarar_small;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (NSString *) name;
+- (void) setName: (NSString *) name;
+- (BOOL) nameIsSet;
+
+- (NSString *) org;
+- (void) setOrg: (NSString *) org;
+- (BOOL) orgIsSet;
+
+- (NSString *) job;
+- (void) setJob: (NSString *) job;
+- (BOOL) jobIsSet;
+
+- (NSString *) page;
+- (void) setPage: (NSString *) page;
+- (BOOL) pageIsSet;
+
+- (NSString *) url_avatar;
+- (void) setUrl_avatar: (NSString *) url_avatar;
+- (BOOL) url_avatarIsSet;
+
+- (NSString *) url_avarar_small;
+- (void) setUrl_avarar_small: (NSString *) url_avarar_small;
+- (BOOL) url_avarar_smallIsSet;
+
+@end
+
+@interface PersonList : NSObject <NSCoding> {
+  int64_t __num;
+  NSArray * __data;
+
+  BOOL __num_isset;
+  BOOL __data_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, getter=num, setter=setNum:) int64_t num;
+@property (nonatomic, retain, getter=data, setter=setData:) NSArray * data;
+#endif
+
+- (id) initWithNum: (int64_t) num data: (NSArray *) data;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (int64_t) num;
+- (void) setNum: (int64_t) num;
+- (BOOL) numIsSet;
+
+- (NSArray *) data;
+- (void) setData: (NSArray *) data;
+- (BOOL) dataIsSet;
+
+@end
+
+@interface Comment : NSObject <NSCoding> {
+  Person * __who;
+  NSString * __text;
+  timestamp __time;
+
+  BOOL __who_isset;
+  BOOL __text_isset;
+  BOOL __time_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=who, setter=setWho:) Person * who;
+@property (nonatomic, retain, getter=text, setter=setText:) NSString * text;
+@property (nonatomic, getter=time, setter=setTime:) timestamp time;
+#endif
+
+- (id) initWithWho: (Person *) who text: (NSString *) text time: (timestamp) time;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (Person *) who;
+- (void) setWho: (Person *) who;
+- (BOOL) whoIsSet;
+
+- (NSString *) text;
+- (void) setText: (NSString *) text;
+- (BOOL) textIsSet;
+
+- (timestamp) time;
+- (void) setTime: (timestamp) time;
+- (BOOL) timeIsSet;
+
+@end
+
+@interface CommentList : NSObject <NSCoding> {
+  int64_t __num;
+  NSArray * __data;
+
+  BOOL __num_isset;
+  BOOL __data_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, getter=num, setter=setNum:) int64_t num;
+@property (nonatomic, retain, getter=data, setter=setData:) NSArray * data;
+#endif
+
+- (id) initWithNum: (int64_t) num data: (NSArray *) data;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (int64_t) num;
+- (void) setNum: (int64_t) num;
+- (BOOL) numIsSet;
+
+- (NSArray *) data;
+- (void) setData: (NSArray *) data;
+- (BOOL) dataIsSet;
+
+@end
+
 @interface typeConstants : NSObject {
 }
 @end
