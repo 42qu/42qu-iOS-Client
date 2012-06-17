@@ -26,18 +26,6 @@
 		FA3A4B311574C4930070FB1C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B301574C4930070FB1C /* Default.png */; };
 		FA402A37156BA3F4009EC4FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA402A36156BA3F4009EC4FA /* QuartzCore.framework */; };
 		FA402A5E156C919E009EC4FA /* AccountControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A5D156C919E009EC4FA /* AccountControl.m */; };
-		FA402A79156C9F5A009EC4FA /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A61156C9F5A009EC4FA /* NSObject+SBJson.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A7A156C9F5A009EC4FA /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A64156C9F5A009EC4FA /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A7B156C9F5A009EC4FA /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A66156C9F5A009EC4FA /* SBJsonStreamParser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A7C156C9F5A009EC4FA /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A68156C9F5A009EC4FA /* SBJsonStreamParserAccumulator.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A7D156C9F5A009EC4FA /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A6A156C9F5A009EC4FA /* SBJsonStreamParserAdapter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A7E156C9F5A009EC4FA /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A6C156C9F5A009EC4FA /* SBJsonStreamParserState.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A7F156C9F5A009EC4FA /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A6E156C9F5A009EC4FA /* SBJsonStreamWriter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A80156C9F5A009EC4FA /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A70156C9F5A009EC4FA /* SBJsonStreamWriterAccumulator.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A81156C9F5A009EC4FA /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A72156C9F5A009EC4FA /* SBJsonStreamWriterState.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A82156C9F5A009EC4FA /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A74156C9F5A009EC4FA /* SBJsonTokeniser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A83156C9F5A009EC4FA /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A76156C9F5A009EC4FA /* SBJsonUTF8Stream.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FA402A84156C9F5A009EC4FA /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A78156C9F5A009EC4FA /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FA402A9F156CDE5A009EC4FA /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402A9E156CDE5A009EC4FA /* API.m */; };
 		FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA402AAE156D0B04009EC4FA /* LoginView.m */; };
 		FA402ABC156D0EAD009EC4FA /* LoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABA156D0EAD009EC4FA /* LoginBG.png */; };
@@ -589,18 +577,6 @@
 				FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */,
 				FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */,
 				FA402A5E156C919E009EC4FA /* AccountControl.m in Sources */,
-				FA402A79156C9F5A009EC4FA /* NSObject+SBJson.m in Sources */,
-				FA402A7A156C9F5A009EC4FA /* SBJsonParser.m in Sources */,
-				FA402A7B156C9F5A009EC4FA /* SBJsonStreamParser.m in Sources */,
-				FA402A7C156C9F5A009EC4FA /* SBJsonStreamParserAccumulator.m in Sources */,
-				FA402A7D156C9F5A009EC4FA /* SBJsonStreamParserAdapter.m in Sources */,
-				FA402A7E156C9F5A009EC4FA /* SBJsonStreamParserState.m in Sources */,
-				FA402A7F156C9F5A009EC4FA /* SBJsonStreamWriter.m in Sources */,
-				FA402A80156C9F5A009EC4FA /* SBJsonStreamWriterAccumulator.m in Sources */,
-				FA402A81156C9F5A009EC4FA /* SBJsonStreamWriterState.m in Sources */,
-				FA402A82156C9F5A009EC4FA /* SBJsonTokeniser.m in Sources */,
-				FA402A83156C9F5A009EC4FA /* SBJsonUTF8Stream.m in Sources */,
-				FA402A84156C9F5A009EC4FA /* SBJsonWriter.m in Sources */,
 				FA402A9F156CDE5A009EC4FA /* API.m in Sources */,
 				FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */,
 				FAF57A531570D294002B26CE /* service.m in Sources */,
