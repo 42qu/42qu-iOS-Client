@@ -122,80 +122,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _animationType = SegmentedControlAnimationTypeFade;
-        if (titles.count > 0) { // When the number of buttons > 0, generate the segmented control
-            if ((highlightedTitles.count && titles.count != highlightedTitles.count) || (selectedTitles.count && titles.count != selectedTitles.count)) { // When titles and highlighted/selected titles not match, return an empty view
-                NSLog(@"Custom Segmented Control: Titles and highlighted titles not match");
-                return self;
-            }
-            // Set the attributes
-            self.titles = titles;
-            self.highlightedTitles = highlightedTitles;
-            self.selectedTitles = selectedTitles;
-            self.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-            self.dividerImage = dividerImage;
-            self.highlightedBackgroundImage = highlightedBackgroundImage;
-            self.selectedBackgroundImage = selectedBackgroundImage;
-            
-            // Calculate the size
-            CGFloat dividerWidth = dividerImage?dividerImage.size.width:0;
-            CGFloat height = frame.size.height;
-            CGFloat buttonWidth = (frame.size.width - dividerWidth * (titles.count - 1)) / titles.count;
-            
-            // Initialize horizontal offset
-            CGFloat horizontalOffset = 0;
-            
-            // Create and add buttons
-            NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:titles.count];
-            for (NSUInteger i = 0; i < titles.count; i++) {
-                // Button
-                UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(horizontalOffset, 0, buttonWidth, height)] autorelease];
-                [button setTitle:[titles objectAtIndex:i] forState:UIControlStateNormal];
-                if (highlightedTitles.count) {
-                    [button setTitle:[highlightedTitles objectAtIndex:i] forState:UIControlStateHighlighted];
-                }
-                if (selectedTitles.count) {
-                    [button setTitle:[selectedTitles objectAtIndex:i] forState:UIControlStateSelected];
-                }
-                [button addTarget:self action:@selector(buttonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-                [button addTarget:self action:@selector(buttonTouchedDown:) forControlEvents:UIControlEventTouchDown];
-                [button addTarget:self action:@selector(buttonTouchedOther:) forControlEvents:UIControlEventTouchUpOutside];
-                [button addTarget:self action:@selector(buttonTouchedOther:) forControlEvents:UIControlEventTouchDragInside];
-                [button addTarget:self action:@selector(buttonTouchedOther:) forControlEvents:UIControlEventTouchDragOutside];
-                [buttons addObject:button];
-                [self addSubview:button];
-                horizontalOffset += buttonWidth;
-                
-                // Divider
-                if (dividerImage && i != titles.count - 1) {
-                    UIImageView *dividerImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(horizontalOffset, 0, dividerWidth, height)] autorelease];
-                    dividerImageView.image = dividerImage;
-                    [self addSubview:dividerImageView];
-                    horizontalOffset += dividerWidth;
-                }
-            }
-            self.buttons = buttons;
-            [buttons release];
-            
-            // Initialize background views
-            self.highlightedBackgroundImageView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
-            _highlightedBackgroundImageView.image = _highlightedBackgroundImage;
-            _highlightedBackgroundImageView.hidden = YES;
-            [self addSubview:_highlightedBackgroundImageView];
-            
-            self.selectedBackgroundImageView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
-            _selectedBackgroundImageView.image = _selectedBackgroundImage;
-            [self addSubview:_selectedBackgroundImageView];
-            [self sendSubviewToBack:_highlightedBackgroundImageView];
-            [self sendSubviewToBack:_selectedBackgroundImageView];
-            
-            // Select the first button
-            [self selectButton:[_buttons objectAtIndex:0]];
-            
-        } else { // When the titles is empty, return an empty view
-            NSLog(@"Custom Segmented Control: Titles empty. ");
-            return self;
-        }
+        _animationType = SegmentedControlAnimationTypeMove;
+        // Set the attributes
+        self.titles = titles;
+        self.highlightedTitles = highlightedTitles;
+        self.selectedTitles = selectedTitles;
+        self.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+        self.dividerImage = dividerImage;
+        self.highlightedBackgroundImage = highlightedBackgroundImage;
+        self.selectedBackgroundImage = selectedBackgroundImage;
     }
     return self;
 }
@@ -221,6 +156,75 @@
     [_selectedBackgroundImage release];
     [_highlightedBackgroundImageView release];
     [_selectedBackgroundImageView release];
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    if (_titles.count > 0) { // When the number of buttons > 0, generate the segmented control
+        if ((_highlightedTitles.count && _titles.count != _highlightedTitles.count) || (_selectedTitles.count && _titles.count != _selectedTitles.count)) { // When titles and highlighted/selected titles not match, return an empty view
+            NSLog(@"Custom Segmented Control: Titles and highlighted titles not match");
+            return;
+        }
+    } else { // When the titles is empty, return an empty view
+        NSLog(@"Custom Segmented Control: Titles empty. ");
+        return;
+    }
+    
+    // Calculate the size
+    CGRect frame = self.frame;
+    CGFloat dividerWidth = _dividerImage?_dividerImage.size.width:0;
+    CGFloat height = frame.size.height;
+    CGFloat buttonWidth = (frame.size.width - dividerWidth * (_titles.count - 1)) / _titles.count;
+    
+    // Initialize horizontal offset
+    CGFloat horizontalOffset = 0;
+    
+    // Create and add buttons
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:_titles.count];
+    for (NSUInteger i = 0; i < _titles.count; i++) {
+        // Button
+        UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(horizontalOffset, 0, buttonWidth, height)] autorelease];
+        [button setTitle:[_titles objectAtIndex:i] forState:UIControlStateNormal];
+        if (_highlightedTitles.count) {
+            [button setTitle:[_highlightedTitles objectAtIndex:i] forState:UIControlStateHighlighted];
+        }
+        if (_selectedTitles.count) {
+            [button setTitle:[_selectedTitles objectAtIndex:i] forState:UIControlStateSelected];
+        }
+        [button addTarget:self action:@selector(buttonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(buttonTouchedDown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(buttonTouchedOther:) forControlEvents:UIControlEventTouchUpOutside];
+        [button addTarget:self action:@selector(buttonTouchedOther:) forControlEvents:UIControlEventTouchDragInside];
+        [button addTarget:self action:@selector(buttonTouchedOther:) forControlEvents:UIControlEventTouchDragOutside];
+        [buttons addObject:button];
+        [self addSubview:button];
+        horizontalOffset += buttonWidth;
+        
+        // Divider
+        if (_dividerImage && i != _titles.count - 1) {
+            UIImageView *dividerImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(horizontalOffset, 0, dividerWidth, height)] autorelease];
+            dividerImageView.image = _dividerImage;
+            [self addSubview:dividerImageView];
+            horizontalOffset += dividerWidth;
+        }
+    }
+    self.buttons = buttons;
+    [buttons release];
+    
+    // Initialize background views
+    self.highlightedBackgroundImageView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
+    _highlightedBackgroundImageView.image = _highlightedBackgroundImage;
+    _highlightedBackgroundImageView.hidden = YES;
+    [self addSubview:_highlightedBackgroundImageView];
+    
+    self.selectedBackgroundImageView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
+    _selectedBackgroundImageView.image = _selectedBackgroundImage;
+    [self addSubview:_selectedBackgroundImageView];
+    [self sendSubviewToBack:_highlightedBackgroundImageView];
+    [self sendSubviewToBack:_selectedBackgroundImageView];
+    
+    // Select the first button
+    [self selectButton:[_buttons objectAtIndex:0]];
 }
 
 @end
