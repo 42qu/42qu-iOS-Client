@@ -114,7 +114,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default"]];
     }
     return self;
 }
@@ -136,7 +136,7 @@
     
     // Initialize top bar
     UIView *topbarView = [[[UIView alloc] initWithFrame:kFrameViewTopbar] autorelease];
-    [topbarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"top-bar-bg.png"]]];
+    [topbarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"launch-navbar-bg"]]];
     
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:kFrameLabelTitle] autorelease];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -147,7 +147,7 @@
     
     self.selectCityButton = [[[UIButton alloc] initWithFrame:kFrameButtonSelectCity] autorelease];
     [_selectCityButton setTitle:@"Beijing" forState:UIControlStateNormal];
-    [_selectCityButton setBackgroundImage:[UIImage imageNamed:@"top-bar-bg"] forState:UIControlStateNormal];
+    [_selectCityButton setBackgroundImage:[UIImage imageNamed:@"launch-navbar-bg"] forState:UIControlStateNormal];
     [_selectCityButton addTarget:self action:@selector(selectCityButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [topbarView addSubview:_selectCityButton];
     
@@ -156,20 +156,20 @@
     // Initialize bottom buttons
     self.startButton = [[[UIButton alloc] initWithFrame:kFrameButtonStart] autorelease];
     [_startButton setTitle:NSLocalizedString(@"Start my voyage. ", nil) forState:UIControlStateNormal];
-    [_startButton setBackgroundImage:[UIImage imageNamed:@"start-button.png"] forState:UIControlStateNormal];
+    [_startButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
     [_startButton addTarget:self action:@selector(startButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_startButton];
     
     self.loginButton = [[[UIButton alloc] initWithFrame:kFrameButtonLogin] autorelease];
     [_loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
-    [_loginButton setBackgroundImage:[UIImage imageNamed:@"start-button.png"] forState:UIControlStateNormal];
+    [_loginButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
     [_loginButton addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     _loginButton.hidden = YES;
     [self.view addSubview:_loginButton];
     
     self.registerButton = [[[UIButton alloc] initWithFrame:kFrameButtonRegister] autorelease];
     [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
-    [_registerButton setBackgroundImage:[UIImage imageNamed:@"start-button.png"] forState:UIControlStateNormal];
+    [_registerButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
     [_registerButton addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     _registerButton.hidden = YES;
     [self.view addSubview:_registerButton];

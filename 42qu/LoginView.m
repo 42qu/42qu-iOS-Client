@@ -98,9 +98,9 @@
     self = [super initWithFrame:kFrameLoginViewOrigin];
     if (self) {
         // Set background image and add logo
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"LoginBG.png"]];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login-bg"]];
         self.logoView = [[[UIImageView alloc] initWithFrame:kFrameImageViewLogo] autorelease];
-        _logoView.image = [UIImage imageNamed:@"logo.png"];
+        _logoView.image = [UIImage imageNamed:@"logo"];
         [self addSubview:_logoView];
         
         // Add elements
