@@ -18,7 +18,14 @@
 
 @interface CustomSegmentedControl : UIView
 
+typedef enum {
+    SegmentedControlAnimationTypeFade = 0,
+    SegmentedControlAnimationTypeMove
+} SegmentedControlAnimationType;
+
 @property (nonatomic, assign) id<CustomSegmentedControlDelegate> delegate;
+
+@property (nonatomic, assign) SegmentedControlAnimationType animationType;
 
 @property (nonatomic, strong) NSArray *buttons;
 

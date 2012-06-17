@@ -13,6 +13,8 @@
 
 @synthesize delegate = _delegate;
 
+@synthesize animationType = _animationType;
+
 @synthesize buttons = _buttons;
 
 @synthesize titles = _titles;
@@ -60,16 +62,31 @@
 {
     for (UIButton *oneButton in _buttons) {
         if (button == oneButton) {
-            CATransition *transition = [CATransition animation];
-            transition.type = kCATransitionFade;
-            transition.duration = 0.2f;
-            [self.layer addAnimation:transition forKey:nil];
-            _selectedBackgroundImageView.hidden = YES;
-            _selectedBackgroundImageView.frame = oneButton.frame;
-            [UIView animateWithDuration:0.2f animations:^{
-                _selectedBackgroundImageView.hidden = NO;
+            if (_animationType == SegmentedControlAnimationTypeFade) {
+                CATransition *transition = [CATransition animation];
+                transition.type = kCATransitionFade;
+                transition.duration = 0.2f;
+                [self.layer addAnimation:transition forKey:nil];
+                _selectedBackgroundImageView.hidden = YES;
+                _selectedBackgroundImageView.frame = oneButton.frame;
+                [UIView animateWithDuration:0.2f animations:^{
+                    oneButton.selected = YES;
+                    _selectedBackgroundImageView.hidden = NO;
+                    _highlightedBackgroundImageView.hidden = YES;
+                }];
+            } else if (_animationType == SegmentedControlAnimationTypeMove) {
+                [UIView animateWithDuration:0.2f animations:^{
+                    oneButton.selected = YES;
+                    _selectedBackgroundImageView.frame = oneButton.frame;
+                    _highlightedBackgroundImageView.hidden = YES;
+                }];
+            } else {
+                oneButton.selected = YES;
+                _selectedBackgroundImageView.frame = oneButton.frame;
                 _highlightedBackgroundImageView.hidden = YES;
-            }];
+            }
+        } else {
+            oneButton.selected = NO;
         }
     }
 }
@@ -105,6 +122,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _animationType = SegmentedControlAnimationTypeFade;
         if (titles.count > 0) { // When the number of buttons > 0, generate the segmented control
             if ((highlightedTitles.count && titles.count != highlightedTitles.count) || (selectedTitles.count && titles.count != selectedTitles.count)) { // When titles and highlighted/selected titles not match, return an empty view
                 NSLog(@"Custom Segmented Control: Titles and highlighted titles not match");
