@@ -119,6 +119,15 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_selectCityButton release];
+    [_startButton release];
+    [_loginButton release];
+    [_registerButton release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -169,7 +178,11 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    self.loginView = nil;
+    self.selectCityButton = nil;
+    self.startButton = nil;
+    self.loginButton = nil;
+    self.registerButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

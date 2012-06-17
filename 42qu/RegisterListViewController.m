@@ -31,6 +31,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_accountList release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

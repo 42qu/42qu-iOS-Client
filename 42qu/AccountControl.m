@@ -49,6 +49,15 @@ static AccountControl *accountControl = nil;
     return accountControl;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [userID release];
+    [name release];
+    [accessToken release];
+    [refreshToken release];
+}
+
 + (NSString *)savedMail
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_MAIL];

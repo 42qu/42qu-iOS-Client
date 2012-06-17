@@ -80,6 +80,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_contentTextView release];
+    [_textLengthLabel release];
+}
+
 - (void)viewDidLoad
 {
     // Register keyboard notification

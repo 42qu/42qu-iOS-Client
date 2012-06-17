@@ -22,6 +22,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_webView release];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

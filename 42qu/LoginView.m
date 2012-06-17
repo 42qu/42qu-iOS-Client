@@ -149,6 +149,16 @@
 }
 */
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_logoView release];
+    [_nameField release];
+    [_passwordField release];
+    [_registerButton release];
+    [_otherLoginButton release];
+}
+
 #pragma mark - Keyboard notification
 
 - (void)keyboardHeightChanged:(NSNotification *)notification
