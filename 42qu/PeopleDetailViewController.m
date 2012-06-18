@@ -7,12 +7,17 @@
 //
 
 #import "PeopleDetailViewController.h"
+#import "CustomSegmentedControl.h"
+
+#define kHeightSegmentedControl 40.0f
 
 @interface PeopleDetailViewController ()
 
 @end
 
 @implementation PeopleDetailViewController
+
+@synthesize segmentedControl = _segmentedControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,17 +28,32 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_segmentedControl release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Create and add segmented control
+    self.segmentedControl = [[CustomSegmentedControl alloc] 
+                             initWithFrame:CGRectMake(0, 0, 320, kHeightSegmentedControl) 
+                             andTitles:[NSArray arrayWithObjects:NSLocalizedString(@"Intro", nil), NSLocalizedString(@"Details", nil), NSLocalizedString(@"Photos", nil), nil] 
+                             andHighlightedTitles:nil 
+                             andSelectedTitles:nil 
+                             andBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-bg"] 
+                             andDividerImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-divider"] 
+                             andHighlightedBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-highlighted"] 
+                             andSelectedBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-selected"]];
+    [self.view addSubview:_segmentedControl];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.segmentedControl = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class CustomSegmentedControl;
+
 @interface PeopleDetailViewController : UIViewController
+
+@property (nonatomic, strong) CustomSegmentedControl *segmentedControl;
 
 @end
