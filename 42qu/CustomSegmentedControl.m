@@ -202,9 +202,9 @@
         
         // Divider
         if (_dividerImage && i != _titles.count - 1) {
-            UIImageView *dividerImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(horizontalOffset, 0, dividerWidth, height)] autorelease];
-            dividerImageView.image = _dividerImage;
-            [self addSubview:dividerImageView];
+            UIView *dividerView = [[[UIView alloc] initWithFrame:CGRectMake(horizontalOffset, 0, dividerWidth, height)] autorelease];
+            dividerView.backgroundColor = [UIColor colorWithPatternImage:_dividerImage];
+            [self addSubview:dividerView];
             horizontalOffset += dividerWidth;
         }
     }
