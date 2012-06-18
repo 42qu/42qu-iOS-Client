@@ -35,8 +35,8 @@ typedef enum {
 @property (nonatomic, strong) UIImage *dividerImage;
 @property (nonatomic, strong) UIImage *highlightedBackgroundImage;
 @property (nonatomic, strong) UIImage *selectedBackgroundImage;
-@property (nonatomic, strong) UIImageView *highlightedBackgroundImageView;
-@property (nonatomic, strong) UIImageView *selectedBackgroundImageView;
+@property (nonatomic, strong) UIView *highlightedBackgroundView;
+@property (nonatomic, strong) UIView *selectedBackgroundView;
 
 - (id)initWithFrame:(CGRect)frame andTitles:(NSArray *)titles andHighlightedTitles:(NSArray *)highlightedTitles andSelectedTitles:(NSArray *)selectedTitles andBackgroundImage:(UIImage *)backgroundImage andDividerImage:(UIImage *)dividerImage andHighlightedBackgroundImage:(UIImage *)highlightedBackgroundImage andSelectedBackgroundImage:(UIImage *)selectedBackgroundImage;
 

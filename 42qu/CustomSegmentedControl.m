@@ -23,20 +23,20 @@
 @synthesize dividerImage = _dividerImage;
 @synthesize highlightedBackgroundImage = _highlightedBackgroundImage;
 @synthesize selectedBackgroundImage = _selectedBackgroundImage;
-@synthesize highlightedBackgroundImageView = _highlightedBackgroundImageView;
-@synthesize selectedBackgroundImageView = _selectedBackgroundImageView;
+@synthesize highlightedBackgroundView = _highlightedBackgroundView;
+@synthesize selectedBackgroundView = _selectedBackgroundView;
 
 - (void)highlightButton:(UIButton *)button
 {
     for (UIButton *oneButton in _buttons) {
         if (button == oneButton) {
-            _highlightedBackgroundImageView.frame = oneButton.frame;
+            _highlightedBackgroundView.frame = oneButton.frame;
             CATransition *transition = [CATransition animation];
             transition.type = kCATransitionFade;
             transition.duration = 0.15f;
             [self.layer addAnimation:transition forKey:nil];
             [UIView animateWithDuration:0.15f animations:^{
-                _highlightedBackgroundImageView.hidden = NO;
+                _highlightedBackgroundView.hidden = NO;
             }];
         }
     }
@@ -46,13 +46,13 @@
 {
     for (UIButton *oneButton in _buttons) {
         if (button == oneButton) {
-            _highlightedBackgroundImageView.frame = oneButton.frame;
+            _highlightedBackgroundView.frame = oneButton.frame;
             CATransition *transition = [CATransition animation];
             transition.type = kCATransitionFade;
             transition.duration = 0.15f;
             [self.layer addAnimation:transition forKey:nil];
             [UIView animateWithDuration:0.15f animations:^{
-                _highlightedBackgroundImageView.hidden = YES;
+                _highlightedBackgroundView.hidden = YES;
             }];
         }
     }
@@ -67,23 +67,23 @@
                 transition.type = kCATransitionFade;
                 transition.duration = 0.2f;
                 [self.layer addAnimation:transition forKey:nil];
-                _selectedBackgroundImageView.hidden = YES;
-                _selectedBackgroundImageView.frame = oneButton.frame;
+                _selectedBackgroundView.hidden = YES;
+                _selectedBackgroundView.frame = oneButton.frame;
                 [UIView animateWithDuration:0.2f animations:^{
                     oneButton.selected = YES;
-                    _selectedBackgroundImageView.hidden = NO;
-                    _highlightedBackgroundImageView.hidden = YES;
+                    _selectedBackgroundView.hidden = NO;
+                    _highlightedBackgroundView.hidden = YES;
                 }];
             } else if (_animationType == SegmentedControlAnimationTypeMove) {
                 [UIView animateWithDuration:0.2f animations:^{
                     oneButton.selected = YES;
-                    _selectedBackgroundImageView.frame = oneButton.frame;
-                    _highlightedBackgroundImageView.hidden = YES;
+                    _selectedBackgroundView.frame = oneButton.frame;
+                    _highlightedBackgroundView.hidden = YES;
                 }];
             } else {
                 oneButton.selected = YES;
-                _selectedBackgroundImageView.frame = oneButton.frame;
-                _highlightedBackgroundImageView.hidden = YES;
+                _selectedBackgroundView.frame = oneButton.frame;
+                _highlightedBackgroundView.hidden = YES;
             }
         } else {
             oneButton.selected = NO;
@@ -154,8 +154,8 @@
     [_dividerImage release];
     [_highlightedBackgroundImage release];
     [_selectedBackgroundImage release];
-    [_highlightedBackgroundImageView release];
-    [_selectedBackgroundImageView release];
+    [_highlightedBackgroundView release];
+    [_selectedBackgroundView release];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -212,16 +212,16 @@
     [buttons release];
     
     // Initialize background views
-    self.highlightedBackgroundImageView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
-    _highlightedBackgroundImageView.image = _highlightedBackgroundImage;
-    _highlightedBackgroundImageView.hidden = YES;
-    [self addSubview:_highlightedBackgroundImageView];
+    self.highlightedBackgroundView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
+    _highlightedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:_highlightedBackgroundImage];
+    _highlightedBackgroundView.hidden = YES;
+    [self addSubview:_highlightedBackgroundView];
     
-    self.selectedBackgroundImageView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
-    _selectedBackgroundImageView.image = _selectedBackgroundImage;
-    [self addSubview:_selectedBackgroundImageView];
-    [self sendSubviewToBack:_highlightedBackgroundImageView];
-    [self sendSubviewToBack:_selectedBackgroundImageView];
+    self.selectedBackgroundView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
+    _selectedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:_selectedBackgroundImage];
+    [self addSubview:_selectedBackgroundView];
+    [self sendSubviewToBack:_highlightedBackgroundView];
+    [self sendSubviewToBack:_selectedBackgroundView];
     
     // Select the first button
     [self selectButton:[_buttons objectAtIndex:0]];
