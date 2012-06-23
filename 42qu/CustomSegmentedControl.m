@@ -26,6 +26,22 @@
 @synthesize highlightedBackgroundView = _highlightedBackgroundView;
 @synthesize selectedBackgroundView = _selectedBackgroundView;
 
+@synthesize selectedIndex = _selectedIndex;
+
+#pragma mark - External
+
+- (NSUInteger)numberOfButtons
+{
+    return _buttons.count;
+}
+
+- (void)selectButtonAtIndex:(NSUInteger)index
+{
+    [self selectButton:[_buttons objectAtIndex:index]];
+}
+
+#pragma mark - Actions
+
 - (void)highlightButton:(UIButton *)button
 {
     for (UIButton *oneButton in _buttons) {
@@ -62,6 +78,7 @@
 {
     for (UIButton *oneButton in _buttons) {
         if (button == oneButton) {
+            _selectedIndex = [_buttons indexOfObject:oneButton];
             if (_animationType == SegmentedControlAnimationTypeFade) {
                 CATransition *transition = [CATransition animation];
                 transition.type = kCATransitionFade;
@@ -94,7 +111,7 @@
 - (void)buttonTouchUpInside:(UIButton *)button
 {
     [self selectButton:button];
-    [self.delegate customSegmentedControl:self didSelectItemAtIndex:[_buttons indexOfObject:button]];
+    [self.delegate customSegmentedControl:self didSelectButtonAtIndex:_selectedIndex];
 }
 
 - (void)buttonTouchedDown:(UIButton *)button

@@ -12,7 +12,7 @@
 
 @protocol CustomSegmentedControlDelegate <NSObject>
 
-- (void)customSegmentedControl:(CustomSegmentedControl *)customSegmentedControl didSelectItemAtIndex:(NSUInteger)index;
+- (void)customSegmentedControl:(CustomSegmentedControl *)customSegmentedControl didSelectButtonAtIndex:(NSUInteger)index;
 
 @end
 
@@ -38,6 +38,11 @@ typedef enum {
 @property (nonatomic, strong) UIView *highlightedBackgroundView;
 @property (nonatomic, strong) UIView *selectedBackgroundView;
 
+@property (nonatomic, assign) NSUInteger selectedIndex;
+
 - (id)initWithFrame:(CGRect)frame andTitles:(NSArray *)titles andHighlightedTitles:(NSArray *)highlightedTitles andSelectedTitles:(NSArray *)selectedTitles andBackgroundImage:(UIImage *)backgroundImage andDividerImage:(UIImage *)dividerImage andHighlightedBackgroundImage:(UIImage *)highlightedBackgroundImage andSelectedBackgroundImage:(UIImage *)selectedBackgroundImage;
+
+- (NSUInteger)numberOfButtons;
+- (void)selectButtonAtIndex:(NSUInteger)index;
 
 @end
