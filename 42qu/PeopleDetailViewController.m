@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     // Create and add segmented control
-    self.segmentedControl = [[CustomSegmentedControl alloc] 
+    self.segmentedControl = [[[CustomSegmentedControl alloc] 
                              initWithFrame:CGRectMake(0, 0, 320, kHeightSegmentedControl) 
                              andTitles:[NSArray arrayWithObjects:NSLocalizedString(@"Intro", nil), NSLocalizedString(@"Details", nil), NSLocalizedString(@"Photos", nil), nil] 
                              andHighlightedTitles:nil 
@@ -46,7 +46,7 @@
                              andBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-bg"] 
                              andDividerImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-divider"] 
                              andHighlightedBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-highlighted"] 
-                             andSelectedBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-selected"]];
+                             andSelectedBackgroundImage:[UIImage imageNamed:@"peopledetail-segmentedcontrol-selected"]] autorelease];
     [self.view addSubview:_segmentedControl];
 }
 
