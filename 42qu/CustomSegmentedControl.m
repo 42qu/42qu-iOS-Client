@@ -146,7 +146,6 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [_buttons release];
     [_titles release];
     [_highlightedTitles release];
@@ -156,6 +155,7 @@
     [_selectedBackgroundImage release];
     [_highlightedBackgroundView release];
     [_selectedBackgroundView release];
+    [super dealloc];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview

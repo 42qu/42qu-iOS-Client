@@ -30,8 +30,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [_segmentedControl release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad

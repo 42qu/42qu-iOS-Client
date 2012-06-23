@@ -51,11 +51,11 @@ static AccountControl *accountControl = nil;
 
 - (void)dealloc
 {
-    [super dealloc];
     [userID release];
     [name release];
     [accessToken release];
     [refreshToken release];
+    [super dealloc];
 }
 
 + (NSString *)savedMail

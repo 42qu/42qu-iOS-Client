@@ -121,11 +121,11 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [_selectCityButton release];
     [_startButton release];
     [_loginButton release];
     [_registerButton release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad

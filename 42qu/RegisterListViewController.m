@@ -33,8 +33,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [_accountList release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad

@@ -82,9 +82,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [_contentTextView release];
     [_textLengthLabel release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad

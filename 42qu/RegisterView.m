@@ -24,8 +24,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [_webView release];
+    [super dealloc];
 }
 
 /*
