@@ -132,8 +132,6 @@
 {
     [super viewDidLoad];
     
-    [self tryLogin];
-    
     // Initialize top bar
     UIView *topbarView = [[[UIView alloc] initWithFrame:kFrameViewTopbar] autorelease];
     [topbarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"launch-navbar-bg"]]];
@@ -185,6 +183,11 @@
     self.registerButton = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self tryLogin];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -202,6 +205,7 @@
     [UIView animateWithDuration:0.3f animations:^{
         [_startButton setTitle:@"Login success. " forState:UIControlStateNormal];
     }];
+    [self.navigationController.view removeFromSuperview];
 }
 
 - (void)didFailLogin
