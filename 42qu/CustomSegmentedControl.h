@@ -44,5 +44,6 @@ typedef enum {
 
 - (NSUInteger)numberOfButtons;
 - (void)selectButtonAtIndex:(NSUInteger)index;
+- (void)moveSelectedBackgroundToOffset:(CGFloat)offset;
 
 @end

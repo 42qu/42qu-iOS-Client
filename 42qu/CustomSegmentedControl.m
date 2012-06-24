@@ -40,6 +40,13 @@
     [self selectButton:[_buttons objectAtIndex:index]];
 }
 
+- (void)moveSelectedBackgroundToOffset:(CGFloat)offset
+{
+    CGRect selectedBackgroundFrame = _selectedBackgroundView.frame;
+    selectedBackgroundFrame.origin.x = offset;
+    _selectedBackgroundView.frame = selectedBackgroundFrame;
+}
+
 #pragma mark - Actions
 
 - (void)highlightButton:(UIButton *)button

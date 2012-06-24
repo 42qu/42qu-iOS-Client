@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CustomSegmentedControl.h"
 
-@interface TabbedSlideView : UIView <CustomSegmentedControlDelegate>
+@interface TabbedSlideView : UIView <CustomSegmentedControlDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) CustomSegmentedControl *customSegmentedControl;
-@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIScrollView *contentView;
 
 @property (nonatomic, assign) CGFloat contentViewHeight;
-
-@property (nonatomic, assign) CGPoint touchInitialPoint;
-@property (nonatomic, assign) CGFloat contentViewOriginX;
 
 - (id)initWithCustomSegmentedControl:(CustomSegmentedControl *)customSegmentedControl andContentViewHeight:(CGFloat)contentViewHeight;
 
