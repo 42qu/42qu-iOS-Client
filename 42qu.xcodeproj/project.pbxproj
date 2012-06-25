@@ -18,6 +18,10 @@
 		FA1783181577C65F005C9ECE /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1783171577C65F005C9ECE /* weibo.png */; };
 		FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17831B1577D827005C9ECE /* LaunchViewController.m */; };
 		FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA210B3A156D1B2B00DDACE9 /* logo.png */; };
+		FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883051595E53600FFE60F /* TabbedSlideView.m */; };
+		FA2883AF159847B700FFE60F /* UpdateRootRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */; };
+		FA2883B2159847D100FFE60F /* UpdateRootNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */; };
+		FA2883B5159847E700FFE60F /* UpdateRootStarredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */; };
 		FA2E1D35158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D2F158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png */; };
 		FA2E1D36158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D30158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png */; };
 		FA2E1D37158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D31158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png */; };
@@ -62,8 +66,6 @@
 		FAB74005156B8103003CBF67 /* UpdateRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB74004156B8103003CBF67 /* UpdateRootViewController.m */; };
 		FAB74008156B817C003CBF67 /* NotificationRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB74007156B817C003CBF67 /* NotificationRootViewController.m */; };
 		FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */; };
-		FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB7401A156B9CA1003CBF67 /* PublishViewController.m */; };
-		FAB7401D156B9CA1003CBF67 /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */; };
 		FAC856C1157B1D5500B42DF6 /* launch-startbutton-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC856BF157B1D5500B42DF6 /* launch-startbutton-bg.png */; };
 		FAC856C2157B1D5500B42DF6 /* launch-startbutton-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC856C0157B1D5500B42DF6 /* launch-startbutton-bg@2x.png */; };
 		FAF57A531570D294002B26CE /* service.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A051570AFE8002B26CE /* service.m */; };
@@ -86,6 +88,14 @@
 		FA17831A1577D827005C9ECE /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
 		FA17831B1577D827005C9ECE /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		FA210B3A156D1B2B00DDACE9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		FA2883041595E53600FFE60F /* TabbedSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbedSlideView.h; sourceTree = "<group>"; };
+		FA2883051595E53600FFE60F /* TabbedSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedSlideView.m; sourceTree = "<group>"; };
+		FA2883AD159847B700FFE60F /* UpdateRootRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootRecommendViewController.h; sourceTree = "<group>"; };
+		FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootRecommendViewController.m; sourceTree = "<group>"; };
+		FA2883B0159847D100FFE60F /* UpdateRootNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootNearbyViewController.h; sourceTree = "<group>"; };
+		FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootNearbyViewController.m; sourceTree = "<group>"; };
+		FA2883B3159847E600FFE60F /* UpdateRootStarredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootStarredViewController.h; sourceTree = "<group>"; };
+		FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootStarredViewController.m; sourceTree = "<group>"; };
 		FA2E1D2F158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-selected.png"; sourceTree = "<group>"; };
 		FA2E1D30158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-selected@2x.png"; sourceTree = "<group>"; };
 		FA2E1D31158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-divider.png"; sourceTree = "<group>"; };
@@ -188,9 +198,6 @@
 		FAB74007156B817C003CBF67 /* NotificationRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationRootViewController.m; sourceTree = "<group>"; };
 		FAB74009156B818A003CBF67 /* PeopleRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRootViewController.h; sourceTree = "<group>"; };
 		FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRootViewController.m; sourceTree = "<group>"; };
-		FAB74019156B9CA1003CBF67 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
-		FAB7401A156B9CA1003CBF67 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
-		FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishViewController.xib; sourceTree = "<group>"; };
 		FAC856BF157B1D5500B42DF6 /* launch-startbutton-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-startbutton-bg.png"; sourceTree = "<group>"; };
 		FAC856C0157B1D5500B42DF6 /* launch-startbutton-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-startbutton-bg@2x.png"; sourceTree = "<group>"; };
 		FAF57A041570AFE8002B26CE /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
@@ -219,6 +226,8 @@
 			children = (
 				FA02A75C158CABBC00DA275C /* CustomSegmentedControl.h */,
 				FA02A75D158CABBC00DA275C /* CustomSegmentedControl.m */,
+				FA2883041595E53600FFE60F /* TabbedSlideView.h */,
+				FA2883051595E53600FFE60F /* TabbedSlideView.m */,
 			);
 			name = "Custom Objects";
 			sourceTree = "<group>";
@@ -454,9 +463,14 @@
 		FAB73FF2156B7CDD003CBF67 /* Update */ = {
 			isa = PBXGroup;
 			children = (
-				FAB74014156B9C71003CBF67 /* Publish */,
 				FAB74003156B8103003CBF67 /* UpdateRootViewController.h */,
 				FAB74004156B8103003CBF67 /* UpdateRootViewController.m */,
+				FA2883AD159847B700FFE60F /* UpdateRootRecommendViewController.h */,
+				FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */,
+				FA2883B0159847D100FFE60F /* UpdateRootNearbyViewController.h */,
+				FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */,
+				FA2883B3159847E600FFE60F /* UpdateRootStarredViewController.h */,
+				FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */,
 			);
 			name = Update;
 			sourceTree = "<group>";
@@ -489,16 +503,6 @@
 				FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */,
 			);
 			name = People;
-			sourceTree = "<group>";
-		};
-		FAB74014156B9C71003CBF67 /* Publish */ = {
-			isa = PBXGroup;
-			children = (
-				FAB74019156B9CA1003CBF67 /* PublishViewController.h */,
-				FAB7401A156B9CA1003CBF67 /* PublishViewController.m */,
-				FAB7401B156B9CA1003CBF67 /* PublishViewController.xib */,
-			);
-			name = Publish;
 			sourceTree = "<group>";
 		};
 		FAF57A011570AFE8002B26CE /* thrift-gen */ = {
@@ -566,7 +570,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7E3D15156B613E00687AB8 /* InfoPlist.strings in Resources */,
-				FAB7401D156B9CA1003CBF67 /* PublishViewController.xib in Resources */,
 				FA402ABC156D0EAD009EC4FA /* login-bg.png in Resources */,
 				FA402ABD156D0EAD009EC4FA /* login-bg@2x.png in Resources */,
 				FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */,
@@ -607,7 +610,6 @@
 				FAB74005156B8103003CBF67 /* UpdateRootViewController.m in Sources */,
 				FAB74008156B817C003CBF67 /* NotificationRootViewController.m in Sources */,
 				FAB7400B156B818A003CBF67 /* PeopleRootViewController.m in Sources */,
-				FAB7401C156B9CA1003CBF67 /* PublishViewController.m in Sources */,
 				FA402A5E156C919E009EC4FA /* AccountControl.m in Sources */,
 				FA402A9F156CDE5A009EC4FA /* API.m in Sources */,
 				FA402AAF156D0B04009EC4FA /* LoginView.m in Sources */,
@@ -632,6 +634,10 @@
 				FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */,
 				FA02A74E158CA62300DA275C /* PeopleDetailViewController.m in Sources */,
 				FA02A75E158CABBC00DA275C /* CustomSegmentedControl.m in Sources */,
+				FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */,
+				FA2883AF159847B700FFE60F /* UpdateRootRecommendViewController.m in Sources */,
+				FA2883B2159847D100FFE60F /* UpdateRootNearbyViewController.m in Sources */,
+				FA2883B5159847E700FFE60F /* UpdateRootStarredViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
