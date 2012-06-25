@@ -26,6 +26,12 @@
     return rect;
 }
 
+- (NSUInteger)indexForViewInRect:(CGRect)rect
+{
+    NSUInteger index = rect.origin.x / self.frame.size.width;
+    return index;
+}
+
 #pragma mark - Actions
 
 - (void)slideToViewAtIndex:(NSUInteger)index

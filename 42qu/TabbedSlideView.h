@@ -19,5 +19,6 @@
 - (id)initWithCustomSegmentedControl:(CustomSegmentedControl *)customSegmentedControl andContentViewHeight:(CGFloat)contentViewHeight;
 
 - (CGRect)rectForViewAtIndex:(NSUInteger)index;
+- (NSUInteger)indexForViewInRect:(CGRect)rect;
 
 @end
