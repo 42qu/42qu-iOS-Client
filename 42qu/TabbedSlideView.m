@@ -45,7 +45,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
     }
     return self;
 }
@@ -54,6 +53,8 @@
 {
     self = [self initWithFrame:contentViewFrame];
     if (self) {
+        contentViewFrame.origin.y = 0;
+        self.contentView = [[[UIScrollView alloc] initWithFrame:contentViewFrame] autorelease];
         self.customSegmentedControl = customSegmentedControl;
     }
     return self;
