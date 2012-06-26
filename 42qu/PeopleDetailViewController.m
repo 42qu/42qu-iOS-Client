@@ -9,6 +9,9 @@
 #import "PeopleDetailViewController.h"
 #import "CustomSegmentedControl.h"
 #import "TabbedSlideView.h"
+#import "PeopleDetailIntroView.h"
+#import "PeopleDetailDetailView.h"
+#import "PeopleDetailGalleryView.h"
 
 #define kHeightSegmentedControl 40.0f
 #define kHeightButtonExchangeCard 40.0f
@@ -23,6 +26,10 @@
 @synthesize tabbedSlideView = _tabbedSlideView;
 @synthesize exchangeCardButton = _exchangeCardButton;
 
+@synthesize peopleDetailIntroView = _peopleDetailIntroView;
+@synthesize peopleDetailDetailView = _peopleDetailDetailView;
+@synthesize peopleDetailGalleryView = _peopleDetailGalleryView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +41,10 @@
 
 - (void)dealloc
 {
+    [_peopleDetailIntroView release];
+    [_peopleDetailDetailView release];
+    [_peopleDetailGalleryView release];
+    
     [_segmentedControl release];
     [_tabbedSlideView release];
     [_exchangeCardButton release];
@@ -66,6 +77,20 @@
     _exchangeCardButton.backgroundColor = [UIColor colorWithWhite:95.0f/255.0f alpha:1.0f];
     [_exchangeCardButton setTitle:NSLocalizedString(@"Exchange Card", nil) forState:UIControlStateNormal];
     [self.view addSubview:_exchangeCardButton];
+    
+    // ----- Content -----
+    
+    // Intro
+    self.peopleDetailIntroView = [[[PeopleDetailIntroView alloc] initWithFrame:[_tabbedSlideView rectForViewAtIndex:0]] autorelease];
+    [_tabbedSlideView.contentView addSubview:_peopleDetailIntroView];
+    
+    // Detail
+    self.peopleDetailDetailView = [[[PeopleDetailDetailView alloc] initWithFrame:[_tabbedSlideView rectForViewAtIndex:1]] autorelease];
+    [_tabbedSlideView.contentView addSubview:_peopleDetailDetailView];
+    
+    // Gallery
+    self.peopleDetailGalleryView = [[[PeopleDetailGalleryView alloc] initWithFrame:[_tabbedSlideView rectForViewAtIndex:2]] autorelease];
+    [_tabbedSlideView.contentView addSubview:_peopleDetailGalleryView];
 }
 
 - (void)viewDidUnload
@@ -74,6 +99,9 @@
     self.segmentedControl = nil;
     self.tabbedSlideView = nil;
     self.exchangeCardButton = nil;
+    self.peopleDetailIntroView = nil;
+    self.peopleDetailDetailView = nil;
+    self.peopleDetailGalleryView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
