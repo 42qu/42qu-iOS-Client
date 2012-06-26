@@ -22,6 +22,9 @@
 		FA2883AF159847B700FFE60F /* UpdateRootRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */; };
 		FA2883B2159847D100FFE60F /* UpdateRootNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */; };
 		FA2883B5159847E700FFE60F /* UpdateRootStarredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */; };
+		FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */; };
+		FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */; };
+		FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */; };
 		FA2E1D35158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D2F158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png */; };
 		FA2E1D36158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D30158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png */; };
 		FA2E1D37158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D31158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png */; };
@@ -96,6 +99,12 @@
 		FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootNearbyViewController.m; sourceTree = "<group>"; };
 		FA2883B3159847E600FFE60F /* UpdateRootStarredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootStarredViewController.h; sourceTree = "<group>"; };
 		FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootStarredViewController.m; sourceTree = "<group>"; };
+		FA2883CF159A0A6D00FFE60F /* PeopleDetailIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailIntroView.h; sourceTree = "<group>"; };
+		FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailIntroView.m; sourceTree = "<group>"; };
+		FA2883D3159A0A8000FFE60F /* PeopleDetailDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailDetailView.h; sourceTree = "<group>"; };
+		FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailDetailView.m; sourceTree = "<group>"; };
+		FA2883D6159A0A9900FFE60F /* PeopleDetailGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailGalleryView.h; sourceTree = "<group>"; };
+		FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailGalleryView.m; sourceTree = "<group>"; };
 		FA2E1D2F158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-selected.png"; sourceTree = "<group>"; };
 		FA2E1D30158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-selected@2x.png"; sourceTree = "<group>"; };
 		FA2E1D31158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-divider.png"; sourceTree = "<group>"; };
@@ -443,6 +452,12 @@
 				FA02A74B158CA62300DA275C /* PeopleDetailViewController.h */,
 				FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */,
 				FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */,
+				FA2883CF159A0A6D00FFE60F /* PeopleDetailIntroView.h */,
+				FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */,
+				FA2883D3159A0A8000FFE60F /* PeopleDetailDetailView.h */,
+				FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */,
+				FA2883D6159A0A9900FFE60F /* PeopleDetailGalleryView.h */,
+				FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -580,6 +595,9 @@
 				FA2883AF159847B700FFE60F /* UpdateRootRecommendViewController.m in Sources */,
 				FA2883B2159847D100FFE60F /* UpdateRootNearbyViewController.m in Sources */,
 				FA2883B5159847E700FFE60F /* UpdateRootStarredViewController.m in Sources */,
+				FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */,
+				FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */,
+				FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
