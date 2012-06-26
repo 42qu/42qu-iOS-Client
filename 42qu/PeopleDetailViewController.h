@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class CustomSegmentedControl;
+@class CustomSegmentedControl, TabbedSlideView;
 
 @interface PeopleDetailViewController : UIViewController
 
 @property (nonatomic, strong) CustomSegmentedControl *segmentedControl;
+@property (nonatomic, strong) TabbedSlideView *tabbedSlideView;
+@property (nonatomic, strong) UIButton *exchangeCardButton;
 
 @end
