@@ -70,6 +70,7 @@
 
 - (void)dealloc
 {
+    [_customSegmentedControl release];
     [_contentView release];
     [super dealloc];
 }

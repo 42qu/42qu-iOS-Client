@@ -11,7 +11,7 @@
 
 @interface TabbedSlideView : UIView <CustomSegmentedControlDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, assign) CustomSegmentedControl *customSegmentedControl;
+@property (nonatomic, strong) CustomSegmentedControl *customSegmentedControl;
 @property (nonatomic, strong) UIScrollView *contentView;
 
 - (id)initWithCustomSegmentedControl:(CustomSegmentedControl *)customSegmentedControl andContentViewFrame:(CGRect)contentViewFrame;
