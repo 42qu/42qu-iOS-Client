@@ -12,7 +12,6 @@
 
 @synthesize customSegmentedControl = _customSegmentedControl;
 @synthesize contentView = _contentView;
-@synthesize contentViewHeight = _contentViewHeight;
 
 #pragma mark - External
 
@@ -22,7 +21,7 @@
     rect.origin.x = index * self.frame.size.width;
     rect.origin.y = 0;
     rect.size.width = self.frame.size.width;
-    rect.size.height = self.frame.size.height - _customSegmentedControl.frame.size.height;
+    rect.size.height = self.frame.size.height;
     return rect;
 }
 
@@ -46,21 +45,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView = [[[UIScrollView alloc] init] autorelease];
-        self.contentViewHeight = 0;
+        self.contentView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
     }
     return self;
 }
 
-- (id)initWithCustomSegmentedControl:(CustomSegmentedControl *)customSegmentedControl andContentViewHeight:(CGFloat)contentViewHeight
+- (id)initWithCustomSegmentedControl:(CustomSegmentedControl *)customSegmentedControl andContentViewFrame:(CGRect)contentViewFrame
 {
-    CGRect frame = customSegmentedControl.frame;
-    frame.size.height += contentViewHeight;
-    self = [super initWithFrame:frame];
+    self = [self initWithFrame:contentViewFrame];
     if (self) {
         self.customSegmentedControl = customSegmentedControl;
-        self.contentView = [[[UIScrollView alloc] init] autorelease];
-        self.contentViewHeight = contentViewHeight;
     }
     return self;
 }
@@ -76,7 +70,6 @@
 
 - (void)dealloc
 {
-    [_customSegmentedControl release];
     [_contentView release];
     [super dealloc];
 }
@@ -87,12 +80,10 @@
     _contentView.delegate = self;
     _contentView.showsHorizontalScrollIndicator = NO;
     _contentView.pagingEnabled = YES;
-    [self addSubview:_customSegmentedControl];
     [self addSubview:_contentView];
     NSUInteger numberOfTabs = _customSegmentedControl.numberOfButtons;
     if (numberOfTabs > 0) {
-        _contentView.frame = CGRectMake(0, _customSegmentedControl.frame.size.height, _customSegmentedControl.frame.size.width, _contentViewHeight);
-        _contentView.contentSize = CGSizeMake(numberOfTabs * _customSegmentedControl.frame.size.width, _contentViewHeight);
+        _contentView.contentSize = CGSizeMake(numberOfTabs * self.frame.size.width, self.frame.size.height);
     }
 }
 
@@ -107,14 +98,15 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [_customSegmentedControl selectButtonAtIndex:scrollView.contentOffset.x / _customSegmentedControl.frame.size.width];
+    [_customSegmentedControl selectButtonAtIndex:ABS(scrollView.contentOffset.x / scrollView.frame.size.width)];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    // This method makes sure when the content scrolls, the selected indicator scrolls with it. 
     // I don't expect you to understand this very quickly, but please don't make any changes or it wouldn't be so perfect. - Alex
     if (_customSegmentedControl.animationType == SegmentedControlAnimationTypeMove) {
-        [_customSegmentedControl moveSelectedBackgroundToOffset:scrollView.contentOffset.x * (_customSegmentedControl.frame.size.width + _customSegmentedControl.dividerImage.size.width) / _customSegmentedControl.frame.size.width / _customSegmentedControl.numberOfButtons];
+        [_customSegmentedControl moveSelectedBackgroundToOffset:scrollView.contentOffset.x * (_customSegmentedControl.frame.size.width + _customSegmentedControl.dividerImage.size.width) / scrollView.contentSize.width];
     }
 }
 
