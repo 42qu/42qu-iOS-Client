@@ -18,6 +18,7 @@
 @synthesize buttons = _buttons;
 
 @synthesize titles = _titles;
+@synthesize images = _images;
 @synthesize highlightedTitles = _highlightedTitles;
 @synthesize selectedTitles = _selectedTitles;
 @synthesize dividerImage = _dividerImage;
@@ -142,13 +143,14 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame andTitles:(NSArray *)titles andHighlightedTitles:(NSArray *)highlightedTitles andSelectedTitles:(NSArray *)selectedTitles andBackgroundImage:(UIImage *)backgroundImage andDividerImage:(UIImage *)dividerImage andHighlightedBackgroundImage:(UIImage *)highlightedBackgroundImage andSelectedBackgroundImage:(UIImage *)selectedBackgroundImage
+- (id)initWithFrame:(CGRect)frame andTitles:(NSArray *)titles andImages:(NSArray *)images andHighlightedTitles:(NSArray *)highlightedTitles andSelectedTitles:(NSArray *)selectedTitles andBackgroundImage:(UIImage *)backgroundImage andDividerImage:(UIImage *)dividerImage andHighlightedBackgroundImage:(UIImage *)highlightedBackgroundImage andSelectedBackgroundImage:(UIImage *)selectedBackgroundImage
 {
     self = [super initWithFrame:frame];
     if (self) {
         _animationType = SegmentedControlAnimationTypeMove;
         // Set the attributes
         self.titles = titles;
+        self.images = images;
         self.highlightedTitles = highlightedTitles;
         self.selectedTitles = selectedTitles;
         self.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
@@ -172,6 +174,7 @@
 {
     [_buttons release];
     [_titles release];
+    [_images release];
     [_highlightedTitles release];
     [_selectedTitles release];
     [_dividerImage release];
@@ -185,8 +188,11 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     if (_titles.count > 0) { // When the number of buttons > 0, generate the segmented control
+        if (_images.count && _titles.count != _images.count) { // When titles and images not match, return an empty view
+            NSLog(@"Custom Segmented Control: Titles and images not match. ");
+        }
         if ((_highlightedTitles.count && _titles.count != _highlightedTitles.count) || (_selectedTitles.count && _titles.count != _selectedTitles.count)) { // When titles and highlighted/selected titles not match, return an empty view
-            NSLog(@"Custom Segmented Control: Titles and highlighted titles not match");
+            NSLog(@"Custom Segmented Control: Titles and highlighted/selected titles not match. ");
             return;
         }
     } else { // When the titles is empty, return an empty view
@@ -209,6 +215,9 @@
         // Button
         UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(horizontalOffset, 0, buttonWidth, height)] autorelease];
         [button setTitle:[_titles objectAtIndex:i] forState:UIControlStateNormal];
+        if (_images.count) {
+            [button setImage:[_images objectAtIndex:i] forState:UIControlStateNormal];
+        }
         if (_highlightedTitles.count) {
             [button setTitle:[_highlightedTitles objectAtIndex:i] forState:UIControlStateHighlighted];
         }

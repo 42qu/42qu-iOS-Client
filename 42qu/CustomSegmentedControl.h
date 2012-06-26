@@ -30,6 +30,7 @@ typedef enum {
 @property (nonatomic, strong) NSArray *buttons;
 
 @property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) NSArray *highlightedTitles;
 @property (nonatomic, strong) NSArray *selectedTitles;
 @property (nonatomic, strong) UIImage *dividerImage;
@@ -40,7 +41,7 @@ typedef enum {
 
 @property (nonatomic, assign) NSUInteger selectedIndex;
 
-- (id)initWithFrame:(CGRect)frame andTitles:(NSArray *)titles andHighlightedTitles:(NSArray *)highlightedTitles andSelectedTitles:(NSArray *)selectedTitles andBackgroundImage:(UIImage *)backgroundImage andDividerImage:(UIImage *)dividerImage andHighlightedBackgroundImage:(UIImage *)highlightedBackgroundImage andSelectedBackgroundImage:(UIImage *)selectedBackgroundImage;
+- (id)initWithFrame:(CGRect)frame andTitles:(NSArray *)titles andImages:(NSArray *)images andHighlightedTitles:(NSArray *)highlightedTitles andSelectedTitles:(NSArray *)selectedTitles andBackgroundImage:(UIImage *)backgroundImage andDividerImage:(UIImage *)dividerImage andHighlightedBackgroundImage:(UIImage *)highlightedBackgroundImage andSelectedBackgroundImage:(UIImage *)selectedBackgroundImage;
 
 - (NSUInteger)numberOfButtons;
 - (void)selectButtonAtIndex:(NSUInteger)index;
