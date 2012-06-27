@@ -12,6 +12,7 @@
 #import "UpdateRootViewController.h"
 #import "NotificationRootViewController.h"
 #import "PeopleRootViewController.h"
+#import "ProfileRootViewController.h"
 
 @implementation AppDelegate
 
@@ -23,6 +24,7 @@
 @synthesize updateNavigationController = _updateNavigationController;
 @synthesize notificationNavigationController = _notificationNavigationController;
 @synthesize peopleNavigationController = _peopleNavigationController;
+@synthesize profileNavigationController = _profileNavigationController;
 
 #pragma mark - Life cycle
 
@@ -59,7 +61,11 @@
     self.peopleNavigationController = [[[UINavigationController alloc] initWithRootViewController:peopleRootViewController] autorelease];
     [peopleRootViewController release];
     
-    _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, nil];
+    ProfileRootViewController *profileRootViewController = [[ProfileRootViewController alloc] init];
+    self.profileNavigationController = [[[UINavigationController alloc] initWithRootViewController:profileRootViewController] autorelease];
+    [profileRootViewController release];
+    
+    _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, _profileNavigationController, nil];
     
     [self.window addSubview:_tabBarController.view];
     

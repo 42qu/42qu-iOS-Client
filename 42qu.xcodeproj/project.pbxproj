@@ -25,6 +25,7 @@
 		FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */; };
 		FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */; };
 		FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */; };
+		FA288407159B151300FFE60F /* ProfileRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA288406159B151300FFE60F /* ProfileRootViewController.m */; };
 		FA2E1D35158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D2F158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png */; };
 		FA2E1D36158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D30158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png */; };
 		FA2E1D37158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D31158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png */; };
@@ -105,6 +106,8 @@
 		FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailDetailView.m; sourceTree = "<group>"; };
 		FA2883D6159A0A9900FFE60F /* PeopleDetailGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailGalleryView.h; sourceTree = "<group>"; };
 		FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailGalleryView.m; sourceTree = "<group>"; };
+		FA288405159B151300FFE60F /* ProfileRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileRootViewController.h; sourceTree = "<group>"; };
+		FA288406159B151300FFE60F /* ProfileRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileRootViewController.m; sourceTree = "<group>"; };
 		FA2E1D2F158DF8680072B596 /* peopledetail-segmentedcontrol-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-selected.png"; sourceTree = "<group>"; };
 		FA2E1D30158DF8680072B596 /* peopledetail-segmentedcontrol-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-selected@2x.png"; sourceTree = "<group>"; };
 		FA2E1D31158DF8680072B596 /* peopledetail-segmentedcontrol-divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-divider.png"; sourceTree = "<group>"; };
@@ -237,6 +240,15 @@
 			name = Launch;
 			sourceTree = "<group>";
 		};
+		FA288400159B148800FFE60F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FA288405159B151300FFE60F /* ProfileRootViewController.h */,
+				FA288406159B151300FFE60F /* ProfileRootViewController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		FA402A3D156BAE37009EC4FA /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +318,7 @@
 				FAB73FF2156B7CDD003CBF67 /* Update */,
 				FAB73FFB156B7DF6003CBF67 /* Notification */,
 				FAB73FFC156B7DFC003CBF67 /* People */,
+				FA288400159B148800FFE60F /* Profile */,
 				FA7E3D11156B613E00687AB8 /* Supporting Files */,
 			);
 			path = 42qu;
@@ -598,6 +611,7 @@
 				FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */,
 				FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */,
 				FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */,
+				FA288407159B151300FFE60F /* ProfileRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

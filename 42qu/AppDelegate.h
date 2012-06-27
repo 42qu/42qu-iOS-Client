@@ -20,5 +20,6 @@
 @property (strong, nonatomic) UINavigationController *updateNavigationController;
 @property (strong, nonatomic) UINavigationController *notificationNavigationController;
 @property (strong, nonatomic) UINavigationController *peopleNavigationController;
+@property (strong, nonatomic) UINavigationController *profileNavigationController;
 
 @end
