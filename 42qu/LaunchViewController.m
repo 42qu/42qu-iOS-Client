@@ -183,6 +183,11 @@
     self.registerButton = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self tryLogin];

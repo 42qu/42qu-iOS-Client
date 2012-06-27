@@ -66,7 +66,6 @@
     // Add launch view controller
     self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
     self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
-    _launchNavigationController.navigationBarHidden = YES;
     [self.window addSubview:_launchNavigationController.view];
     
     [self.window makeKeyAndVisible];
