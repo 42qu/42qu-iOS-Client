@@ -6,13 +6,31 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "PeopleRootViewController.h"
+#import "PeopleDetailViewController.h"
 
 @interface PeopleRootViewController ()
 
 @end
 
 @implementation PeopleRootViewController
+
+#pragma mark - Actions
+
+- (void)showMyself
+{
+    PeopleDetailViewController *peopleDetailViewController = [[[PeopleDetailViewController alloc] init] autorelease];
+    peopleDetailViewController.isMyself = YES;
+    CATransition *transition = [CATransition animation];
+    transition.type = @"oglFlip";
+    transition.subtype = kCATransitionFromRight;
+    transition.duration = 0.3f;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:peopleDetailViewController animated:NO];
+}
+
+#pragma mark - Life cycle
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,12 +44,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Me", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showMyself)] autorelease];
 }
 
 - (void)viewDidUnload

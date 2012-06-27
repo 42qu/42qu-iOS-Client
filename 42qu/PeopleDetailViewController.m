@@ -6,6 +6,7 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "PeopleDetailViewController.h"
 #import "CustomSegmentedControl.h"
 #import "TabbedSlideView.h"
@@ -31,6 +32,20 @@
 @synthesize peopleDetailGalleryView = _peopleDetailGalleryView;
 
 @synthesize isMyself = _isMyself;
+
+#pragma mark - Actions
+
+- (void)showPeople
+{
+    CATransition *transition = [CATransition animation];
+    transition.type = @"oglFlip";
+    transition.subtype = kCATransitionFromLeft;
+    transition.duration = 0.3f;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+#pragma mark - Life cycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +74,8 @@
     [super viewDidLoad];
     
     if (_isMyself) {
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"People", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showPeople)] autorelease];
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:nil] autorelease];
     } else {
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Follow", nil) style:UIBarButtonItemStylePlain target:self action:nil] autorelease];
