@@ -21,4 +21,6 @@
 @property (nonatomic, strong) PeopleDetailDetailView *peopleDetailDetailView;
 @property (nonatomic, strong) PeopleDetailGalleryView *peopleDetailGalleryView;
 
+@property (nonatomic, assign) BOOL isMyself;
+
 @end

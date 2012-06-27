@@ -30,11 +30,14 @@
 @synthesize peopleDetailDetailView = _peopleDetailDetailView;
 @synthesize peopleDetailGalleryView = _peopleDetailGalleryView;
 
+@synthesize isMyself = _isMyself;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
+        self.isMyself = NO;
     }
     return self;
 }
@@ -54,6 +57,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (_isMyself) {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:nil] autorelease];
+    } else {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Follow", nil) style:UIBarButtonItemStylePlain target:self action:nil] autorelease];
+    }
     
     // Create and add segmented control
     self.segmentedControl = [[[CustomSegmentedControl alloc] 
