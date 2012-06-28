@@ -30,7 +30,6 @@
 - (void) task_accept: (NSString *) access_token : (int64_t) user_id;  // throws TException
 - (CommentList *) comment_get: (NSString *) access_token : (int64_t) id;  // throws TException
 - (void) comment_make: (NSString *) access_token : (int64_t) id : (NSString *) text;  // throws TException
-- (PersonList *) person_page: (NSString *) access_token : (int64_t) start : (int64_t) limit;  // throws TException
 @end
 
 @interface SnsClient : NSObject <Sns> {
