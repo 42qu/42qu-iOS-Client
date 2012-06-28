@@ -51,18 +51,22 @@
     // Init & add tab bar controller's view controllers
     UpdateRootViewController *updateRootViewController = [[UpdateRootViewController alloc] init];
     self.updateNavigationController = [[[UINavigationController alloc] initWithRootViewController:updateRootViewController] autorelease];
+    _updateNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabbar-update"];
     [updateRootViewController release];
     
     NotificationRootViewController *notificationRootViewController = [[NotificationRootViewController alloc] init];
     self.notificationNavigationController = [[[UINavigationController alloc] initWithRootViewController:notificationRootViewController] autorelease];
+    _notificationNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabbar-notification"];
     [notificationRootViewController release];
     
     PeopleRootViewController *peopleRootViewController = [[PeopleRootViewController alloc] init];
     self.peopleNavigationController = [[[UINavigationController alloc] initWithRootViewController:peopleRootViewController] autorelease];
+    _peopleNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabbar-people"];
     [peopleRootViewController release];
     
     ProfileRootViewController *profileRootViewController = [[ProfileRootViewController alloc] init];
     self.profileNavigationController = [[[UINavigationController alloc] initWithRootViewController:profileRootViewController] autorelease];
+    _profileNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabbar-profile"];
     [profileRootViewController release];
     
     _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, _profileNavigationController, nil];

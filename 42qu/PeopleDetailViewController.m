@@ -14,8 +14,8 @@
 #import "PeopleDetailDetailView.h"
 #import "PeopleDetailGalleryView.h"
 
-#define kHeightSegmentedControl 40.0f
-#define kHeightButtonExchangeCard 40.0f
+#define kHeightSegmentedControl 28.0f
+#define kHeightButtonExchangeCard 44.0f
 
 @interface PeopleDetailViewController ()
 
@@ -74,9 +74,10 @@
     [super viewDidLoad];
     
     if (_isMyself) {
+        self.title = @"My Profile";
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"People", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showPeople)] autorelease];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:nil] autorelease];
+//        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:nil] autorelease];
     } else {
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Follow", nil) style:UIBarButtonItemStylePlain target:self action:nil] autorelease];
     }
@@ -96,12 +97,17 @@
     
     // Create and add content view
     self.tabbedSlideView = [[[TabbedSlideView alloc] initWithCustomSegmentedControl:_segmentedControl andContentViewFrame:CGRectMake(0, kHeightSegmentedControl, self.view.frame.size.width, self.view.frame.size.height - kHeightSegmentedControl - kHeightButtonExchangeCard)] autorelease];
+    _tabbedSlideView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     [self.view addSubview:_tabbedSlideView];
     
     // Create and add exchange card button
     self.exchangeCardButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - kHeightButtonExchangeCard, self.view.frame.size.width, kHeightButtonExchangeCard)] autorelease];
     _exchangeCardButton.backgroundColor = [UIColor colorWithWhite:95.0f/255.0f alpha:1.0f];
-    [_exchangeCardButton setTitle:NSLocalizedString(@"Exchange Card", nil) forState:UIControlStateNormal];
+    if (_isMyself) {
+        [_exchangeCardButton setTitle:NSLocalizedString(@"Edit my profile", nil) forState:UIControlStateNormal];
+    } else {
+        [_exchangeCardButton setTitle:NSLocalizedString(@"Exchange Card", nil) forState:UIControlStateNormal];
+    }
     [self.view addSubview:_exchangeCardButton];
     
     // ----- Content -----
