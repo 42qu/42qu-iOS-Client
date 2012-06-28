@@ -44,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Me", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showMyself)] autorelease];
 }
 
