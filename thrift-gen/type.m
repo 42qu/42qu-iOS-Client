@@ -1487,13 +1487,13 @@
 
 @implementation UserInfoIntro
 
-- (id) initWithMotto: (NSString *) motto description: (NSString *) description
+- (id) initWithMotto: (NSString *) motto introduction: (NSString *) introduction
 {
   self = [super init];
   __motto = [motto retain];
   __motto_isset = YES;
-  __description = [description retain];
-  __description_isset = YES;
+  __introduction = [introduction retain];
+  __introduction_isset = YES;
   return self;
 }
 
@@ -1505,10 +1505,10 @@
     __motto = [[decoder decodeObjectForKey: @"motto"] retain];
     __motto_isset = YES;
   }
-  if ([decoder containsValueForKey: @"description"])
+  if ([decoder containsValueForKey: @"introduction"])
   {
-    __description = [[decoder decodeObjectForKey: @"description"] retain];
-    __description_isset = YES;
+    __introduction = [[decoder decodeObjectForKey: @"introduction"] retain];
+    __introduction_isset = YES;
   }
   return self;
 }
@@ -1519,16 +1519,16 @@
   {
     [encoder encodeObject: __motto forKey: @"motto"];
   }
-  if (__description_isset)
+  if (__introduction_isset)
   {
-    [encoder encodeObject: __description forKey: @"description"];
+    [encoder encodeObject: __introduction forKey: @"introduction"];
   }
 }
 
 - (void) dealloc
 {
   [__motto release];
-  [__description release];
+  [__introduction release];
   [super dealloc];
 }
 
@@ -1553,25 +1553,25 @@
   __motto_isset = NO;
 }
 
-- (NSString *) description {
-  return [[__description retain] autorelease];
+- (NSString *) introduction {
+  return [[__introduction retain] autorelease];
 }
 
-- (void) setDescription: (NSString *) description {
-  [description retain];
-  [__description release];
-  __description = description;
-  __description_isset = YES;
+- (void) setIntroduction: (NSString *) introduction {
+  [introduction retain];
+  [__introduction release];
+  __introduction = introduction;
+  __introduction_isset = YES;
 }
 
-- (BOOL) descriptionIsSet {
-  return __description_isset;
+- (BOOL) introductionIsSet {
+  return __introduction_isset;
 }
 
-- (void) unsetDescription {
-  [__description release];
-  __description = nil;
-  __description_isset = NO;
+- (void) unsetIntroduction {
+  [__introduction release];
+  __introduction = nil;
+  __introduction_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -1600,7 +1600,7 @@
       case 2:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setDescription: fieldValue];
+          [self setIntroduction: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1623,10 +1623,10 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__description_isset) {
-    if (__description != nil) {
-      [outProtocol writeFieldBeginWithName: @"description" type: TType_STRING fieldID: 2];
-      [outProtocol writeString: __description];
+  if (__introduction_isset) {
+    if (__introduction != nil) {
+      [outProtocol writeFieldBeginWithName: @"introduction" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __introduction];
       [outProtocol writeFieldEnd];
     }
   }
@@ -1638,8 +1638,8 @@
   NSMutableString * ms = [NSMutableString stringWithString: @"UserInfoIntro("];
   [ms appendString: @"motto:"];
   [ms appendFormat: @"\"%@\"", __motto];
-  [ms appendString: @",description:"];
-  [ms appendFormat: @"\"%@\"", __description];
+  [ms appendString: @",introduction:"];
+  [ms appendFormat: @"\"%@\"", __introduction];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -2877,7 +2877,7 @@
 
 @implementation UserResumeStudy
 
-- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime school: (NSString *) school major: (NSString *) major type: (int) type description: (NSString *) description
+- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime school: (NSString *) school major: (NSString *) major type: (int) type comment: (NSString *) comment
 {
   self = [super init];
   __starttime = starttime;
@@ -2890,8 +2890,8 @@
   __major_isset = YES;
   __type = type;
   __type_isset = YES;
-  __description = [description retain];
-  __description_isset = YES;
+  __comment = [comment retain];
+  __comment_isset = YES;
   return self;
 }
 
@@ -2923,10 +2923,10 @@
     __type = [decoder decodeIntForKey: @"type"];
     __type_isset = YES;
   }
-  if ([decoder containsValueForKey: @"description"])
+  if ([decoder containsValueForKey: @"comment"])
   {
-    __description = [[decoder decodeObjectForKey: @"description"] retain];
-    __description_isset = YES;
+    __comment = [[decoder decodeObjectForKey: @"comment"] retain];
+    __comment_isset = YES;
   }
   return self;
 }
@@ -2953,9 +2953,9 @@
   {
     [encoder encodeInt: __type forKey: @"type"];
   }
-  if (__description_isset)
+  if (__comment_isset)
   {
-    [encoder encodeObject: __description forKey: @"description"];
+    [encoder encodeObject: __comment forKey: @"comment"];
   }
 }
 
@@ -2963,7 +2963,7 @@
 {
   [__school release];
   [__major release];
-  [__description release];
+  [__comment release];
   [super dealloc];
 }
 
@@ -3060,25 +3060,25 @@
   __type_isset = NO;
 }
 
-- (NSString *) description {
-  return [[__description retain] autorelease];
+- (NSString *) comment {
+  return [[__comment retain] autorelease];
 }
 
-- (void) setDescription: (NSString *) description {
-  [description retain];
-  [__description release];
-  __description = description;
-  __description_isset = YES;
+- (void) setComment: (NSString *) comment {
+  [comment retain];
+  [__comment release];
+  __comment = comment;
+  __comment_isset = YES;
 }
 
-- (BOOL) descriptionIsSet {
-  return __description_isset;
+- (BOOL) commentIsSet {
+  return __comment_isset;
 }
 
-- (void) unsetDescription {
-  [__description release];
-  __description = nil;
-  __description_isset = NO;
+- (void) unsetComment {
+  [__comment release];
+  __comment = nil;
+  __comment_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -3139,7 +3139,7 @@
       case 6:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setDescription: fieldValue];
+          [self setComment: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3184,10 +3184,10 @@
     [outProtocol writeI32: __type];
     [outProtocol writeFieldEnd];
   }
-  if (__description_isset) {
-    if (__description != nil) {
-      [outProtocol writeFieldBeginWithName: @"description" type: TType_STRING fieldID: 6];
-      [outProtocol writeString: __description];
+  if (__comment_isset) {
+    if (__comment != nil) {
+      [outProtocol writeFieldBeginWithName: @"comment" type: TType_STRING fieldID: 6];
+      [outProtocol writeString: __comment];
       [outProtocol writeFieldEnd];
     }
   }
@@ -3207,8 +3207,8 @@
   [ms appendFormat: @"\"%@\"", __major];
   [ms appendString: @",type:"];
   [ms appendFormat: @"%i", __type];
-  [ms appendString: @",description:"];
-  [ms appendFormat: @"\"%@\"", __description];
+  [ms appendString: @",comment:"];
+  [ms appendFormat: @"\"%@\"", __comment];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -3217,7 +3217,7 @@
 
 @implementation UserResumeWork
 
-- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime org: (NSString *) org job: (NSString *) job description: (NSString *) description
+- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime org: (NSString *) org job: (NSString *) job comment: (NSString *) comment
 {
   self = [super init];
   __starttime = starttime;
@@ -3228,8 +3228,8 @@
   __org_isset = YES;
   __job = [job retain];
   __job_isset = YES;
-  __description = [description retain];
-  __description_isset = YES;
+  __comment = [comment retain];
+  __comment_isset = YES;
   return self;
 }
 
@@ -3256,10 +3256,10 @@
     __job = [[decoder decodeObjectForKey: @"job"] retain];
     __job_isset = YES;
   }
-  if ([decoder containsValueForKey: @"description"])
+  if ([decoder containsValueForKey: @"comment"])
   {
-    __description = [[decoder decodeObjectForKey: @"description"] retain];
-    __description_isset = YES;
+    __comment = [[decoder decodeObjectForKey: @"comment"] retain];
+    __comment_isset = YES;
   }
   return self;
 }
@@ -3282,9 +3282,9 @@
   {
     [encoder encodeObject: __job forKey: @"job"];
   }
-  if (__description_isset)
+  if (__comment_isset)
   {
-    [encoder encodeObject: __description forKey: @"description"];
+    [encoder encodeObject: __comment forKey: @"comment"];
   }
 }
 
@@ -3292,7 +3292,7 @@
 {
   [__org release];
   [__job release];
-  [__description release];
+  [__comment release];
   [super dealloc];
 }
 
@@ -3372,25 +3372,25 @@
   __job_isset = NO;
 }
 
-- (NSString *) description {
-  return [[__description retain] autorelease];
+- (NSString *) comment {
+  return [[__comment retain] autorelease];
 }
 
-- (void) setDescription: (NSString *) description {
-  [description retain];
-  [__description release];
-  __description = description;
-  __description_isset = YES;
+- (void) setComment: (NSString *) comment {
+  [comment retain];
+  [__comment release];
+  __comment = comment;
+  __comment_isset = YES;
 }
 
-- (BOOL) descriptionIsSet {
-  return __description_isset;
+- (BOOL) commentIsSet {
+  return __comment_isset;
 }
 
-- (void) unsetDescription {
-  [__description release];
-  __description = nil;
-  __description_isset = NO;
+- (void) unsetComment {
+  [__comment release];
+  __comment = nil;
+  __comment_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -3443,7 +3443,7 @@
       case 5:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setDescription: fieldValue];
+          [self setComment: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3483,10 +3483,10 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__description_isset) {
-    if (__description != nil) {
-      [outProtocol writeFieldBeginWithName: @"description" type: TType_STRING fieldID: 5];
-      [outProtocol writeString: __description];
+  if (__comment_isset) {
+    if (__comment != nil) {
+      [outProtocol writeFieldBeginWithName: @"comment" type: TType_STRING fieldID: 5];
+      [outProtocol writeString: __comment];
       [outProtocol writeFieldEnd];
     }
   }
@@ -3504,8 +3504,8 @@
   [ms appendFormat: @"\"%@\"", __org];
   [ms appendString: @",job:"];
   [ms appendFormat: @"\"%@\"", __job];
-  [ms appendString: @",description:"];
-  [ms appendFormat: @"\"%@\"", __description];
+  [ms appendString: @",comment:"];
+  [ms appendFormat: @"\"%@\"", __comment];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }

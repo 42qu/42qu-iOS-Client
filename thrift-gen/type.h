@@ -330,18 +330,18 @@ typedef int64_t timestamp;
 
 @interface UserInfoIntro : NSObject <NSCoding> {
   NSString * __motto;
-  NSString * __description;
+  NSString * __introduction;
 
   BOOL __motto_isset;
-  BOOL __description_isset;
+  BOOL __introduction_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=motto, setter=setMotto:) NSString * motto;
-@property (nonatomic, retain, getter=description, setter=setDescription:) NSString * description;
+@property (nonatomic, retain, getter=introduction, setter=setIntroduction:) NSString * introduction;
 #endif
 
-- (id) initWithMotto: (NSString *) motto description: (NSString *) description;
+- (id) initWithMotto: (NSString *) motto introduction: (NSString *) introduction;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -350,9 +350,9 @@ typedef int64_t timestamp;
 - (void) setMotto: (NSString *) motto;
 - (BOOL) mottoIsSet;
 
-- (NSString *) description;
-- (void) setDescription: (NSString *) description;
-- (BOOL) descriptionIsSet;
+- (NSString *) introduction;
+- (void) setIntroduction: (NSString *) introduction;
+- (BOOL) introductionIsSet;
 
 @end
 
@@ -558,14 +558,14 @@ typedef int64_t timestamp;
   NSString * __school;
   NSString * __major;
   int __type;
-  NSString * __description;
+  NSString * __comment;
 
   BOOL __starttime_isset;
   BOOL __endtime_isset;
   BOOL __school_isset;
   BOOL __major_isset;
   BOOL __type_isset;
-  BOOL __description_isset;
+  BOOL __comment_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -574,10 +574,10 @@ typedef int64_t timestamp;
 @property (nonatomic, retain, getter=school, setter=setSchool:) NSString * school;
 @property (nonatomic, retain, getter=major, setter=setMajor:) NSString * major;
 @property (nonatomic, getter=type, setter=setType:) int type;
-@property (nonatomic, retain, getter=description, setter=setDescription:) NSString * description;
+@property (nonatomic, retain, getter=comment, setter=setComment:) NSString * comment;
 #endif
 
-- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime school: (NSString *) school major: (NSString *) major type: (int) type description: (NSString *) description;
+- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime school: (NSString *) school major: (NSString *) major type: (int) type comment: (NSString *) comment;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -602,9 +602,9 @@ typedef int64_t timestamp;
 - (void) setType: (int) type;
 - (BOOL) typeIsSet;
 
-- (NSString *) description;
-- (void) setDescription: (NSString *) description;
-- (BOOL) descriptionIsSet;
+- (NSString *) comment;
+- (void) setComment: (NSString *) comment;
+- (BOOL) commentIsSet;
 
 @end
 
@@ -613,13 +613,13 @@ typedef int64_t timestamp;
   timestamp __endtime;
   NSString * __org;
   NSString * __job;
-  NSString * __description;
+  NSString * __comment;
 
   BOOL __starttime_isset;
   BOOL __endtime_isset;
   BOOL __org_isset;
   BOOL __job_isset;
-  BOOL __description_isset;
+  BOOL __comment_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -627,10 +627,10 @@ typedef int64_t timestamp;
 @property (nonatomic, getter=endtime, setter=setEndtime:) timestamp endtime;
 @property (nonatomic, retain, getter=org, setter=setOrg:) NSString * org;
 @property (nonatomic, retain, getter=job, setter=setJob:) NSString * job;
-@property (nonatomic, retain, getter=description, setter=setDescription:) NSString * description;
+@property (nonatomic, retain, getter=comment, setter=setComment:) NSString * comment;
 #endif
 
-- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime org: (NSString *) org job: (NSString *) job description: (NSString *) description;
+- (id) initWithStarttime: (timestamp) starttime endtime: (timestamp) endtime org: (NSString *) org job: (NSString *) job comment: (NSString *) comment;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -651,9 +651,9 @@ typedef int64_t timestamp;
 - (void) setJob: (NSString *) job;
 - (BOOL) jobIsSet;
 
-- (NSString *) description;
-- (void) setDescription: (NSString *) description;
-- (BOOL) descriptionIsSet;
+- (NSString *) comment;
+- (void) setComment: (NSString *) comment;
+- (BOOL) commentIsSet;
 
 @end
 
