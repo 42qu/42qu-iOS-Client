@@ -34,18 +34,18 @@ enum AuthResponseStatus {
   AuthResponseStatus_AUTH_FAIL_PASSWORD_WRONG = 7
 };
 
-enum UserContactLinkType {
-  UserContactLinkType_Custom = 0,
-  UserContactLinkType_Public = 1,
-  UserContactLinkType_Homepage = 2,
-  UserContactLinkType_Home = 3,
-  UserContactLinkType_Work = 4,
-  UserContactLinkType_Other = 5,
-  UserContactLinkType_SNSDouban = 6,
-  UserContactLinkType_SNSWeibo = 7,
-  UserContactLinkType_SNSRenren = 8,
-  UserContactLinkType_SNSTencent = 9,
-  UserContactLinkType_SNSGoogle = 10
+enum UserLinkType {
+  UserLinkType_Custom = 0,
+  UserLinkType_Public = 1,
+  UserLinkType_Homepage = 2,
+  UserLinkType_Home = 3,
+  UserLinkType_Work = 4,
+  UserLinkType_Other = 5,
+  UserLinkType_SNSDouban = 6,
+  UserLinkType_SNSWeibo = 7,
+  UserLinkType_SNSRenren = 8,
+  UserLinkType_SNSTencent = 9,
+  UserLinkType_SNSGoogle = 10
 };
 
 enum UserContactPhoneType {
@@ -81,7 +81,9 @@ enum UserResumeStudyType {
 
 enum UserRelationship {
   UserRelationship_None = 0,
-  UserRelationship_Followed = 1
+  UserRelationship_Following = 1,
+  UserRelationship_Followed = 2,
+  UserRelationship_Friend = 3
 };
 
 enum TaskCid {
@@ -234,19 +236,28 @@ typedef int64_t timestamp;
   int64_t __id;
   NSString * __nickname;
   NSString * __avatar;
+  NSString * __motto;
+  NSString * __org;
+  NSString * __job;
 
   BOOL __id_isset;
   BOOL __nickname_isset;
   BOOL __avatar_isset;
+  BOOL __motto_isset;
+  BOOL __org_isset;
+  BOOL __job_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, getter=id, setter=setId:) int64_t id;
 @property (nonatomic, retain, getter=nickname, setter=setNickname:) NSString * nickname;
 @property (nonatomic, retain, getter=avatar, setter=setAvatar:) NSString * avatar;
+@property (nonatomic, retain, getter=motto, setter=setMotto:) NSString * motto;
+@property (nonatomic, retain, getter=org, setter=setOrg:) NSString * org;
+@property (nonatomic, retain, getter=job, setter=setJob:) NSString * job;
 #endif
 
-- (id) initWithId: (int64_t) id nickname: (NSString *) nickname avatar: (NSString *) avatar;
+- (id) initWithId: (int64_t) id nickname: (NSString *) nickname avatar: (NSString *) avatar motto: (NSString *) motto org: (NSString *) org job: (NSString *) job;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -263,6 +274,18 @@ typedef int64_t timestamp;
 - (void) setAvatar: (NSString *) avatar;
 - (BOOL) avatarIsSet;
 
+- (NSString *) motto;
+- (void) setMotto: (NSString *) motto;
+- (BOOL) mottoIsSet;
+
+- (NSString *) org;
+- (void) setOrg: (NSString *) org;
+- (BOOL) orgIsSet;
+
+- (NSString *) job;
+- (void) setJob: (NSString *) job;
+- (BOOL) jobIsSet;
+
 @end
 
 @interface UserInfoDetail : NSObject <NSCoding> {
@@ -271,16 +294,14 @@ typedef int64_t timestamp;
   NSString * __gender;
   timestamp __birthday;
   NSString * __location;
-  NSString * __org;
-  NSString * __job;
+  NSString * __introduction;
 
   BOOL __firstname_isset;
   BOOL __lastname_isset;
   BOOL __gender_isset;
   BOOL __birthday_isset;
   BOOL __location_isset;
-  BOOL __org_isset;
-  BOOL __job_isset;
+  BOOL __introduction_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -289,11 +310,10 @@ typedef int64_t timestamp;
 @property (nonatomic, retain, getter=gender, setter=setGender:) NSString * gender;
 @property (nonatomic, getter=birthday, setter=setBirthday:) timestamp birthday;
 @property (nonatomic, retain, getter=location, setter=setLocation:) NSString * location;
-@property (nonatomic, retain, getter=org, setter=setOrg:) NSString * org;
-@property (nonatomic, retain, getter=job, setter=setJob:) NSString * job;
+@property (nonatomic, retain, getter=introduction, setter=setIntroduction:) NSString * introduction;
 #endif
 
-- (id) initWithFirstname: (NSString *) firstname lastname: (NSString *) lastname gender: (NSString *) gender birthday: (timestamp) birthday location: (NSString *) location org: (NSString *) org job: (NSString *) job;
+- (id) initWithFirstname: (NSString *) firstname lastname: (NSString *) lastname gender: (NSString *) gender birthday: (timestamp) birthday location: (NSString *) location introduction: (NSString *) introduction;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -318,38 +338,6 @@ typedef int64_t timestamp;
 - (void) setLocation: (NSString *) location;
 - (BOOL) locationIsSet;
 
-- (NSString *) org;
-- (void) setOrg: (NSString *) org;
-- (BOOL) orgIsSet;
-
-- (NSString *) job;
-- (void) setJob: (NSString *) job;
-- (BOOL) jobIsSet;
-
-@end
-
-@interface UserInfoIntro : NSObject <NSCoding> {
-  NSString * __motto;
-  NSString * __introduction;
-
-  BOOL __motto_isset;
-  BOOL __introduction_isset;
-}
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=motto, setter=setMotto:) NSString * motto;
-@property (nonatomic, retain, getter=introduction, setter=setIntroduction:) NSString * introduction;
-#endif
-
-- (id) initWithMotto: (NSString *) motto introduction: (NSString *) introduction;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-- (NSString *) motto;
-- (void) setMotto: (NSString *) motto;
-- (BOOL) mottoIsSet;
-
 - (NSString *) introduction;
 - (void) setIntroduction: (NSString *) introduction;
 - (BOOL) introductionIsSet;
@@ -359,20 +347,17 @@ typedef int64_t timestamp;
 @interface UserInfo : NSObject <NSCoding> {
   UserInfoBasic * __basic;
   UserInfoDetail * __detail;
-  UserInfoIntro * __intro;
 
   BOOL __basic_isset;
   BOOL __detail_isset;
-  BOOL __intro_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=basic, setter=setBasic:) UserInfoBasic * basic;
 @property (nonatomic, retain, getter=detail, setter=setDetail:) UserInfoDetail * detail;
-@property (nonatomic, retain, getter=intro, setter=setIntro:) UserInfoIntro * intro;
 #endif
 
-- (id) initWithBasic: (UserInfoBasic *) basic detail: (UserInfoDetail *) detail intro: (UserInfoIntro *) intro;
+- (id) initWithBasic: (UserInfoBasic *) basic detail: (UserInfoDetail *) detail;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -385,13 +370,9 @@ typedef int64_t timestamp;
 - (void) setDetail: (UserInfoDetail *) detail;
 - (BOOL) detailIsSet;
 
-- (UserInfoIntro *) intro;
-- (void) setIntro: (UserInfoIntro *) intro;
-- (BOOL) introIsSet;
-
 @end
 
-@interface UserContactLink : NSObject <NSCoding> {
+@interface UserLink : NSObject <NSCoding> {
   int64_t __id;
   int __type;
   NSString * __value;
@@ -518,29 +499,22 @@ typedef int64_t timestamp;
 @end
 
 @interface UserContact : NSObject <NSCoding> {
-  NSArray * __linkList;
   NSArray * __phoneList;
   NSArray * __mailList;
 
-  BOOL __linkList_isset;
   BOOL __phoneList_isset;
   BOOL __mailList_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=linkList, setter=setLinkList:) NSArray * linkList;
 @property (nonatomic, retain, getter=phoneList, setter=setPhoneList:) NSArray * phoneList;
 @property (nonatomic, retain, getter=mailList, setter=setMailList:) NSArray * mailList;
 #endif
 
-- (id) initWithLinkList: (NSArray *) linkList phoneList: (NSArray *) phoneList mailList: (NSArray *) mailList;
+- (id) initWithPhoneList: (NSArray *) phoneList mailList: (NSArray *) mailList;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
-
-- (NSArray *) linkList;
-- (void) setLinkList: (NSArray *) linkList;
-- (BOOL) linkListIsSet;
 
 - (NSArray *) phoneList;
 - (void) setPhoneList: (NSArray *) phoneList;
@@ -687,11 +661,13 @@ typedef int64_t timestamp;
 
 @interface User : NSObject <NSCoding> {
   UserInfo * __info;
+  NSArray * __linkList;
   UserContact * __contact;
   UserResume * __resume;
   int __relationship;
 
   BOOL __info_isset;
+  BOOL __linkList_isset;
   BOOL __contact_isset;
   BOOL __resume_isset;
   BOOL __relationship_isset;
@@ -699,12 +675,13 @@ typedef int64_t timestamp;
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=info, setter=setInfo:) UserInfo * info;
+@property (nonatomic, retain, getter=linkList, setter=setLinkList:) NSArray * linkList;
 @property (nonatomic, retain, getter=contact, setter=setContact:) UserContact * contact;
 @property (nonatomic, retain, getter=resume, setter=setResume:) UserResume * resume;
 @property (nonatomic, getter=relationship, setter=setRelationship:) int relationship;
 #endif
 
-- (id) initWithInfo: (UserInfo *) info contact: (UserContact *) contact resume: (UserResume *) resume relationship: (int) relationship;
+- (id) initWithInfo: (UserInfo *) info linkList: (NSArray *) linkList contact: (UserContact *) contact resume: (UserResume *) resume relationship: (int) relationship;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -712,6 +689,10 @@ typedef int64_t timestamp;
 - (UserInfo *) info;
 - (void) setInfo: (UserInfo *) info;
 - (BOOL) infoIsSet;
+
+- (NSArray *) linkList;
+- (void) setLinkList: (NSArray *) linkList;
+- (BOOL) linkListIsSet;
 
 - (UserContact *) contact;
 - (void) setContact: (UserContact *) contact;
