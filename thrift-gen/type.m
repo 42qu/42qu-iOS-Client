@@ -1997,587 +1997,177 @@
 
 @end
 
-@implementation UserContactPhone
-
-- (id) initWithId: (int64_t) id type: (int) type value: (NSString *) value label: (NSString *) label
-{
-  self = [super init];
-  __id = id;
-  __id_isset = YES;
-  __type = type;
-  __type_isset = YES;
-  __value = [value retain];
-  __value_isset = YES;
-  __label = [label retain];
-  __label_isset = YES;
-  return self;
-}
-
-- (id) initWithCoder: (NSCoder *) decoder
-{
-  self = [super init];
-  if ([decoder containsValueForKey: @"id"])
-  {
-    __id = [decoder decodeInt64ForKey: @"id"];
-    __id_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"type"])
-  {
-    __type = [decoder decodeIntForKey: @"type"];
-    __type_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"value"])
-  {
-    __value = [[decoder decodeObjectForKey: @"value"] retain];
-    __value_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"label"])
-  {
-    __label = [[decoder decodeObjectForKey: @"label"] retain];
-    __label_isset = YES;
-  }
-  return self;
-}
-
-- (void) encodeWithCoder: (NSCoder *) encoder
-{
-  if (__id_isset)
-  {
-    [encoder encodeInt64: __id forKey: @"id"];
-  }
-  if (__type_isset)
-  {
-    [encoder encodeInt: __type forKey: @"type"];
-  }
-  if (__value_isset)
-  {
-    [encoder encodeObject: __value forKey: @"value"];
-  }
-  if (__label_isset)
-  {
-    [encoder encodeObject: __label forKey: @"label"];
-  }
-}
-
-- (void) dealloc
-{
-  [__value release];
-  [__label release];
-  [super dealloc];
-}
-
-- (int64_t) id {
-  return __id;
-}
-
-- (void) setId: (int64_t) id {
-  __id = id;
-  __id_isset = YES;
-}
-
-- (BOOL) idIsSet {
-  return __id_isset;
-}
-
-- (void) unsetId {
-  __id_isset = NO;
-}
-
-- (int) type {
-  return __type;
-}
-
-- (void) setType: (int) type {
-  __type = type;
-  __type_isset = YES;
-}
-
-- (BOOL) typeIsSet {
-  return __type_isset;
-}
-
-- (void) unsetType {
-  __type_isset = NO;
-}
-
-- (NSString *) value {
-  return [[__value retain] autorelease];
-}
-
-- (void) setValue: (NSString *) value {
-  [value retain];
-  [__value release];
-  __value = value;
-  __value_isset = YES;
-}
-
-- (BOOL) valueIsSet {
-  return __value_isset;
-}
-
-- (void) unsetValue {
-  [__value release];
-  __value = nil;
-  __value_isset = NO;
-}
-
-- (NSString *) label {
-  return [[__label retain] autorelease];
-}
-
-- (void) setLabel: (NSString *) label {
-  [label retain];
-  [__label release];
-  __label = label;
-  __label_isset = YES;
-}
-
-- (BOOL) labelIsSet {
-  return __label_isset;
-}
-
-- (void) unsetLabel {
-  [__label release];
-  __label = nil;
-  __label_isset = NO;
-}
-
-- (void) read: (id <TProtocol>) inProtocol
-{
-  NSString * fieldName;
-  int fieldType;
-  int fieldID;
-
-  [inProtocol readStructBeginReturningName: NULL];
-  while (true)
-  {
-    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
-    if (fieldType == TType_STOP) { 
-      break;
-    }
-    switch (fieldID)
-    {
-      case 1:
-        if (fieldType == TType_I64) {
-          int64_t fieldValue = [inProtocol readI64];
-          [self setId: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 2:
-        if (fieldType == TType_I32) {
-          int fieldValue = [inProtocol readI32];
-          [self setType: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 3:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setValue: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 4:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setLabel: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      default:
-        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        break;
-    }
-    [inProtocol readFieldEnd];
-  }
-  [inProtocol readStructEnd];
-}
-
-- (void) write: (id <TProtocol>) outProtocol {
-  [outProtocol writeStructBeginWithName: @"UserContactPhone"];
-  if (__id_isset) {
-    [outProtocol writeFieldBeginWithName: @"id" type: TType_I64 fieldID: 1];
-    [outProtocol writeI64: __id];
-    [outProtocol writeFieldEnd];
-  }
-  if (__type_isset) {
-    [outProtocol writeFieldBeginWithName: @"type" type: TType_I32 fieldID: 2];
-    [outProtocol writeI32: __type];
-    [outProtocol writeFieldEnd];
-  }
-  if (__value_isset) {
-    if (__value != nil) {
-      [outProtocol writeFieldBeginWithName: @"value" type: TType_STRING fieldID: 3];
-      [outProtocol writeString: __value];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  if (__label_isset) {
-    if (__label != nil) {
-      [outProtocol writeFieldBeginWithName: @"label" type: TType_STRING fieldID: 4];
-      [outProtocol writeString: __label];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  [outProtocol writeFieldStop];
-  [outProtocol writeStructEnd];
-}
-
-- (NSString *) description {
-  NSMutableString * ms = [NSMutableString stringWithString: @"UserContactPhone("];
-  [ms appendString: @"id:"];
-  [ms appendFormat: @"%qi", __id];
-  [ms appendString: @",type:"];
-  [ms appendFormat: @"%i", __type];
-  [ms appendString: @",value:"];
-  [ms appendFormat: @"\"%@\"", __value];
-  [ms appendString: @",label:"];
-  [ms appendFormat: @"\"%@\"", __label];
-  [ms appendString: @")"];
-  return [NSString stringWithString: ms];
-}
-
-@end
-
-@implementation UserContactMail
-
-- (id) initWithId: (int64_t) id type: (int) type value: (NSString *) value label: (NSString *) label
-{
-  self = [super init];
-  __id = id;
-  __id_isset = YES;
-  __type = type;
-  __type_isset = YES;
-  __value = [value retain];
-  __value_isset = YES;
-  __label = [label retain];
-  __label_isset = YES;
-  return self;
-}
-
-- (id) initWithCoder: (NSCoder *) decoder
-{
-  self = [super init];
-  if ([decoder containsValueForKey: @"id"])
-  {
-    __id = [decoder decodeInt64ForKey: @"id"];
-    __id_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"type"])
-  {
-    __type = [decoder decodeIntForKey: @"type"];
-    __type_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"value"])
-  {
-    __value = [[decoder decodeObjectForKey: @"value"] retain];
-    __value_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"label"])
-  {
-    __label = [[decoder decodeObjectForKey: @"label"] retain];
-    __label_isset = YES;
-  }
-  return self;
-}
-
-- (void) encodeWithCoder: (NSCoder *) encoder
-{
-  if (__id_isset)
-  {
-    [encoder encodeInt64: __id forKey: @"id"];
-  }
-  if (__type_isset)
-  {
-    [encoder encodeInt: __type forKey: @"type"];
-  }
-  if (__value_isset)
-  {
-    [encoder encodeObject: __value forKey: @"value"];
-  }
-  if (__label_isset)
-  {
-    [encoder encodeObject: __label forKey: @"label"];
-  }
-}
-
-- (void) dealloc
-{
-  [__value release];
-  [__label release];
-  [super dealloc];
-}
-
-- (int64_t) id {
-  return __id;
-}
-
-- (void) setId: (int64_t) id {
-  __id = id;
-  __id_isset = YES;
-}
-
-- (BOOL) idIsSet {
-  return __id_isset;
-}
-
-- (void) unsetId {
-  __id_isset = NO;
-}
-
-- (int) type {
-  return __type;
-}
-
-- (void) setType: (int) type {
-  __type = type;
-  __type_isset = YES;
-}
-
-- (BOOL) typeIsSet {
-  return __type_isset;
-}
-
-- (void) unsetType {
-  __type_isset = NO;
-}
-
-- (NSString *) value {
-  return [[__value retain] autorelease];
-}
-
-- (void) setValue: (NSString *) value {
-  [value retain];
-  [__value release];
-  __value = value;
-  __value_isset = YES;
-}
-
-- (BOOL) valueIsSet {
-  return __value_isset;
-}
-
-- (void) unsetValue {
-  [__value release];
-  __value = nil;
-  __value_isset = NO;
-}
-
-- (NSString *) label {
-  return [[__label retain] autorelease];
-}
-
-- (void) setLabel: (NSString *) label {
-  [label retain];
-  [__label release];
-  __label = label;
-  __label_isset = YES;
-}
-
-- (BOOL) labelIsSet {
-  return __label_isset;
-}
-
-- (void) unsetLabel {
-  [__label release];
-  __label = nil;
-  __label_isset = NO;
-}
-
-- (void) read: (id <TProtocol>) inProtocol
-{
-  NSString * fieldName;
-  int fieldType;
-  int fieldID;
-
-  [inProtocol readStructBeginReturningName: NULL];
-  while (true)
-  {
-    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
-    if (fieldType == TType_STOP) { 
-      break;
-    }
-    switch (fieldID)
-    {
-      case 1:
-        if (fieldType == TType_I64) {
-          int64_t fieldValue = [inProtocol readI64];
-          [self setId: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 2:
-        if (fieldType == TType_I32) {
-          int fieldValue = [inProtocol readI32];
-          [self setType: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 3:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setValue: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 4:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setLabel: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      default:
-        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        break;
-    }
-    [inProtocol readFieldEnd];
-  }
-  [inProtocol readStructEnd];
-}
-
-- (void) write: (id <TProtocol>) outProtocol {
-  [outProtocol writeStructBeginWithName: @"UserContactMail"];
-  if (__id_isset) {
-    [outProtocol writeFieldBeginWithName: @"id" type: TType_I64 fieldID: 1];
-    [outProtocol writeI64: __id];
-    [outProtocol writeFieldEnd];
-  }
-  if (__type_isset) {
-    [outProtocol writeFieldBeginWithName: @"type" type: TType_I32 fieldID: 2];
-    [outProtocol writeI32: __type];
-    [outProtocol writeFieldEnd];
-  }
-  if (__value_isset) {
-    if (__value != nil) {
-      [outProtocol writeFieldBeginWithName: @"value" type: TType_STRING fieldID: 3];
-      [outProtocol writeString: __value];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  if (__label_isset) {
-    if (__label != nil) {
-      [outProtocol writeFieldBeginWithName: @"label" type: TType_STRING fieldID: 4];
-      [outProtocol writeString: __label];
-      [outProtocol writeFieldEnd];
-    }
-  }
-  [outProtocol writeFieldStop];
-  [outProtocol writeStructEnd];
-}
-
-- (NSString *) description {
-  NSMutableString * ms = [NSMutableString stringWithString: @"UserContactMail("];
-  [ms appendString: @"id:"];
-  [ms appendFormat: @"%qi", __id];
-  [ms appendString: @",type:"];
-  [ms appendFormat: @"%i", __type];
-  [ms appendString: @",value:"];
-  [ms appendFormat: @"\"%@\"", __value];
-  [ms appendString: @",label:"];
-  [ms appendFormat: @"\"%@\"", __label];
-  [ms appendString: @")"];
-  return [NSString stringWithString: ms];
-}
-
-@end
-
 @implementation UserContact
 
-- (id) initWithPhoneList: (NSArray *) phoneList mailList: (NSArray *) mailList
+- (id) initWithId: (int64_t) id type: (int) type subtype: (int64_t) subtype value: (NSString *) value label: (NSString *) label
 {
   self = [super init];
-  __phoneList = [phoneList retain];
-  __phoneList_isset = YES;
-  __mailList = [mailList retain];
-  __mailList_isset = YES;
+  __id = id;
+  __id_isset = YES;
+  __type = type;
+  __type_isset = YES;
+  __subtype = subtype;
+  __subtype_isset = YES;
+  __value = [value retain];
+  __value_isset = YES;
+  __label = [label retain];
+  __label_isset = YES;
   return self;
 }
 
 - (id) initWithCoder: (NSCoder *) decoder
 {
   self = [super init];
-  if ([decoder containsValueForKey: @"phoneList"])
+  if ([decoder containsValueForKey: @"id"])
   {
-    __phoneList = [[decoder decodeObjectForKey: @"phoneList"] retain];
-    __phoneList_isset = YES;
+    __id = [decoder decodeInt64ForKey: @"id"];
+    __id_isset = YES;
   }
-  if ([decoder containsValueForKey: @"mailList"])
+  if ([decoder containsValueForKey: @"type"])
   {
-    __mailList = [[decoder decodeObjectForKey: @"mailList"] retain];
-    __mailList_isset = YES;
+    __type = [decoder decodeIntForKey: @"type"];
+    __type_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"subtype"])
+  {
+    __subtype = [decoder decodeInt64ForKey: @"subtype"];
+    __subtype_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"value"])
+  {
+    __value = [[decoder decodeObjectForKey: @"value"] retain];
+    __value_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"label"])
+  {
+    __label = [[decoder decodeObjectForKey: @"label"] retain];
+    __label_isset = YES;
   }
   return self;
 }
 
 - (void) encodeWithCoder: (NSCoder *) encoder
 {
-  if (__phoneList_isset)
+  if (__id_isset)
   {
-    [encoder encodeObject: __phoneList forKey: @"phoneList"];
+    [encoder encodeInt64: __id forKey: @"id"];
   }
-  if (__mailList_isset)
+  if (__type_isset)
   {
-    [encoder encodeObject: __mailList forKey: @"mailList"];
+    [encoder encodeInt: __type forKey: @"type"];
+  }
+  if (__subtype_isset)
+  {
+    [encoder encodeInt64: __subtype forKey: @"subtype"];
+  }
+  if (__value_isset)
+  {
+    [encoder encodeObject: __value forKey: @"value"];
+  }
+  if (__label_isset)
+  {
+    [encoder encodeObject: __label forKey: @"label"];
   }
 }
 
 - (void) dealloc
 {
-  [__phoneList release];
-  [__mailList release];
+  [__value release];
+  [__label release];
   [super dealloc];
 }
 
-- (NSArray *) phoneList {
-  return [[__phoneList retain] autorelease];
+- (int64_t) id {
+  return __id;
 }
 
-- (void) setPhoneList: (NSArray *) phoneList {
-  [phoneList retain];
-  [__phoneList release];
-  __phoneList = phoneList;
-  __phoneList_isset = YES;
+- (void) setId: (int64_t) id {
+  __id = id;
+  __id_isset = YES;
 }
 
-- (BOOL) phoneListIsSet {
-  return __phoneList_isset;
+- (BOOL) idIsSet {
+  return __id_isset;
 }
 
-- (void) unsetPhoneList {
-  [__phoneList release];
-  __phoneList = nil;
-  __phoneList_isset = NO;
+- (void) unsetId {
+  __id_isset = NO;
 }
 
-- (NSArray *) mailList {
-  return [[__mailList retain] autorelease];
+- (int) type {
+  return __type;
 }
 
-- (void) setMailList: (NSArray *) mailList {
-  [mailList retain];
-  [__mailList release];
-  __mailList = mailList;
-  __mailList_isset = YES;
+- (void) setType: (int) type {
+  __type = type;
+  __type_isset = YES;
 }
 
-- (BOOL) mailListIsSet {
-  return __mailList_isset;
+- (BOOL) typeIsSet {
+  return __type_isset;
 }
 
-- (void) unsetMailList {
-  [__mailList release];
-  __mailList = nil;
-  __mailList_isset = NO;
+- (void) unsetType {
+  __type_isset = NO;
+}
+
+- (int64_t) subtype {
+  return __subtype;
+}
+
+- (void) setSubtype: (int64_t) subtype {
+  __subtype = subtype;
+  __subtype_isset = YES;
+}
+
+- (BOOL) subtypeIsSet {
+  return __subtype_isset;
+}
+
+- (void) unsetSubtype {
+  __subtype_isset = NO;
+}
+
+- (NSString *) value {
+  return [[__value retain] autorelease];
+}
+
+- (void) setValue: (NSString *) value {
+  [value retain];
+  [__value release];
+  __value = value;
+  __value_isset = YES;
+}
+
+- (BOOL) valueIsSet {
+  return __value_isset;
+}
+
+- (void) unsetValue {
+  [__value release];
+  __value = nil;
+  __value_isset = NO;
+}
+
+- (NSString *) label {
+  return [[__label retain] autorelease];
+}
+
+- (void) setLabel: (NSString *) label {
+  [label retain];
+  [__label release];
+  __label = label;
+  __label_isset = YES;
+}
+
+- (BOOL) labelIsSet {
+  return __label_isset;
+}
+
+- (void) unsetLabel {
+  [__label release];
+  __label = nil;
+  __label_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -2596,41 +2186,41 @@
     switch (fieldID)
     {
       case 1:
-        if (fieldType == TType_LIST) {
-          int _size0;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size0];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size0];
-          int _i1;
-          for (_i1 = 0; _i1 < _size0; ++_i1)
-          {
-            UserContactPhone *_elem2 = [[UserContactPhone alloc] init];
-            [_elem2 read: inProtocol];
-            [fieldValue addObject: _elem2];
-            [_elem2 release];
-          }
-          [inProtocol readListEnd];
-          [self setPhoneList: fieldValue];
-          [fieldValue release];
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setId: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
       case 2:
-        if (fieldType == TType_LIST) {
-          int _size3;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size3];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size3];
-          int _i4;
-          for (_i4 = 0; _i4 < _size3; ++_i4)
-          {
-            UserContactMail *_elem5 = [[UserContactMail alloc] init];
-            [_elem5 read: inProtocol];
-            [fieldValue addObject: _elem5];
-            [_elem5 release];
-          }
-          [inProtocol readListEnd];
-          [self setMailList: fieldValue];
-          [fieldValue release];
+        if (fieldType == TType_I32) {
+          int fieldValue = [inProtocol readI32];
+          [self setType: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setSubtype: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setValue: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 5:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setLabel: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2646,33 +2236,32 @@
 
 - (void) write: (id <TProtocol>) outProtocol {
   [outProtocol writeStructBeginWithName: @"UserContact"];
-  if (__phoneList_isset) {
-    if (__phoneList != nil) {
-      [outProtocol writeFieldBeginWithName: @"phoneList" type: TType_LIST fieldID: 1];
-      {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__phoneList count]];
-        int i7;
-        for (i7 = 0; i7 < [__phoneList count]; i7++)
-        {
-          [[__phoneList objectAtIndex: i7] write: outProtocol];
-        }
-        [outProtocol writeListEnd];
-      }
+  if (__id_isset) {
+    [outProtocol writeFieldBeginWithName: @"id" type: TType_I64 fieldID: 1];
+    [outProtocol writeI64: __id];
+    [outProtocol writeFieldEnd];
+  }
+  if (__type_isset) {
+    [outProtocol writeFieldBeginWithName: @"type" type: TType_I32 fieldID: 2];
+    [outProtocol writeI32: __type];
+    [outProtocol writeFieldEnd];
+  }
+  if (__subtype_isset) {
+    [outProtocol writeFieldBeginWithName: @"subtype" type: TType_I64 fieldID: 3];
+    [outProtocol writeI64: __subtype];
+    [outProtocol writeFieldEnd];
+  }
+  if (__value_isset) {
+    if (__value != nil) {
+      [outProtocol writeFieldBeginWithName: @"value" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __value];
       [outProtocol writeFieldEnd];
     }
   }
-  if (__mailList_isset) {
-    if (__mailList != nil) {
-      [outProtocol writeFieldBeginWithName: @"mailList" type: TType_LIST fieldID: 2];
-      {
-        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__mailList count]];
-        int i9;
-        for (i9 = 0; i9 < [__mailList count]; i9++)
-        {
-          [[__mailList objectAtIndex: i9] write: outProtocol];
-        }
-        [outProtocol writeListEnd];
-      }
+  if (__label_isset) {
+    if (__label != nil) {
+      [outProtocol writeFieldBeginWithName: @"label" type: TType_STRING fieldID: 5];
+      [outProtocol writeString: __label];
       [outProtocol writeFieldEnd];
     }
   }
@@ -2682,10 +2271,16 @@
 
 - (NSString *) description {
   NSMutableString * ms = [NSMutableString stringWithString: @"UserContact("];
-  [ms appendString: @"phoneList:"];
-  [ms appendFormat: @"%@", __phoneList];
-  [ms appendString: @",mailList:"];
-  [ms appendFormat: @"%@", __mailList];
+  [ms appendString: @"id:"];
+  [ms appendFormat: @"%qi", __id];
+  [ms appendString: @",type:"];
+  [ms appendFormat: @"%i", __type];
+  [ms appendString: @",subtype:"];
+  [ms appendFormat: @"%qi", __subtype];
+  [ms appendString: @",value:"];
+  [ms appendFormat: @"\"%@\"", __value];
+  [ms appendString: @",label:"];
+  [ms appendFormat: @"\"%@\"", __label];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -3435,16 +3030,16 @@
     {
       case 1:
         if (fieldType == TType_LIST) {
-          int _size10;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size10];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size10];
-          int _i11;
-          for (_i11 = 0; _i11 < _size10; ++_i11)
+          int _size0;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size0];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size0];
+          int _i1;
+          for (_i1 = 0; _i1 < _size0; ++_i1)
           {
-            UserResumeStudy *_elem12 = [[UserResumeStudy alloc] init];
-            [_elem12 read: inProtocol];
-            [fieldValue addObject: _elem12];
-            [_elem12 release];
+            UserResumeStudy *_elem2 = [[UserResumeStudy alloc] init];
+            [_elem2 read: inProtocol];
+            [fieldValue addObject: _elem2];
+            [_elem2 release];
           }
           [inProtocol readListEnd];
           [self setStudyList: fieldValue];
@@ -3455,16 +3050,16 @@
         break;
       case 2:
         if (fieldType == TType_LIST) {
-          int _size13;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size13];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size13];
-          int _i14;
-          for (_i14 = 0; _i14 < _size13; ++_i14)
+          int _size3;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size3];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size3];
+          int _i4;
+          for (_i4 = 0; _i4 < _size3; ++_i4)
           {
-            UserResumeWork *_elem15 = [[UserResumeWork alloc] init];
-            [_elem15 read: inProtocol];
-            [fieldValue addObject: _elem15];
-            [_elem15 release];
+            UserResumeWork *_elem5 = [[UserResumeWork alloc] init];
+            [_elem5 read: inProtocol];
+            [fieldValue addObject: _elem5];
+            [_elem5 release];
           }
           [inProtocol readListEnd];
           [self setWorkList: fieldValue];
@@ -3489,10 +3084,10 @@
       [outProtocol writeFieldBeginWithName: @"studyList" type: TType_LIST fieldID: 1];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__studyList count]];
-        int i17;
-        for (i17 = 0; i17 < [__studyList count]; i17++)
+        int i7;
+        for (i7 = 0; i7 < [__studyList count]; i7++)
         {
-          [[__studyList objectAtIndex: i17] write: outProtocol];
+          [[__studyList objectAtIndex: i7] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -3504,10 +3099,10 @@
       [outProtocol writeFieldBeginWithName: @"workList" type: TType_LIST fieldID: 2];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__workList count]];
-        int i19;
-        for (i19 = 0; i19 < [__workList count]; i19++)
+        int i9;
+        for (i9 = 0; i9 < [__workList count]; i9++)
         {
-          [[__workList objectAtIndex: i19] write: outProtocol];
+          [[__workList objectAtIndex: i9] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -3532,15 +3127,15 @@
 
 @implementation User
 
-- (id) initWithInfo: (UserInfo *) info linkList: (NSArray *) linkList contact: (UserContact *) contact resume: (UserResume *) resume relationship: (int) relationship
+- (id) initWithInfo: (UserInfo *) info linkList: (NSArray *) linkList contactList: (NSArray *) contactList resume: (UserResume *) resume relationship: (int) relationship
 {
   self = [super init];
   __info = [info retain];
   __info_isset = YES;
   __linkList = [linkList retain];
   __linkList_isset = YES;
-  __contact = [contact retain];
-  __contact_isset = YES;
+  __contactList = [contactList retain];
+  __contactList_isset = YES;
   __resume = [resume retain];
   __resume_isset = YES;
   __relationship = relationship;
@@ -3561,10 +3156,10 @@
     __linkList = [[decoder decodeObjectForKey: @"linkList"] retain];
     __linkList_isset = YES;
   }
-  if ([decoder containsValueForKey: @"contact"])
+  if ([decoder containsValueForKey: @"contactList"])
   {
-    __contact = [[decoder decodeObjectForKey: @"contact"] retain];
-    __contact_isset = YES;
+    __contactList = [[decoder decodeObjectForKey: @"contactList"] retain];
+    __contactList_isset = YES;
   }
   if ([decoder containsValueForKey: @"resume"])
   {
@@ -3589,9 +3184,9 @@
   {
     [encoder encodeObject: __linkList forKey: @"linkList"];
   }
-  if (__contact_isset)
+  if (__contactList_isset)
   {
-    [encoder encodeObject: __contact forKey: @"contact"];
+    [encoder encodeObject: __contactList forKey: @"contactList"];
   }
   if (__resume_isset)
   {
@@ -3607,7 +3202,7 @@
 {
   [__info release];
   [__linkList release];
-  [__contact release];
+  [__contactList release];
   [__resume release];
   [super dealloc];
 }
@@ -3654,25 +3249,25 @@
   __linkList_isset = NO;
 }
 
-- (UserContact *) contact {
-  return [[__contact retain] autorelease];
+- (NSArray *) contactList {
+  return [[__contactList retain] autorelease];
 }
 
-- (void) setContact: (UserContact *) contact {
-  [contact retain];
-  [__contact release];
-  __contact = contact;
-  __contact_isset = YES;
+- (void) setContactList: (NSArray *) contactList {
+  [contactList retain];
+  [__contactList release];
+  __contactList = contactList;
+  __contactList_isset = YES;
 }
 
-- (BOOL) contactIsSet {
-  return __contact_isset;
+- (BOOL) contactListIsSet {
+  return __contactList_isset;
 }
 
-- (void) unsetContact {
-  [__contact release];
-  __contact = nil;
-  __contact_isset = NO;
+- (void) unsetContactList {
+  [__contactList release];
+  __contactList = nil;
+  __contactList_isset = NO;
 }
 
 - (UserResume *) resume {
@@ -3740,16 +3335,16 @@
         break;
       case 2:
         if (fieldType == TType_LIST) {
-          int _size20;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size20];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size20];
-          int _i21;
-          for (_i21 = 0; _i21 < _size20; ++_i21)
+          int _size10;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size10];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size10];
+          int _i11;
+          for (_i11 = 0; _i11 < _size10; ++_i11)
           {
-            UserLink *_elem22 = [[UserLink alloc] init];
-            [_elem22 read: inProtocol];
-            [fieldValue addObject: _elem22];
-            [_elem22 release];
+            UserLink *_elem12 = [[UserLink alloc] init];
+            [_elem12 read: inProtocol];
+            [fieldValue addObject: _elem12];
+            [_elem12 release];
           }
           [inProtocol readListEnd];
           [self setLinkList: fieldValue];
@@ -3759,10 +3354,20 @@
         }
         break;
       case 3:
-        if (fieldType == TType_STRUCT) {
-          UserContact *fieldValue = [[UserContact alloc] init];
-          [fieldValue read: inProtocol];
-          [self setContact: fieldValue];
+        if (fieldType == TType_LIST) {
+          int _size13;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size13];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size13];
+          int _i14;
+          for (_i14 = 0; _i14 < _size13; ++_i14)
+          {
+            UserContact *_elem15 = [[UserContact alloc] init];
+            [_elem15 read: inProtocol];
+            [fieldValue addObject: _elem15];
+            [_elem15 release];
+          }
+          [inProtocol readListEnd];
+          [self setContactList: fieldValue];
           [fieldValue release];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
@@ -3809,20 +3414,28 @@
       [outProtocol writeFieldBeginWithName: @"linkList" type: TType_LIST fieldID: 2];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__linkList count]];
-        int i24;
-        for (i24 = 0; i24 < [__linkList count]; i24++)
+        int i17;
+        for (i17 = 0; i17 < [__linkList count]; i17++)
         {
-          [[__linkList objectAtIndex: i24] write: outProtocol];
+          [[__linkList objectAtIndex: i17] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
       [outProtocol writeFieldEnd];
     }
   }
-  if (__contact_isset) {
-    if (__contact != nil) {
-      [outProtocol writeFieldBeginWithName: @"contact" type: TType_STRUCT fieldID: 3];
-      [__contact write: outProtocol];
+  if (__contactList_isset) {
+    if (__contactList != nil) {
+      [outProtocol writeFieldBeginWithName: @"contactList" type: TType_LIST fieldID: 3];
+      {
+        [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__contactList count]];
+        int i19;
+        for (i19 = 0; i19 < [__contactList count]; i19++)
+        {
+          [[__contactList objectAtIndex: i19] write: outProtocol];
+        }
+        [outProtocol writeListEnd];
+      }
       [outProtocol writeFieldEnd];
     }
   }
@@ -3848,8 +3461,8 @@
   [ms appendFormat: @"%@", __info];
   [ms appendString: @",linkList:"];
   [ms appendFormat: @"%@", __linkList];
-  [ms appendString: @",contact:"];
-  [ms appendFormat: @"%@", __contact];
+  [ms appendString: @",contactList:"];
+  [ms appendFormat: @"%@", __contactList];
   [ms appendString: @",resume:"];
   [ms appendFormat: @"%@", __resume];
   [ms appendString: @",relationship:"];
@@ -3974,14 +3587,14 @@
         break;
       case 2:
         if (fieldType == TType_LIST) {
-          int _size25;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size25];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size25];
-          int _i26;
-          for (_i26 = 0; _i26 < _size25; ++_i26)
+          int _size20;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size20];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size20];
+          int _i21;
+          for (_i21 = 0; _i21 < _size20; ++_i21)
           {
-            NSString * _elem27 = [inProtocol readString];
-            [fieldValue addObject: _elem27];
+            NSString * _elem22 = [inProtocol readString];
+            [fieldValue addObject: _elem22];
           }
           [inProtocol readListEnd];
           [self setTagList: fieldValue];
@@ -4013,10 +3626,10 @@
       [outProtocol writeFieldBeginWithName: @"tagList" type: TType_LIST fieldID: 2];
       {
         [outProtocol writeListBeginWithElementType: TType_STRING size: [__tagList count]];
-        int i29;
-        for (i29 = 0; i29 < [__tagList count]; i29++)
+        int i24;
+        for (i24 = 0; i24 < [__tagList count]; i24++)
         {
-          [outProtocol writeString: [__tagList objectAtIndex: i29]];
+          [outProtocol writeString: [__tagList objectAtIndex: i24]];
         }
         [outProtocol writeListEnd];
       }
@@ -4628,16 +4241,16 @@
         break;
       case 7:
         if (fieldType == TType_LIST) {
-          int _size30;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size30];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size30];
-          int _i31;
-          for (_i31 = 0; _i31 < _size30; ++_i31)
+          int _size25;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size25];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size25];
+          int _i26;
+          for (_i26 = 0; _i26 < _size25; ++_i26)
           {
-            StatusComment *_elem32 = [[StatusComment alloc] init];
-            [_elem32 read: inProtocol];
-            [fieldValue addObject: _elem32];
-            [_elem32 release];
+            StatusComment *_elem27 = [[StatusComment alloc] init];
+            [_elem27 read: inProtocol];
+            [fieldValue addObject: _elem27];
+            [_elem27 release];
           }
           [inProtocol readListEnd];
           [self setCommentList: fieldValue];
@@ -4696,10 +4309,10 @@
       [outProtocol writeFieldBeginWithName: @"commentList" type: TType_LIST fieldID: 7];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__commentList count]];
-        int i34;
-        for (i34 = 0; i34 < [__commentList count]; i34++)
+        int i29;
+        for (i29 = 0; i29 < [__commentList count]; i29++)
         {
-          [[__commentList objectAtIndex: i34] write: outProtocol];
+          [[__commentList objectAtIndex: i29] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -5140,16 +4753,16 @@
         break;
       case 8:
         if (fieldType == TType_LIST) {
-          int _size35;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size35];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size35];
-          int _i36;
-          for (_i36 = 0; _i36 < _size35; ++_i36)
+          int _size30;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size30];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size30];
+          int _i31;
+          for (_i31 = 0; _i31 < _size30; ++_i31)
           {
-            UserInfo *_elem37 = [[UserInfo alloc] init];
-            [_elem37 read: inProtocol];
-            [fieldValue addObject: _elem37];
-            [_elem37 release];
+            UserInfo *_elem32 = [[UserInfo alloc] init];
+            [_elem32 read: inProtocol];
+            [fieldValue addObject: _elem32];
+            [_elem32 release];
           }
           [inProtocol readListEnd];
           [self setUser_apply_list: fieldValue];
@@ -5160,16 +4773,16 @@
         break;
       case 11:
         if (fieldType == TType_LIST) {
-          int _size38;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size38];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size38];
-          int _i39;
-          for (_i39 = 0; _i39 < _size38; ++_i39)
+          int _size33;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size33];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size33];
+          int _i34;
+          for (_i34 = 0; _i34 < _size33; ++_i34)
           {
-            UserInfo *_elem40 = [[UserInfo alloc] init];
-            [_elem40 read: inProtocol];
-            [fieldValue addObject: _elem40];
-            [_elem40 release];
+            UserInfo *_elem35 = [[UserInfo alloc] init];
+            [_elem35 read: inProtocol];
+            [fieldValue addObject: _elem35];
+            [_elem35 release];
           }
           [inProtocol readListEnd];
           [self setUser_accept_list: fieldValue];
@@ -5180,16 +4793,16 @@
         break;
       case 12:
         if (fieldType == TType_LIST) {
-          int _size41;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size41];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size41];
-          int _i42;
-          for (_i42 = 0; _i42 < _size41; ++_i42)
+          int _size36;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size36];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size36];
+          int _i37;
+          for (_i37 = 0; _i37 < _size36; ++_i37)
           {
-            UserInfo *_elem43 = [[UserInfo alloc] init];
-            [_elem43 read: inProtocol];
-            [fieldValue addObject: _elem43];
-            [_elem43 release];
+            UserInfo *_elem38 = [[UserInfo alloc] init];
+            [_elem38 read: inProtocol];
+            [fieldValue addObject: _elem38];
+            [_elem38 release];
           }
           [inProtocol readListEnd];
           [self setUser_reject_list: fieldValue];
@@ -5255,10 +4868,10 @@
       [outProtocol writeFieldBeginWithName: @"user_apply_list" type: TType_LIST fieldID: 8];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__user_apply_list count]];
-        int i45;
-        for (i45 = 0; i45 < [__user_apply_list count]; i45++)
+        int i40;
+        for (i40 = 0; i40 < [__user_apply_list count]; i40++)
         {
-          [[__user_apply_list objectAtIndex: i45] write: outProtocol];
+          [[__user_apply_list objectAtIndex: i40] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -5270,10 +4883,10 @@
       [outProtocol writeFieldBeginWithName: @"user_accept_list" type: TType_LIST fieldID: 11];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__user_accept_list count]];
-        int i47;
-        for (i47 = 0; i47 < [__user_accept_list count]; i47++)
+        int i42;
+        for (i42 = 0; i42 < [__user_accept_list count]; i42++)
         {
-          [[__user_accept_list objectAtIndex: i47] write: outProtocol];
+          [[__user_accept_list objectAtIndex: i42] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -5285,10 +4898,10 @@
       [outProtocol writeFieldBeginWithName: @"user_reject_list" type: TType_LIST fieldID: 12];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__user_reject_list count]];
-        int i49;
-        for (i49 = 0; i49 < [__user_reject_list count]; i49++)
+        int i44;
+        for (i44 = 0; i44 < [__user_reject_list count]; i44++)
         {
-          [[__user_reject_list objectAtIndex: i49] write: outProtocol];
+          [[__user_reject_list objectAtIndex: i44] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -5436,16 +5049,16 @@
         break;
       case 2:
         if (fieldType == TType_LIST) {
-          int _size50;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size50];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size50];
-          int _i51;
-          for (_i51 = 0; _i51 < _size50; ++_i51)
+          int _size45;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size45];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size45];
+          int _i46;
+          for (_i46 = 0; _i46 < _size45; ++_i46)
           {
-            Task *_elem52 = [[Task alloc] init];
-            [_elem52 read: inProtocol];
-            [fieldValue addObject: _elem52];
-            [_elem52 release];
+            Task *_elem47 = [[Task alloc] init];
+            [_elem47 read: inProtocol];
+            [fieldValue addObject: _elem47];
+            [_elem47 release];
           }
           [inProtocol readListEnd];
           [self setData: fieldValue];
@@ -5475,10 +5088,10 @@
       [outProtocol writeFieldBeginWithName: @"data" type: TType_LIST fieldID: 2];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__data count]];
-        int i54;
-        for (i54 = 0; i54 < [__data count]; i54++)
+        int i49;
+        for (i49 = 0; i49 < [__data count]; i49++)
         {
-          [[__data objectAtIndex: i54] write: outProtocol];
+          [[__data objectAtIndex: i49] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }
@@ -5764,16 +5377,16 @@
         break;
       case 2:
         if (fieldType == TType_LIST) {
-          int _size55;
-          [inProtocol readListBeginReturningElementType: NULL size: &_size55];
-          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size55];
-          int _i56;
-          for (_i56 = 0; _i56 < _size55; ++_i56)
+          int _size50;
+          [inProtocol readListBeginReturningElementType: NULL size: &_size50];
+          NSMutableArray * fieldValue = [[NSMutableArray alloc] initWithCapacity: _size50];
+          int _i51;
+          for (_i51 = 0; _i51 < _size50; ++_i51)
           {
-            Comment *_elem57 = [[Comment alloc] init];
-            [_elem57 read: inProtocol];
-            [fieldValue addObject: _elem57];
-            [_elem57 release];
+            Comment *_elem52 = [[Comment alloc] init];
+            [_elem52 read: inProtocol];
+            [fieldValue addObject: _elem52];
+            [_elem52 release];
           }
           [inProtocol readListEnd];
           [self setData: fieldValue];
@@ -5803,10 +5416,10 @@
       [outProtocol writeFieldBeginWithName: @"data" type: TType_LIST fieldID: 2];
       {
         [outProtocol writeListBeginWithElementType: TType_STRUCT size: [__data count]];
-        int i59;
-        for (i59 = 0; i59 < [__data count]; i59++)
+        int i54;
+        for (i54 = 0; i54 < [__data count]; i54++)
         {
-          [[__data objectAtIndex: i59] write: outProtocol];
+          [[__data objectAtIndex: i54] write: outProtocol];
         }
         [outProtocol writeListEnd];
       }

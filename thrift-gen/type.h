@@ -71,6 +71,12 @@ enum UserContactMailType {
   UserContactMailType_Other = 4
 };
 
+enum UserContactType {
+  UserContactType_None = 0,
+  UserContactType_Phone = 1,
+  UserContactType_Mail = 2
+};
+
 enum UserResumeStudyType {
   UserResumeStudyType_Undergraduate = 0,
   UserResumeStudyType_Master = 1,
@@ -414,115 +420,52 @@ typedef int64_t timestamp;
 
 @end
 
-@interface UserContactPhone : NSObject <NSCoding> {
-  int64_t __id;
-  int __type;
-  NSString * __value;
-  NSString * __label;
-
-  BOOL __id_isset;
-  BOOL __type_isset;
-  BOOL __value_isset;
-  BOOL __label_isset;
-}
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, getter=id, setter=setId:) int64_t id;
-@property (nonatomic, getter=type, setter=setType:) int type;
-@property (nonatomic, retain, getter=value, setter=setValue:) NSString * value;
-@property (nonatomic, retain, getter=label, setter=setLabel:) NSString * label;
-#endif
-
-- (id) initWithId: (int64_t) id type: (int) type value: (NSString *) value label: (NSString *) label;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-- (int64_t) id;
-- (void) setId: (int64_t) id;
-- (BOOL) idIsSet;
-
-- (int) type;
-- (void) setType: (int) type;
-- (BOOL) typeIsSet;
-
-- (NSString *) value;
-- (void) setValue: (NSString *) value;
-- (BOOL) valueIsSet;
-
-- (NSString *) label;
-- (void) setLabel: (NSString *) label;
-- (BOOL) labelIsSet;
-
-@end
-
-@interface UserContactMail : NSObject <NSCoding> {
-  int64_t __id;
-  int __type;
-  NSString * __value;
-  NSString * __label;
-
-  BOOL __id_isset;
-  BOOL __type_isset;
-  BOOL __value_isset;
-  BOOL __label_isset;
-}
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, getter=id, setter=setId:) int64_t id;
-@property (nonatomic, getter=type, setter=setType:) int type;
-@property (nonatomic, retain, getter=value, setter=setValue:) NSString * value;
-@property (nonatomic, retain, getter=label, setter=setLabel:) NSString * label;
-#endif
-
-- (id) initWithId: (int64_t) id type: (int) type value: (NSString *) value label: (NSString *) label;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-- (int64_t) id;
-- (void) setId: (int64_t) id;
-- (BOOL) idIsSet;
-
-- (int) type;
-- (void) setType: (int) type;
-- (BOOL) typeIsSet;
-
-- (NSString *) value;
-- (void) setValue: (NSString *) value;
-- (BOOL) valueIsSet;
-
-- (NSString *) label;
-- (void) setLabel: (NSString *) label;
-- (BOOL) labelIsSet;
-
-@end
-
 @interface UserContact : NSObject <NSCoding> {
-  NSArray * __phoneList;
-  NSArray * __mailList;
+  int64_t __id;
+  int __type;
+  int64_t __subtype;
+  NSString * __value;
+  NSString * __label;
 
-  BOOL __phoneList_isset;
-  BOOL __mailList_isset;
+  BOOL __id_isset;
+  BOOL __type_isset;
+  BOOL __subtype_isset;
+  BOOL __value_isset;
+  BOOL __label_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=phoneList, setter=setPhoneList:) NSArray * phoneList;
-@property (nonatomic, retain, getter=mailList, setter=setMailList:) NSArray * mailList;
+@property (nonatomic, getter=id, setter=setId:) int64_t id;
+@property (nonatomic, getter=type, setter=setType:) int type;
+@property (nonatomic, getter=subtype, setter=setSubtype:) int64_t subtype;
+@property (nonatomic, retain, getter=value, setter=setValue:) NSString * value;
+@property (nonatomic, retain, getter=label, setter=setLabel:) NSString * label;
 #endif
 
-- (id) initWithPhoneList: (NSArray *) phoneList mailList: (NSArray *) mailList;
+- (id) initWithId: (int64_t) id type: (int) type subtype: (int64_t) subtype value: (NSString *) value label: (NSString *) label;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-- (NSArray *) phoneList;
-- (void) setPhoneList: (NSArray *) phoneList;
-- (BOOL) phoneListIsSet;
+- (int64_t) id;
+- (void) setId: (int64_t) id;
+- (BOOL) idIsSet;
 
-- (NSArray *) mailList;
-- (void) setMailList: (NSArray *) mailList;
-- (BOOL) mailListIsSet;
+- (int) type;
+- (void) setType: (int) type;
+- (BOOL) typeIsSet;
+
+- (int64_t) subtype;
+- (void) setSubtype: (int64_t) subtype;
+- (BOOL) subtypeIsSet;
+
+- (NSString *) value;
+- (void) setValue: (NSString *) value;
+- (BOOL) valueIsSet;
+
+- (NSString *) label;
+- (void) setLabel: (NSString *) label;
+- (BOOL) labelIsSet;
 
 @end
 
@@ -662,13 +605,13 @@ typedef int64_t timestamp;
 @interface User : NSObject <NSCoding> {
   UserInfo * __info;
   NSArray * __linkList;
-  UserContact * __contact;
+  NSArray * __contactList;
   UserResume * __resume;
   int __relationship;
 
   BOOL __info_isset;
   BOOL __linkList_isset;
-  BOOL __contact_isset;
+  BOOL __contactList_isset;
   BOOL __resume_isset;
   BOOL __relationship_isset;
 }
@@ -676,12 +619,12 @@ typedef int64_t timestamp;
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=info, setter=setInfo:) UserInfo * info;
 @property (nonatomic, retain, getter=linkList, setter=setLinkList:) NSArray * linkList;
-@property (nonatomic, retain, getter=contact, setter=setContact:) UserContact * contact;
+@property (nonatomic, retain, getter=contactList, setter=setContactList:) NSArray * contactList;
 @property (nonatomic, retain, getter=resume, setter=setResume:) UserResume * resume;
 @property (nonatomic, getter=relationship, setter=setRelationship:) int relationship;
 #endif
 
-- (id) initWithInfo: (UserInfo *) info linkList: (NSArray *) linkList contact: (UserContact *) contact resume: (UserResume *) resume relationship: (int) relationship;
+- (id) initWithInfo: (UserInfo *) info linkList: (NSArray *) linkList contactList: (NSArray *) contactList resume: (UserResume *) resume relationship: (int) relationship;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -694,9 +637,9 @@ typedef int64_t timestamp;
 - (void) setLinkList: (NSArray *) linkList;
 - (BOOL) linkListIsSet;
 
-- (UserContact *) contact;
-- (void) setContact: (UserContact *) contact;
-- (BOOL) contactIsSet;
+- (NSArray *) contactList;
+- (void) setContactList: (NSArray *) contactList;
+- (BOOL) contactListIsSet;
 
 - (UserResume *) resume;
 - (void) setResume: (UserResume *) resume;
