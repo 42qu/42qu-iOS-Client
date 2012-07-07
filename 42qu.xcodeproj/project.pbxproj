@@ -19,9 +19,6 @@
 		FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17831B1577D827005C9ECE /* LaunchViewController.m */; };
 		FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA210B3A156D1B2B00DDACE9 /* logo.png */; };
 		FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883051595E53600FFE60F /* TabbedSlideView.m */; };
-		FA2883AF159847B700FFE60F /* UpdateRootRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */; };
-		FA2883B2159847D100FFE60F /* UpdateRootNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */; };
-		FA2883B5159847E700FFE60F /* UpdateRootStarredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */; };
 		FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */; };
 		FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */; };
 		FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */; };
@@ -104,12 +101,6 @@
 		FA210B3A156D1B2B00DDACE9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA2883041595E53600FFE60F /* TabbedSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbedSlideView.h; sourceTree = "<group>"; };
 		FA2883051595E53600FFE60F /* TabbedSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedSlideView.m; sourceTree = "<group>"; };
-		FA2883AD159847B700FFE60F /* UpdateRootRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootRecommendViewController.h; sourceTree = "<group>"; };
-		FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootRecommendViewController.m; sourceTree = "<group>"; };
-		FA2883B0159847D100FFE60F /* UpdateRootNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootNearbyViewController.h; sourceTree = "<group>"; };
-		FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootNearbyViewController.m; sourceTree = "<group>"; };
-		FA2883B3159847E600FFE60F /* UpdateRootStarredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootStarredViewController.h; sourceTree = "<group>"; };
-		FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootStarredViewController.m; sourceTree = "<group>"; };
 		FA2883CF159A0A6D00FFE60F /* PeopleDetailIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailIntroView.h; sourceTree = "<group>"; };
 		FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailIntroView.m; sourceTree = "<group>"; };
 		FA2883D3159A0A8000FFE60F /* PeopleDetailDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailDetailView.h; sourceTree = "<group>"; };
@@ -459,12 +450,6 @@
 			children = (
 				FAB74003156B8103003CBF67 /* UpdateRootViewController.h */,
 				FAB74004156B8103003CBF67 /* UpdateRootViewController.m */,
-				FA2883AD159847B700FFE60F /* UpdateRootRecommendViewController.h */,
-				FA2883AE159847B700FFE60F /* UpdateRootRecommendViewController.m */,
-				FA2883B0159847D100FFE60F /* UpdateRootNearbyViewController.h */,
-				FA2883B1159847D100FFE60F /* UpdateRootNearbyViewController.m */,
-				FA2883B3159847E600FFE60F /* UpdateRootStarredViewController.h */,
-				FA2883B4159847E600FFE60F /* UpdateRootStarredViewController.m */,
 			);
 			name = Update;
 			sourceTree = "<group>";
@@ -645,9 +630,6 @@
 				FA02A74E158CA62300DA275C /* PeopleDetailViewController.m in Sources */,
 				FA02A75E158CABBC00DA275C /* CustomSegmentedControl.m in Sources */,
 				FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */,
-				FA2883AF159847B700FFE60F /* UpdateRootRecommendViewController.m in Sources */,
-				FA2883B2159847D100FFE60F /* UpdateRootNearbyViewController.m in Sources */,
-				FA2883B5159847E700FFE60F /* UpdateRootStarredViewController.m in Sources */,
 				FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */,
 				FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */,
 				FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */,
