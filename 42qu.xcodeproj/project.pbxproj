@@ -18,6 +18,9 @@
 		FA1783181577C65F005C9ECE /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1783171577C65F005C9ECE /* weibo.png */; };
 		FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17831B1577D827005C9ECE /* LaunchViewController.m */; };
 		FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA210B3A156D1B2B00DDACE9 /* logo.png */; };
+		FA24408A15A83C2100DB7594 /* UpdateRootRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24408915A83C2100DB7594 /* UpdateRootRecommendView.m */; };
+		FA24408D15A83C3D00DB7594 /* UpdateRootNearbyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24408C15A83C3D00DB7594 /* UpdateRootNearbyView.m */; };
+		FA24409015A83C4D00DB7594 /* UpdateRootStarredView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24408F15A83C4D00DB7594 /* UpdateRootStarredView.m */; };
 		FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883051595E53600FFE60F /* TabbedSlideView.m */; };
 		FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */; };
 		FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */; };
@@ -99,6 +102,12 @@
 		FA17831A1577D827005C9ECE /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
 		FA17831B1577D827005C9ECE /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		FA210B3A156D1B2B00DDACE9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		FA24408815A83C2100DB7594 /* UpdateRootRecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootRecommendView.h; sourceTree = "<group>"; };
+		FA24408915A83C2100DB7594 /* UpdateRootRecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootRecommendView.m; sourceTree = "<group>"; };
+		FA24408B15A83C3D00DB7594 /* UpdateRootNearbyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootNearbyView.h; sourceTree = "<group>"; };
+		FA24408C15A83C3D00DB7594 /* UpdateRootNearbyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootNearbyView.m; sourceTree = "<group>"; };
+		FA24408E15A83C4D00DB7594 /* UpdateRootStarredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateRootStarredView.h; sourceTree = "<group>"; };
+		FA24408F15A83C4D00DB7594 /* UpdateRootStarredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootStarredView.m; sourceTree = "<group>"; };
 		FA2883041595E53600FFE60F /* TabbedSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbedSlideView.h; sourceTree = "<group>"; };
 		FA2883051595E53600FFE60F /* TabbedSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedSlideView.m; sourceTree = "<group>"; };
 		FA2883CF159A0A6D00FFE60F /* PeopleDetailIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailIntroView.h; sourceTree = "<group>"; };
@@ -450,6 +459,12 @@
 			children = (
 				FAB74003156B8103003CBF67 /* UpdateRootViewController.h */,
 				FAB74004156B8103003CBF67 /* UpdateRootViewController.m */,
+				FA24408815A83C2100DB7594 /* UpdateRootRecommendView.h */,
+				FA24408915A83C2100DB7594 /* UpdateRootRecommendView.m */,
+				FA24408B15A83C3D00DB7594 /* UpdateRootNearbyView.h */,
+				FA24408C15A83C3D00DB7594 /* UpdateRootNearbyView.m */,
+				FA24408E15A83C4D00DB7594 /* UpdateRootStarredView.h */,
+				FA24408F15A83C4D00DB7594 /* UpdateRootStarredView.m */,
 			);
 			name = Update;
 			sourceTree = "<group>";
@@ -634,6 +649,9 @@
 				FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */,
 				FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */,
 				FA288407159B151300FFE60F /* ProfileRootViewController.m in Sources */,
+				FA24408A15A83C2100DB7594 /* UpdateRootRecommendView.m in Sources */,
+				FA24408D15A83C3D00DB7594 /* UpdateRootNearbyView.m in Sources */,
+				FA24409015A83C4D00DB7594 /* UpdateRootStarredView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
