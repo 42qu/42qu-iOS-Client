@@ -16,20 +16,22 @@
 #import "type.h"
 
 @protocol Sns <NSObject>
-- (AuthResponse *) login_by_mail: (AuthRequestMail *) auth;  // throws Exception *, TException
-- (AuthResponse *) login_by_oauth: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail;  // throws TException
-- (AuthResponse *) login_by_oauth2: (NSString *) client_id : (NSString *) client_secret : (NSString *) access_token : (NSString *) mail;  // throws TException
+- (AuthResponse *) login_by_mail: (AuthRequest *) auth : (NSString *) mail : (NSString *) password;  // throws TException
 - (void) logout: (NSString *) access_token;  // throws TException
-- (UserInfo *) user_info_get: (NSString *) access_token : (int64_t) id;  // throws Exception *, TException
-- (UserInfo *) user_info_set: (NSString *) access_token : (UserInfo *) user_info;  // throws TException
-- (TaskList *) task_list: (NSString *) access_token : (int64_t) start : (int64_t) limit;  // throws TException
-- (Task *) task_info: (NSString *) access_token : (int64_t) id;  // throws TException
+- (User *) user_get: (NSString *) access_token : (int64_t) uid : (BOOL) ext_only;  // throws TException
+- (void) user_set: (NSString *) access_token : (User *) user;  // throws TException
+- (NSArray *) user_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num;  // throws TException
+- (NSArray *) task_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num : (TaskFilter *) filter;  // throws TException
+- (Task *) task_get: (int64_t) access_token : (int64_t) tid : (BOOL) ext_only;  // throws TException
+- (void) task_set: (NSString *) access_token : (Task *) task;  // throws TException
 - (int64_t) task_new: (NSString *) access_token : (Task *) task;  // throws TException
-- (void) task_apply: (NSString *) access_token : (int64_t) task_id;  // throws TException
-- (void) task_reject: (NSString *) access_token : (int64_t) user_id;  // throws TException
-- (void) task_accept: (NSString *) access_token : (int64_t) user_id;  // throws TException
-- (CommentList *) comment_get: (NSString *) access_token : (int64_t) id;  // throws TException
-- (void) comment_make: (NSString *) access_token : (int64_t) id : (NSString *) text;  // throws TException
+- (BOOL) task_apply: (NSString *) access_token : (int64_t) tid;  // throws TException
+- (BOOL) task_reject: (NSString *) access_token : (int64_t) tid;  // throws TException
+- (BOOL) task_accept: (NSString *) access_token : (int64_t) tid;  // throws TException
+- (NSArray *) msg_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num;  // throws TException
+- (void) msg_send: (NSString *) access_token : (int64_t) send_to : (Msg *) msg;  // throws TException
+- (NSArray *) feed: (NSString *) access_token : (int64_t) last_id : (int64_t) num;  // throws TException
+- (Summary *) summary: (NSString *) access_token;  // throws TException
 @end
 
 @interface SnsClient : NSObject <Sns> {
