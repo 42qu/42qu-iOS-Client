@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA02A74E158CA62300DA275C /* PeopleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */; };
 		FA02A74F158CA62300DA275C /* PeopleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */; };
 		FA02A75E158CABBC00DA275C /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02A75D158CABBC00DA275C /* CustomSegmentedControl.m */; };
 		FA1783051577B38B005C9ECE /* RegisterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1783041577B38B005C9ECE /* RegisterListViewController.m */; };
@@ -18,13 +17,11 @@
 		FA1783181577C65F005C9ECE /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1783171577C65F005C9ECE /* weibo.png */; };
 		FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17831B1577D827005C9ECE /* LaunchViewController.m */; };
 		FA210B3B156D1B2B00DDACE9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA210B3A156D1B2B00DDACE9 /* logo.png */; };
+		FA22843115B807AB005F5189 /* PeopleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */; };
 		FA24408A15A83C2100DB7594 /* UpdateRootRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24408915A83C2100DB7594 /* UpdateRootRecommendView.m */; };
 		FA24408D15A83C3D00DB7594 /* UpdateRootNearbyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24408C15A83C3D00DB7594 /* UpdateRootNearbyView.m */; };
 		FA24409015A83C4D00DB7594 /* UpdateRootStarredView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24408F15A83C4D00DB7594 /* UpdateRootStarredView.m */; };
 		FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883051595E53600FFE60F /* TabbedSlideView.m */; };
-		FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */; };
-		FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */; };
-		FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */; };
 		FA288407159B151300FFE60F /* ProfileRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA288406159B151300FFE60F /* ProfileRootViewController.m */; };
 		FA288422159B7A6200FFE60F /* tabbar-update.png in Resources */ = {isa = PBXBuildFile; fileRef = FA288418159B7A6100FFE60F /* tabbar-update.png */; };
 		FA288423159B7A6200FFE60F /* tabbar-update@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA288419159B7A6100FFE60F /* tabbar-update@2x.png */; };
@@ -110,12 +107,6 @@
 		FA24408F15A83C4D00DB7594 /* UpdateRootStarredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateRootStarredView.m; sourceTree = "<group>"; };
 		FA2883041595E53600FFE60F /* TabbedSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbedSlideView.h; sourceTree = "<group>"; };
 		FA2883051595E53600FFE60F /* TabbedSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedSlideView.m; sourceTree = "<group>"; };
-		FA2883CF159A0A6D00FFE60F /* PeopleDetailIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailIntroView.h; sourceTree = "<group>"; };
-		FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailIntroView.m; sourceTree = "<group>"; };
-		FA2883D3159A0A8000FFE60F /* PeopleDetailDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailDetailView.h; sourceTree = "<group>"; };
-		FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailDetailView.m; sourceTree = "<group>"; };
-		FA2883D6159A0A9900FFE60F /* PeopleDetailGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailGalleryView.h; sourceTree = "<group>"; };
-		FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailGalleryView.m; sourceTree = "<group>"; };
 		FA288405159B151300FFE60F /* ProfileRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileRootViewController.h; sourceTree = "<group>"; };
 		FA288406159B151300FFE60F /* ProfileRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileRootViewController.m; sourceTree = "<group>"; };
 		FA288418159B7A6100FFE60F /* tabbar-update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-update.png"; sourceTree = "<group>"; };
@@ -495,12 +486,6 @@
 				FA02A74B158CA62300DA275C /* PeopleDetailViewController.h */,
 				FA02A74C158CA62300DA275C /* PeopleDetailViewController.m */,
 				FA02A74D158CA62300DA275C /* PeopleDetailViewController.xib */,
-				FA2883CF159A0A6D00FFE60F /* PeopleDetailIntroView.h */,
-				FA2883D0159A0A6D00FFE60F /* PeopleDetailIntroView.m */,
-				FA2883D3159A0A8000FFE60F /* PeopleDetailDetailView.h */,
-				FA2883D4159A0A8000FFE60F /* PeopleDetailDetailView.m */,
-				FA2883D6159A0A9900FFE60F /* PeopleDetailGalleryView.h */,
-				FA2883D7159A0A9900FFE60F /* PeopleDetailGalleryView.m */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -642,16 +627,13 @@
 				FA58857115767D6300F46BD8 /* RegisterView.m in Sources */,
 				FA1783051577B38B005C9ECE /* RegisterListViewController.m in Sources */,
 				FA17831C1577D827005C9ECE /* LaunchViewController.m in Sources */,
-				FA02A74E158CA62300DA275C /* PeopleDetailViewController.m in Sources */,
 				FA02A75E158CABBC00DA275C /* CustomSegmentedControl.m in Sources */,
 				FA2883061595E53600FFE60F /* TabbedSlideView.m in Sources */,
-				FA2883D1159A0A6D00FFE60F /* PeopleDetailIntroView.m in Sources */,
-				FA2883D5159A0A8000FFE60F /* PeopleDetailDetailView.m in Sources */,
-				FA2883D8159A0A9900FFE60F /* PeopleDetailGalleryView.m in Sources */,
 				FA288407159B151300FFE60F /* ProfileRootViewController.m in Sources */,
 				FA24408A15A83C2100DB7594 /* UpdateRootRecommendView.m in Sources */,
 				FA24408D15A83C3D00DB7594 /* UpdateRootNearbyView.m in Sources */,
 				FA24409015A83C4D00DB7594 /* UpdateRootStarredView.m in Sources */,
+				FA22843115B807AB005F5189 /* PeopleDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,9 +10,6 @@
 #import "PeopleDetailViewController.h"
 #import "CustomSegmentedControl.h"
 #import "TabbedSlideView.h"
-#import "PeopleDetailIntroView.h"
-#import "PeopleDetailDetailView.h"
-#import "PeopleDetailGalleryView.h"
 
 #define kHeightSegmentedControl 28.0f
 #define kHeightButtonExchangeCard 44.0f
