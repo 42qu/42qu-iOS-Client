@@ -108,18 +108,6 @@
     [self.view addSubview:_exchangeCardButton];
     
     // ----- Content -----
-    
-    // Intro
-    self.peopleDetailIntroView = [[[PeopleDetailIntroView alloc] initWithFrame:[_tabbedSlideView rectForViewAtIndex:0]] autorelease];
-    [_tabbedSlideView.contentView addSubview:_peopleDetailIntroView];
-    
-    // Detail
-    self.peopleDetailDetailView = [[[PeopleDetailDetailView alloc] initWithFrame:[_tabbedSlideView rectForViewAtIndex:1]] autorelease];
-    [_tabbedSlideView.contentView addSubview:_peopleDetailDetailView];
-    
-    // Gallery
-    self.peopleDetailGalleryView = [[[PeopleDetailGalleryView alloc] initWithFrame:[_tabbedSlideView rectForViewAtIndex:2]] autorelease];
-    [_tabbedSlideView.contentView addSubview:_peopleDetailGalleryView];
 }
 
 - (void)viewDidUnload
