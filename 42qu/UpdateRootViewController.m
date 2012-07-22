@@ -8,13 +8,15 @@
 
 #import "UpdateRootViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "PublishViewController.h"
+//#import "PublishViewController.h"
 
 @interface UpdateRootViewController ()
 
 @end
 
 @implementation UpdateRootViewController
+
+#pragma mark - Actions
 
 - (void)publish
 {
@@ -26,9 +28,9 @@
     transition.delegate = self;
     [self.navigationController.view.layer addAnimation:transition forKey:nil];
     
-    PublishViewController *publishViewController = [[[PublishViewController alloc] init] autorelease];
+//    PublishViewController *publishViewController = [[[PublishViewController alloc] init] autorelease];
     
-    [self.navigationController pushViewController:publishViewController animated:NO]; 
+//    [self.navigationController pushViewController:publishViewController animated:NO]; 
 }
 
 #pragma mark - Life cycle
@@ -42,18 +44,21 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top-bar-bg.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:[UIColor darkGrayColor]];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(publish)] autorelease];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Configure nav bar items
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Filter", nil) style:UIBarButtonItemStylePlain target:self action:nil] autorelease];
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(publish)] autorelease];
 }
 
 - (void)viewDidUnload
