@@ -245,12 +245,12 @@
     [buttons release];
     
     // Initialize background views
-    self.highlightedBackgroundView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
+    self.highlightedBackgroundView = [[[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]] autorelease];
     _highlightedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:_highlightedBackgroundImage];
     _highlightedBackgroundView.hidden = YES;
     [self addSubview:_highlightedBackgroundView];
     
-    self.selectedBackgroundView = [[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]];
+    self.selectedBackgroundView = [[[UIImageView alloc] initWithFrame:[(UIButton *)[_buttons objectAtIndex:0] frame]] autorelease];
     _selectedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:_selectedBackgroundImage];
     [self addSubview:_selectedBackgroundView];
     [self sendSubviewToBack:_highlightedBackgroundView];
