@@ -12,11 +12,10 @@
 #import <TProtocolUtil.h>
 #import <TProcessor.h>
 
-#import "exception.h"
 #import "type.h"
 
 @protocol Sns <NSObject>
-- (AuthResponse *) login_by_mail: (AuthRequest *) auth : (NSString *) mail : (NSString *) password;  // throws TException
+- (int64_t) login_by_mail: (NSString *) mail : (NSString *) password;  // throws TException
 - (void) logout: (NSString *) access_token;  // throws TException
 - (User *) user_get: (NSString *) access_token : (int64_t) uid : (BOOL) ext_only;  // throws TException
 - (void) user_set: (NSString *) access_token : (User *) user;  // throws TException

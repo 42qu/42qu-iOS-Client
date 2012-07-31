@@ -29,7 +29,7 @@ enum UserListType {
 };
 
 enum TaskStatus {
-  TaskStatus_None = 0,
+  TaskStatus_Removed = 0,
   TaskStatus_Applied = 1,
   TaskStatus_Accepted = 2,
   TaskStatus_Rejected = 3
