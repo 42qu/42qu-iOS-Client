@@ -5393,7 +5393,7 @@
 
 - (id) initWithInProtocol: (id <TProtocol>) anInProtocol outProtocol: (id <TProtocol>) anOutProtocol
 {
-  self = [super init];
+  [super init];
   inProtocol = [anInProtocol retain];
   outProtocol = [anOutProtocol retain];
   return self;
