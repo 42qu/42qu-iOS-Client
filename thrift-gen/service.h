@@ -15,9 +15,9 @@
 #import "type.h"
 
 @protocol Sns <NSObject>
-- (int64_t) login_by_mail: (NSString *) mail : (NSString *) password;  // throws TException
+- (AuthResponse *) login_by_mail: (AuthRequest *) auth : (NSString *) mail : (NSString *) password;  // throws TException
 - (void) logout: (NSString *) access_token;  // throws TException
-- (User *) user_get: (NSString *) access_token : (int64_t) uid : (BOOL) ext_only;  // throws TException
+- (User *) user_get: (NSString *) access_token : (int64_t) id : (BOOL) ext_only;  // throws TException
 - (void) user_set: (NSString *) access_token : (User *) user;  // throws TException
 - (NSArray *) user_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num;  // throws TException
 - (NSArray *) task_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num : (TaskFilter *) filter;  // throws TException
