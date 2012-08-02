@@ -119,17 +119,21 @@ static AccountControl *accountControl = nil;
     if (connection) {
     }
      */
+    BOOL loginSuccess = NO;
     SnsClient *snsClient = [API shared];
-    AuthResponse *authResponse = nil;
     @try {
-        AuthRequestMail *authRequestMail = [[[AuthRequestMail alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET mail:mail password:password] autorelease];
-        authResponse = [snsClient login_by_mail:authRequestMail];
+        AuthRequest *authRequest = [[[AuthRequest alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET] autorelease];
+        AuthResponse *authResponse = [snsClient login_by_mail:authRequest :mail :password];
+        [self.accessToken setString:authResponse.access_token];
+        self.expiresIn = authResponse.expire_in;
+        self.userID = [NSMutableString stringWithFormat:@"%lld", authResponse.user_id];
+        loginSuccess = YES;
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
-        return NO;
     }
-    return YES;
+    [snsClient release];
+    return loginSuccess;
 }
 
 - (BOOL)login
