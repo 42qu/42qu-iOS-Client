@@ -10,6 +10,8 @@
 
 @interface UpdateRootViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *updateList;
+
 - (void)publish;
 
 @end

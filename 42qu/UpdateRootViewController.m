@@ -9,12 +9,15 @@
 #import "UpdateRootViewController.h"
 #import <QuartzCore/QuartzCore.h>
 //#import "PublishViewController.h"
+#import "UpdateCell.h"
 
 @interface UpdateRootViewController ()
 
 @end
 
 @implementation UpdateRootViewController
+
+@synthesize updateList = _updateList;
 
 #pragma mark - Actions
 
@@ -33,6 +36,16 @@
 //    [self.navigationController pushViewController:publishViewController animated:NO]; 
 }
 
+- (void)loadMoreData
+{
+    
+}
+
+- (void)refreshData
+{
+    
+}
+
 #pragma mark - Life cycle
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,12 +59,14 @@
 
 - (void)dealloc
 {
+    [_updateList release];
     [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top-bar-bg.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:[UIColor darkGrayColor]];
     
@@ -59,6 +74,8 @@
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Filter", nil) style:UIBarButtonItemStylePlain target:self action:nil] autorelease];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(publish)] autorelease];
+    
+    self.updateList = [[[NSMutableArray alloc] init] autorelease];
 }
 
 - (void)viewDidUnload
@@ -92,7 +109,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[[UpdateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
     
     // Configure the cell...
     
