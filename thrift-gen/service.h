@@ -20,13 +20,15 @@
 - (User *) user_get: (NSString *) access_token : (int64_t) id : (BOOL) ext_only;  // throws TException
 - (void) user_set: (NSString *) access_token : (User *) user;  // throws TException
 - (NSArray *) user_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num;  // throws TException
-- (NSArray *) task_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num : (TaskFilter *) filter;  // throws TException
-- (Task *) task_get: (int64_t) access_token : (int64_t) tid : (BOOL) ext_only;  // throws TException
+- (NSArray *) task_list: (NSString *) access_token : (int) type : (TaskFilter *) filter : (int64_t) last_id : (int64_t) num;  // throws TException
+- (Task *) task_get: (int64_t) access_token : (int64_t) id : (BOOL) ext_only;  // throws TException
 - (void) task_set: (NSString *) access_token : (Task *) task;  // throws TException
 - (int64_t) task_new: (NSString *) access_token : (Task *) task;  // throws TException
-- (BOOL) task_apply: (NSString *) access_token : (int64_t) tid;  // throws TException
-- (BOOL) task_reject: (NSString *) access_token : (int64_t) tid;  // throws TException
-- (BOOL) task_accept: (NSString *) access_token : (int64_t) tid;  // throws TException
+- (BOOL) task_apply: (NSString *) access_token : (int64_t) id : (NSString *) txt;  // throws TException
+- (BOOL) task_reject: (NSString *) access_token : (int64_t) id;  // throws TException
+- (BOOL) task_accept: (NSString *) access_token : (int64_t) id;  // throws TException
+- (BOOL) my_task_accept: (NSString *) access_token : (int64_t) task_id : (int64_t) user_id;  // throws TException
+- (BOOL) my_task_reject: (NSString *) access_token : (int64_t) task_id : (int64_t) user_id : (NSString *) txt;  // throws TException
 - (NSArray *) msg_list: (NSString *) access_token : (int) type : (int64_t) last_id : (int64_t) num;  // throws TException
 - (void) msg_send: (NSString *) access_token : (int64_t) send_to : (Msg *) msg;  // throws TException
 - (NSArray *) feed: (NSString *) access_token : (int64_t) last_id : (int64_t) num;  // throws TException
