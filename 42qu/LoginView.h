@@ -35,11 +35,6 @@
 @property (nonatomic, strong) UIButton *registerButton;
 @property (nonatomic, strong) UIButton *otherLoginButton;
 
-- (void)jumpToNextField;
-
-- (void)login;
-- (void)register;
-
 - (void)show;
 - (void)dismiss;
 
