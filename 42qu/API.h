@@ -10,42 +10,13 @@
 #import "service.h"
 
 // API Key
-#define CLIENT_ID @"10046352"
-#define CLIENT_SECRET @"1f082771f7c940849f6fd02ba5d3519f"
-
-/*
-// API URL
-#define API_ROOT @"http://api.42qu.com"
-#define API_AUTH_LOGIN @"/user/oauth/login"
-#define API_PO_WORD @"/po/word"
-
-// API Auth
-#define API_AUTH_LOGIN_CLIENT_ID @"client_id"
-#define API_AUTH_LOGIN_CLIENT_SECRET @"client_secret"
-#define API_AUTH_LOGIN_MAIL @"mail"
-#define API_AUTH_LOGIN_PASSWORD @"password"
-
-#define API_AUTH_LOGIN_ERROR_CODE @"error_code"
-#define API_AUTH_LOGIN_ERROR @"error"
-
-#define API_AUTH_LOGIN_USER_ID @"user_id"
-#define API_AUTH_LOGIN_NAME @"name"
-#define API_AUTH_LOGIN_ACCESS_TOKEN @"access_token"
-#define API_AUTH_LOGIN_REFRESH_TOKEN @"refresh_token"
-#define API_AUTH_LOGIN_EXPIRES_IN @"expires_in"
-
-// API Po
-#define API_PO_WORD_ACCESS_TOKEN @"access_token"
-#define API_PO_WORD_CONTENT @"txt"
-
-#define API_PO_WORD_ID @"id"
-#define API_PO_WORD_LINK @"link"
- */
+#define CLIENT_ID 243
+#define CLIENT_SECRET @"fo3jufw5QqytuVXPCx17zg"
 
 @class SnsClient;
 
 @interface API : NSObject
 
-+ (SnsClient *)shared;
++ (SnsClient *)newConnection;
 
 @end

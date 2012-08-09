@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
+#import "AppDelegate.h"
+
 #import "RegisterListViewController.h"
 
 #define SNS_42QU @"42qu"
@@ -14,13 +16,66 @@
 #define SNS_RENREN @"renren"
 #define SNS_TENCENT_WEIBO @"tencent"
 
+@interface RegisterListNavigationController ()
+
+@end
+
+@implementation RegisterListNavigationController
+
+#pragma mark - Life cycle
+
+- (id)initWithRootViewController:(UIViewController *)rootViewController
+{
+    self = [super initWithRootViewController:rootViewController];
+    if (self) {
+        self.view.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, 320, [UIScreen mainScreen].applicationFrame.size.height);
+    }
+    return self;
+}
+
+@end
+
 @interface RegisterListViewController ()
 
 @end
 
 @implementation RegisterListViewController
 
-@synthesize accountList = _accountList;
+#pragma mark - Animations
+
+- (void)show
+{
+    // Add to window
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate window] addSubview:self.navigationController.view];
+    
+    // Begin animations
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect registerListNavigationControllerFrame = self.navigationController.view.frame;
+        registerListNavigationControllerFrame.origin.y -= registerListNavigationControllerFrame.size.height;
+        self.navigationController.view.frame = registerListNavigationControllerFrame;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self.delegate registerListViewControllerOnShow:self];
+        }
+    }];
+}
+
+- (void)dismiss
+{
+    // Begin animations
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect registerListNavigationControllerFrame = self.navigationController.view.frame;
+        registerListNavigationControllerFrame.origin.y += registerListNavigationControllerFrame.size.height;
+        self.navigationController.view.frame = registerListNavigationControllerFrame;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self.delegate registerListViewControllerOnDismiss:self];
+            [self.navigationController.view removeFromSuperview];
+        }
+    }];
+}
+
+#pragma mark - Life cycle
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,6 +95,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)] autorelease];
     self.accountList = [[[NSArray alloc] initWithObjects:SNS_42QU, SNS_SINA_WEIBO, SNS_GOOGLE, SNS_RENREN, SNS_TENCENT_WEIBO, nil] autorelease];
 }
 
@@ -132,6 +188,11 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    NSUInteger row = indexPath.row;
+    RegisterViewController *registerViewController = [[[RegisterViewController alloc] init] autorelease];
+    registerViewController.delegate = self.delegate;
+    registerViewController.title = [_accountList objectAtIndex:row];
+    [self.navigationController pushViewController:registerViewController animated:YES];
 }
 
 @end

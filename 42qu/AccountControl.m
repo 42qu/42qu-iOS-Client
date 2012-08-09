@@ -6,34 +6,27 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
+#import "AppDelegate.h"
+#import "API.h"
 #import <TSocketClient.h>
 #import <TBinaryProtocol.h>
-//#import "SBJson.h"
-//#import "HTTPUtils.h"
-#import "API.h"
 
-#import "AppDelegate.h"
 #import "AccountControl.h"
+
+#import "LaunchViewController.h"
+
 #import "RegisterListViewController.h"
 
 // User Default Key
-#define USER_DEFAULT_KEY_MAIL @"mail"
-#define USER_DEFAULT_KEY_PASSWORD @"password"
+#define USER_DEFAULT_KEY_MAIL @"AccountMail"
+#define USER_DEFAULT_KEY_PASSWORD @"AccountPassword"
+#define USER_DEFAULT_KEY_USERID @"AccountUserID"
+#define USER_DEFAULT_KEY_ACCESSTOKEN @"AccountAccessToken"
+#define USER_DEFAULT_KEY_EXPIRE @"AccountExpire"
 
 @implementation AccountControl
 
-//static URLConnectionType connectionType = URLConnectionTypeUnknown;
-
-@synthesize delegate = _delegate;
-
-@synthesize loginView = _loginView;
-
 @synthesize isLoggedIn;
-@synthesize userID;
-@synthesize name;
-@synthesize accessToken;
-@synthesize refreshToken;
-@synthesize expiresIn;
 
 static AccountControl *accountControl = nil;
 
@@ -41,169 +34,191 @@ static AccountControl *accountControl = nil;
 {
     if (!accountControl) {
         accountControl = [[AccountControl alloc] init];
-        accountControl.userID = [[[NSMutableString alloc] init] autorelease];
-        accountControl.name = [[[NSMutableString alloc] init] autorelease];
-        accountControl.accessToken = [[[NSMutableString alloc] init] autorelease];
-        accountControl.refreshToken = [[[NSMutableString alloc] init] autorelease];
     }
     return accountControl;
 }
 
 - (void)dealloc
 {
-    [userID release];
-    [name release];
-    [accessToken release];
-    [refreshToken release];
     [super dealloc];
 }
 
-+ (NSString *)savedMail
+// Read
+
+- (NSString *)mail
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_MAIL];
 }
 
-+ (NSString *)savedPassword
+- (NSString *)password
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_PASSWORD];
 }
 
-+ (void)saveMail:(NSString *)mail
+- (NSInteger)userID
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULT_KEY_USERID];
+}
+
+- (NSString *)accessToken
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:USER_DEFAULT_KEY_ACCESSTOKEN];
+}
+
+- (NSInteger)expiresIn
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULT_KEY_EXPIRE];
+}
+
+// Set
+
+- (void)saveMail:(NSString *)mail
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:mail forKey:USER_DEFAULT_KEY_MAIL];
     [userDefaults synchronize];
 }
 
-+ (void)savePassword:(NSString *)password
+- (void)savePassword:(NSString *)password
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:password forKey:USER_DEFAULT_KEY_PASSWORD];
     [userDefaults synchronize];
 }
 
-+ (void)removeSavedMail
+- (void)saveUserID:(NSInteger)userID
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:userID forKey:USER_DEFAULT_KEY_USERID];
+    [userDefaults synchronize];
+}
+
+- (void)saveAccessToken:(NSString *)accessToken
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:accessToken forKey:USER_DEFAULT_KEY_ACCESSTOKEN];
+    [userDefaults synchronize];
+}
+
+- (void)saveExpiresIn:(NSInteger)expiresIn
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:expiresIn forKey:USER_DEFAULT_KEY_EXPIRE];
+    [userDefaults synchronize];
+}
+
+// Remove
+
+- (void)removeMail
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:USER_DEFAULT_KEY_MAIL];
     [userDefaults synchronize];
 }
 
-+ (void)removeSavedPassword
+- (void)removePassword
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
     [userDefaults synchronize];
 }
 
+- (void)removeUserID
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_USERID];
+    [userDefaults synchronize];
+}
+
+- (void)removeAccessToken
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_ACCESSTOKEN];
+    [userDefaults synchronize];
+}
+
+- (void)removeExpiresIn
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_EXPIRE];
+    [userDefaults synchronize];
+}
+
 #pragma mark - Basic operation
 
-- (BOOL)loginWithMail:(NSString *)mail andPassword:(NSString *)password
+- (void)loginWithMail:(NSString *)mail andPassword:(NSString *)password
 {
-    /*
-    // Create login API URL
-    NSString *loginURLString = [NSString stringWithFormat:@"%@%@", API_ROOT, API_AUTH_LOGIN];
-    NSURL *loginURL = [NSURL URLWithString:loginURLString];
-    // Create login Request
-    NSMutableURLRequest *loginRequest = [[NSMutableURLRequest alloc] initWithURL:loginURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0f];
-    // Create post data
-    NSDictionary *postDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:mail, API_AUTH_LOGIN_MAIL, password, API_AUTH_LOGIN_PASSWORD, CLIENT_ID, API_AUTH_LOGIN_CLIENT_ID, CLIENT_SECRET, API_AUTH_LOGIN_CLIENT_SECRET, nil];
-    NSData *loginPostData = [HTTPUtils postDataFromDictionary:postDataDictionary];
-    [loginRequest setHTTPBody:loginPostData];
-    [loginRequest setHTTPMethod:@"POST"];
-    // Set up connection
-    NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest:loginRequest delegate:self] autorelease];
-    connectionType = URLConnectionTypeLogin;
-    [loginRequest release];
-    
-    if (connection) {
-    }
-     */
-    BOOL loginSuccess = NO;
-    SnsClient *snsClient = [API shared];
+    SnsClient *snsClient = [API newConnection];
     @try {
         AuthRequest *authRequest = [[[AuthRequest alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET] autorelease];
         AuthResponse *authResponse = [snsClient login_by_mail:authRequest :mail :password];
-        [self.accessToken setString:authResponse.access_token];
-        self.expiresIn = authResponse.expire_in;
-        self.userID = [NSMutableString stringWithFormat:@"%lld", authResponse.user_id];
-        loginSuccess = YES;
+        [self saveUserID:authResponse.user_id];
+        [self saveAccessToken:authResponse.access_token];
+        [self saveExpiresIn:authResponse.expire_in];
+        [self.delegate accountControlDidLogin];
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
+        [self.delegate accountControlDidFailLoginWithReason:exception.reason];
     }
-    [snsClient release];
-    return loginSuccess;
 }
 
-- (BOOL)login
+- (void)registerWithSomething
 {
-    NSString *mail = [AccountControl savedMail];
-    NSString *password = [AccountControl savedPassword];
-    if (!mail || !password) {
-        return NO;
-    }
-    if ([self loginWithMail:mail andPassword:password]) {
-        [self.delegate didLogin];
-    } else {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
-        [userDefaults synchronize];
-        [self.delegate didFailLogin];
-    }
-    return YES;
+    
 }
 
-/*
-#pragma mark - URL connection delegate
+#pragma mark - View operation
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)showLoginView
 {
-    switch (connectionType) {
-        case URLConnectionTypeLogin: {
-            // Set values to default
-            isLoggedIn = NO;
-            [userID setString:@""];
-            [name setString:@""];
-            [accessToken setString:@""];
-            [refreshToken setString:@""];
-            expiresIn = 0;
-            // Parse json data
-            SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-            NSDictionary *responseDataDictionary = [jsonParser objectWithData:data];
-            [jsonParser release];
-            if ([responseDataDictionary.allKeys containsObject:API_AUTH_LOGIN_ACCESS_TOKEN]) {
-                // Success
-                isLoggedIn = YES;
-                [userID appendFormat:@"%d", [responseDataDictionary objectForKey:API_AUTH_LOGIN_USER_ID]];
-                [name appendFormat:@"%@", [responseDataDictionary objectForKey:API_AUTH_LOGIN_NAME]];
-                [accessToken appendFormat:@"%@", [responseDataDictionary objectForKey:API_AUTH_LOGIN_ACCESS_TOKEN]];
-                [refreshToken appendFormat:@"%@", [responseDataDictionary objectForKey:API_AUTH_LOGIN_REFRESH_TOKEN]];
-                expiresIn = [[responseDataDictionary objectForKey:API_AUTH_LOGIN_EXPIRES_IN] integerValue];
-                [self.delegate didLogin];
-            } else {
-                // Failed
-                if ([responseDataDictionary.allKeys containsObject:API_AUTH_LOGIN_ERROR_CODE]) {
-                    NSLog(@"Error code: %@\nError discription: %@", [responseDataDictionary objectForKey:API_AUTH_LOGIN_ERROR_CODE], [responseDataDictionary objectForKey:API_AUTH_LOGIN_ERROR]);
-                }
-                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
-                [self.delegate didFailLogin];
-            }
-            connectionType = URLConnectionTypeUnknown;
-            break;
-        }
-        default:
-            break;
+    if (!_loginView) {
+        self.loginView = [[[LoginView alloc] init] autorelease];
+        _loginView.delegate = self;
+        [_loginView show];
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)showRegisterListView
 {
-    [self.delegate didFailLogin];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults removeObjectForKey:USER_DEFAULT_KEY_PASSWORD];
+    if (!_registerListViewController) {
+        self.registerListViewController = [[[RegisterListViewController alloc] init] autorelease];
+        _registerListViewController.delegate = self;
+        self.registerListNavigationController = [[[RegisterListNavigationController alloc] initWithRootViewController:_registerListViewController] autorelease];
+        [_registerListNavigationController retain];
+        [_registerListViewController show];
+    }
 }
- */
+
+#pragma mark - Login view delegate
+
+- (void)loginViewOnShow:(LoginView *)loginView
+{
+    
+}
+
+- (void)loginViewOnDismiss:(LoginView *)loginView
+{
+    self.loginView = nil;
+}
+
+- (void)loginView:(LoginView *)loginView onLoginWithMail:(NSString *)mail andPassword:(NSString *)password
+{
+    [self loginWithMail:mail andPassword:password];
+}
+
+#pragma mark - Register list view controller delegate
+
+- (void)registerListViewControllerOnShow:(RegisterListViewController *)registerListViewController
+{
+    
+}
+
+- (void)registerListViewControllerOnDismiss:(RegisterListViewController *)registerListViewController
+{
+    [_registerListNavigationController release];
+    self.registerListNavigationController = nil;
+    self.registerListViewController = nil;
+}
 
 @end

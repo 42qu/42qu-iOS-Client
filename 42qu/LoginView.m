@@ -6,9 +6,13 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
-#import "AccountControl.h"
+#import "AppDelegate.h"
 
 #import "LoginView.h"
+
+#import "AccountControl.h"
+
+#define kFrameLoginViewOrigin CGRectMake(0, -244, 320, 244)
 
 #define kHeightLogo 60.0
 #define kHeightField 31.0
@@ -39,13 +43,13 @@
 
 #pragma mark - Delegate
 
-- (void)login
+- (void)loginButtonPressed
 {
     [self.delegate loginView:self onLoginWithMail:_nameField.text andPassword:_passwordField.text];
     [self dismiss];
 }
 
-- (void)register
+- (void)registerButtonPressed
 {
     if ([self.delegate respondsToSelector:@selector(loginViewOnRegisterButtonPressed:)]) {
         [self.delegate loginViewOnRegisterButtonPressed:self];
@@ -53,20 +57,26 @@
     [self dismiss];
 }
 
-#pragma mark - Animation
+#pragma mark - Animations
 
 - (void)show
 {
+    // Add to window
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate window] addSubview:self];
+    
     // Register keyboard notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightChanged:) name:UIKeyboardDidShowNotification object:nil];
+    
     // Begin animations
     [UIView animateWithDuration:0.35f animations:^{
-        CGRect loginViewFrame = kFrameLoginViewOrigin;
+        CGRect loginViewFrame = self.frame;
         loginViewFrame.origin.y += loginViewFrame.size.height;
         [self setFrame:loginViewFrame];
         [_nameField becomeFirstResponder];
     } completion:^(BOOL finished) {
-        [self.delegate loginViewOnShow:self];
+        if (finished) {
+            [self.delegate loginViewOnShow:self];
+        }
     }];
 }
 
@@ -82,11 +92,16 @@
     
     // Begin animations
     [UIView animateWithDuration:0.3f animations:^{
-        [self setFrame:kFrameLoginViewOrigin];
+        CGRect loginViewFrame = self.frame;
+        loginViewFrame.origin.y -= loginViewFrame.size.height;
+        [self setFrame:loginViewFrame];
     } completion:^(BOOL finished) {
-        [self.delegate loginViewOnDismiss:self];
-        [self removeFromSuperview];
+        if (finished) {
+            [self.delegate loginViewOnDismiss:self];
+            [self removeFromSuperview];
+        }
     }];
+    
     // Remove keyboard notification
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
 }
@@ -97,6 +112,11 @@
 {
     self = [super initWithFrame:kFrameLoginViewOrigin];
     if (self) {
+        if (![UIApplication sharedApplication].statusBarHidden) {
+            CGRect frame = self.frame;
+            frame.origin.y += [UIApplication sharedApplication].statusBarFrame.size.height;
+            self.frame = frame;
+        }
     }
     return self;
 }
@@ -132,28 +152,30 @@
     self.nameField = [[[UITextField alloc] initWithFrame:kFrameTextFieldName] autorelease];
     _nameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [_nameField setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.8f]];
-    [_nameField setBorderStyle:UITextBorderStyleRoundedRect];
+    _nameField.borderStyle = UITextBorderStyleRoundedRect;
     _nameField.placeholder = NSLocalizedString(@"Enter your email address", nil);
-    [_nameField setKeyboardType:UIKeyboardTypeEmailAddress];
-    [_nameField setReturnKeyType:UIReturnKeyNext];
+    _nameField.keyboardType = UIKeyboardTypeEmailAddress;
+    _nameField.returnKeyType = UIReturnKeyNext;
+    _nameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _nameField.autocorrectionType = UITextAutocorrectionTypeNo;
     [_nameField addTarget:self action:@selector(jumpToNextField) forControlEvents:UIControlEventEditingDidEndOnExit];
     [self addSubview:_nameField];
     
     self.passwordField = [[[UITextField alloc] initWithFrame:kFrameTextFieldPassword] autorelease];
     _passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [_passwordField setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.8f]];
-    [_passwordField setBorderStyle:UITextBorderStyleRoundedRect];
+    _passwordField.borderStyle = UITextBorderStyleRoundedRect;
     _passwordField.placeholder = NSLocalizedString(@"Enter your password", nil);
-    [_passwordField setReturnKeyType:UIReturnKeyDone];
+    _passwordField.returnKeyType = UIReturnKeyDone;
     _passwordField.secureTextEntry = YES;
-    [_passwordField addTarget:self action:@selector(login) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_passwordField addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventEditingDidEndOnExit];
     [self addSubview:_passwordField];
     
     self.registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_registerButton setFrame:kFrameButtonRegister];
     [_registerButton setAlpha:0.8f];
     [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
-    [_registerButton addTarget:self action:@selector(register) forControlEvents:UIControlEventTouchUpInside];
+    [_registerButton addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_registerButton];
     
     self.otherLoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

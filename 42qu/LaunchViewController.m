@@ -8,7 +8,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "AppDelegate.h"
 #import "LaunchViewController.h"
 #import "RegisterListViewController.h"
 
@@ -27,21 +26,7 @@
 
 @implementation LaunchViewController
 
-@synthesize loginView = _loginView;
-
-@synthesize selectCityButton = _selectCityButton;
-@synthesize startButton = _startButton;
-@synthesize loginButton = _loginButton;
-@synthesize registerButton = _registerButton;
-
 #pragma mark - Internal methods
-
-- (void)tryLogin
-{
-    AccountControl *accountControl = [AccountControl shared];
-    accountControl.delegate = self;
-    [accountControl login];
-}
 
 - (void)switchButtonStatus
 {
@@ -61,24 +46,16 @@
 
 - (void)showLoginView
 {
-    if (!_loginView) {
-        self.loginView = [[[LoginView alloc] init] autorelease];
-        _loginView.delegate = self;
-        [self.view addSubview:_loginView];
-    }
-    [_loginView show];
+    AccountControl *accountControl = [AccountControl shared];
+    accountControl.delegate = self;
+    [accountControl showLoginView];
 }
 
-- (void)showRegisterView // & Account control delegate
+- (void)showRegisterView
 {
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromTop;
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];
-    RegisterListViewController *registerListViewController = [[[RegisterListViewController alloc] init] autorelease];
-    [self.navigationController pushViewController:registerListViewController animated:NO];
+    AccountControl *accountControl = [AccountControl shared];
+    accountControl.delegate = self;
+    [accountControl showRegisterListView];
 }
 
 #pragma mark - User action
@@ -176,7 +153,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.loginView = nil;
     self.selectCityButton = nil;
     self.startButton = nil;
     self.loginButton = nil;
@@ -190,7 +166,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self tryLogin];
+//    [self tryLogin];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -200,7 +176,7 @@
 
 #pragma mark - Account control delegate
 
-- (void)didLogin
+- (void)accountControlDidLogin
 {
     CATransition *transition = [CATransition animation];
     transition.duration = 0.3f;
@@ -213,82 +189,20 @@
     [self.navigationController.view removeFromSuperview];
 }
 
-- (void)didFailLogin
+- (void)accountControlDidFailLoginWithReason:(NSString *)reason
 {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Failed", nil) message:reason delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
     CATransition *transition = [CATransition animation];
     transition.duration = 0.3f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionFade;
     [self.view.layer addAnimation:transition forKey:nil];
     [UIView animateWithDuration:0.3f animations:^{
-        [_startButton setTitle:@"Login failed. " forState:UIControlStateNormal];
+        [_startButton setTitle:@"Try again. " forState:UIControlStateNormal];
     }];
-}
-
-#pragma mark - Login view delegate
-
-static NSUInteger i = 0;
-
-- (void)loginViewOnShow:(LoginView *)loginView
-{
-    NSString *mail = [AccountControl savedMail];
-    if ([self respondsToSelector:@selector(mailDisplay:)]) {
-        i = mail.length;
-        [self performSelector:@selector(mailDisplay:) withObject:mail];
-    } else {
-        _loginView.nameField.text = mail;
-    }
-}
-
-/*
- // The easter egg
- - (void)mailDisplay:(NSString *)mail
- {
- if (i == 0) {
- return;
- } else {
- [UIView animateWithDuration:0.003 animations:^{
- i--;
- NSMutableString *mailDisplay = [NSMutableString stringWithString:_loginView.nameField.text];
- [mailDisplay appendFormat:@"%c", [mail characterAtIndex:mail.length - 1 - i]];
- _loginView.nameField.text = mailDisplay;
- } completion:^(BOOL finished) {
- [self mailDisplay:mail];
- }];
- }
- }
- */
-
-- (void)loginViewOnDismiss:(LoginView *)loginView
-{
-    _loginView = nil;
-}
-
-- (void)loginView:(LoginView *)loginView onLoginWithMail:(NSString *)mail andPassword:(NSString *)password
-{
-    [self switchButtonStatus];
-    [_startButton setTitle:@"Logging in... " forState:UIControlStateNormal];
-    [AccountControl saveMail:mail];
-    [AccountControl savePassword:password];
-    [[AccountControl shared] performSelector:@selector(login) withObject:nil afterDelay:0.1];
-}
-
-- (void)loginViewOnRegisterButtonPressed:(LoginView *)loginView
-{
-#warning unfinished method
-    NSLog(@"Show register view. ");
-}
-
-#pragma mark - Register view delegate
-
-- (void)registerViewOnShow:(RegisterView *)registerView
-{
-    
-}
-
-- (void)registerViewOnDismiss:(RegisterView *)registerView
-{
-    
 }
 
 #pragma mark - Picker view delegate

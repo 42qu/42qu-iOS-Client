@@ -10,14 +10,14 @@
 #import <TSocketClient.h>
 #import <TBinaryProtocol.h>
 
-#define API_HOSTNAME @"fycd.tk"
-#define API_PORT 50042
+#define API_HOSTNAME @"113.11.199.20"
+#define API_PORT 10042
 
 @implementation API
 
 static SnsClient *snsClient = nil;
 
-+ (SnsClient *)shared
++ (SnsClient *)newConnection
 {
     if (!snsClient) {
         TSocketClient *transport = [[TSocketClient alloc] initWithHostname:API_HOSTNAME port:API_PORT];
