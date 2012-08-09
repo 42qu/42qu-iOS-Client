@@ -26,15 +26,6 @@
 
 @implementation LoginView
 
-@synthesize delegate = _delegate;
-@synthesize isLoggedIn = _isLoggedIn;
-
-@synthesize logoView = _logoView;
-@synthesize nameField = _nameField;
-@synthesize passwordField = _passwordField;
-@synthesize registerButton = _registerButton;
-@synthesize otherLoginButton = _otherLoginButton;
-
 - (void)jumpToNextField
 {
     [_nameField resignFirstResponder];
