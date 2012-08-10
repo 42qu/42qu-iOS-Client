@@ -11,15 +11,11 @@
 #import "AccountControl.h"
 #import "LoginView.h"
 
-@interface LaunchViewController : UIViewController <AccountControlDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate>
+@interface LaunchViewController : UIViewController <AccountControlDelegate>
 
-@property (nonatomic, strong) UIButton *selectCityButton;
-@property (nonatomic, strong) UIButton *startButton;
 @property (nonatomic, strong) UIButton *loginButton;
 @property (nonatomic, strong) UIButton *registerButton;
 
-- (void)selectCityButtonPressed;
-- (void)startButtonPressed;
 - (void)loginButtonPressed;
 - (void)registerButtonPressed;
 
