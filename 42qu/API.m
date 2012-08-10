@@ -29,4 +29,10 @@ static SnsClient *snsClient = nil;
     return snsClient;
 }
 
++ (void)closeConnection
+{
+    [snsClient release];
+    snsClient = nil;
+}
+
 @end

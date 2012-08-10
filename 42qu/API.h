@@ -10,13 +10,14 @@
 #import "service.h"
 
 // API Key
-#define CLIENT_ID 243
-#define CLIENT_SECRET @"fo3jufw5QqytuVXPCx17zg"
+#define CLIENT_ID 16
+#define CLIENT_SECRET @"t7SmSdquS-idUgwmZDavxQ"
 
 @class SnsClient;
 
 @interface API : NSObject
 
 + (SnsClient *)newConnection;
++ (void)closeConnection;
 
 @end
