@@ -34,6 +34,7 @@ static AccountControl *accountControl = nil;
 {
     if (!accountControl) {
         accountControl = [[AccountControl alloc] init];
+        accountControl.isLoggedIn = (accountControl.accessToken != nil/* && accountControl.expiresIn > [[NSDate date] timeIntervalSince1970]*/);
     }
     return accountControl;
 }
@@ -148,19 +149,29 @@ static AccountControl *accountControl = nil;
 
 - (void)loginWithMail:(NSString *)mail andPassword:(NSString *)password
 {
-    SnsClient *snsClient = [API newConnection];
-    @try {
-        AuthRequest *authRequest = [[[AuthRequest alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET] autorelease];
-        AuthResponse *authResponse = [snsClient login_by_mail:authRequest :mail :password];
-        [self saveUserID:authResponse.user_id];
-        [self saveAccessToken:authResponse.access_token];
-        [self saveExpiresIn:authResponse.expire_in];
-        [self.delegate accountControlDidLogin];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"%@", exception.reason);
-        [self.delegate accountControlDidFailLoginWithReason:exception.reason];
-    }
+    [self saveMail:mail];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        SnsClient *snsClient = [API newConnection];
+        @try {
+            AuthRequest *authRequest = [[[AuthRequest alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET] autorelease];
+            AuthResponse *authResponse = [snsClient login_by_mail:authRequest :mail :password];
+            [self saveUserID:authResponse.user_id];
+            [self saveAccessToken:authResponse.access_token];
+            [self saveExpiresIn:authResponse.expire_in];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self savePassword:password];
+                [self.delegate accountControlDidLogin];
+            });
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@", exception.reason);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self removePassword];
+                [self.delegate accountControlDidFailLoginWithReason:exception.reason];
+            });
+        }
+        [API closeConnection];
+    });
 }
 
 - (void)registerWithSomething
@@ -174,6 +185,7 @@ static AccountControl *accountControl = nil;
 {
     if (!_loginView) {
         self.loginView = [[[LoginView alloc] init] autorelease];
+        _loginView.nameField.text = self.mail;
         _loginView.delegate = self;
         [_loginView show];
     }

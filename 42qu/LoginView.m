@@ -107,6 +107,48 @@
             CGRect frame = self.frame;
             frame.origin.y += [UIApplication sharedApplication].statusBarFrame.size.height;
             self.frame = frame;
+            
+            // Set background image and add logo
+            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login-bg"]];
+            self.logoView = [[[UIImageView alloc] initWithFrame:kFrameImageViewLogo] autorelease];
+            _logoView.image = [UIImage imageNamed:@"logo"];
+            [self addSubview:_logoView];
+            
+            // Add elements
+            self.nameField = [[[UITextField alloc] initWithFrame:kFrameTextFieldName] autorelease];
+            _nameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            [_nameField setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.8f]];
+            _nameField.borderStyle = UITextBorderStyleRoundedRect;
+            _nameField.placeholder = NSLocalizedString(@"Enter your email address", nil);
+            _nameField.keyboardType = UIKeyboardTypeEmailAddress;
+            _nameField.returnKeyType = UIReturnKeyNext;
+            _nameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            _nameField.autocorrectionType = UITextAutocorrectionTypeNo;
+            [_nameField addTarget:self action:@selector(jumpToNextField) forControlEvents:UIControlEventEditingDidEndOnExit];
+            [self addSubview:_nameField];
+            
+            self.passwordField = [[[UITextField alloc] initWithFrame:kFrameTextFieldPassword] autorelease];
+            _passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            [_passwordField setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.8f]];
+            _passwordField.borderStyle = UITextBorderStyleRoundedRect;
+            _passwordField.placeholder = NSLocalizedString(@"Enter your password", nil);
+            _passwordField.returnKeyType = UIReturnKeyDone;
+            _passwordField.secureTextEntry = YES;
+            [_passwordField addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventEditingDidEndOnExit];
+            [self addSubview:_passwordField];
+            
+            self.registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [_registerButton setFrame:kFrameButtonRegister];
+            [_registerButton setAlpha:0.8f];
+            [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
+            [_registerButton addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:_registerButton];
+            
+            self.otherLoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [_otherLoginButton setFrame:kFrameButtonOtherLogin];
+            [_otherLoginButton setAlpha:0.8f];
+            [_otherLoginButton setTitle:NSLocalizedString(@"Use other accounts", nil) forState:UIControlStateNormal];
+            [self addSubview:_otherLoginButton];
         }
     }
     return self;
@@ -133,47 +175,7 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    // Set background image and add logo
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login-bg"]];
-    self.logoView = [[[UIImageView alloc] initWithFrame:kFrameImageViewLogo] autorelease];
-    _logoView.image = [UIImage imageNamed:@"logo"];
-    [self addSubview:_logoView];
     
-    // Add elements
-    self.nameField = [[[UITextField alloc] initWithFrame:kFrameTextFieldName] autorelease];
-    _nameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [_nameField setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.8f]];
-    _nameField.borderStyle = UITextBorderStyleRoundedRect;
-    _nameField.placeholder = NSLocalizedString(@"Enter your email address", nil);
-    _nameField.keyboardType = UIKeyboardTypeEmailAddress;
-    _nameField.returnKeyType = UIReturnKeyNext;
-    _nameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _nameField.autocorrectionType = UITextAutocorrectionTypeNo;
-    [_nameField addTarget:self action:@selector(jumpToNextField) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self addSubview:_nameField];
-    
-    self.passwordField = [[[UITextField alloc] initWithFrame:kFrameTextFieldPassword] autorelease];
-    _passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [_passwordField setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.8f]];
-    _passwordField.borderStyle = UITextBorderStyleRoundedRect;
-    _passwordField.placeholder = NSLocalizedString(@"Enter your password", nil);
-    _passwordField.returnKeyType = UIReturnKeyDone;
-    _passwordField.secureTextEntry = YES;
-    [_passwordField addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self addSubview:_passwordField];
-    
-    self.registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_registerButton setFrame:kFrameButtonRegister];
-    [_registerButton setAlpha:0.8f];
-    [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
-    [_registerButton addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_registerButton];
-    
-    self.otherLoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_otherLoginButton setFrame:kFrameButtonOtherLogin];
-    [_otherLoginButton setAlpha:0.8f];
-    [_otherLoginButton setTitle:NSLocalizedString(@"Use other accounts", nil) forState:UIControlStateNormal];
-    [self addSubview:_otherLoginButton];
 }
 
 #pragma mark - Keyboard notification
