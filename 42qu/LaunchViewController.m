@@ -6,10 +6,7 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
-
 #import "LaunchViewController.h"
-#import "RegisterListViewController.h"
 
 #define kFrameViewTopbar CGRectMake(0, 0, 320, 44)
 #define kFrameLabelTitle CGRectMake(0, 0, 120, 44)

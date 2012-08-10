@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "AccountControl.h"
-#import "LoginView.h"
 
 @interface LaunchViewController : UIViewController <AccountControlDelegate>
 
