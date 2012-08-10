@@ -39,6 +39,8 @@
 		FA2E1D3A158DF8680072B596 /* peopledetail-segmentedcontrol-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D34158DF8680072B596 /* peopledetail-segmentedcontrol-bg@2x.png */; };
 		FA2E1D3E158DFA340072B596 /* peopledetail-segmentedcontrol-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D3C158DFA340072B596 /* peopledetail-segmentedcontrol-highlighted.png */; };
 		FA2E1D3F158DFA340072B596 /* peopledetail-segmentedcontrol-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2E1D3D158DFA340072B596 /* peopledetail-segmentedcontrol-highlighted@2x.png */; };
+		FA2ED43C15D3D07A00018932 /* PullRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2ED43B15D3D07A00018932 /* PullRefreshHeaderView.m */; };
+		FA333CC915D3EBFC00605F26 /* CustomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA333CC815D3EBFC00605F26 /* CustomTableViewController.m */; };
 		FA3A4B24157485BE0070FB1C /* launch-navbar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B22157485BE0070FB1C /* launch-navbar-bg.png */; };
 		FA3A4B25157485BE0070FB1C /* launch-navbar-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B23157485BE0070FB1C /* launch-navbar-bg@2x.png */; };
 		FA3A4B2B1574C35A0070FB1C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3A4B2A1574C35A0070FB1C /* Icon@2x.png */; };
@@ -121,6 +123,10 @@
 		FA2E1D34158DF8680072B596 /* peopledetail-segmentedcontrol-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-bg@2x.png"; sourceTree = "<group>"; };
 		FA2E1D3C158DFA340072B596 /* peopledetail-segmentedcontrol-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-highlighted.png"; sourceTree = "<group>"; };
 		FA2E1D3D158DFA340072B596 /* peopledetail-segmentedcontrol-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peopledetail-segmentedcontrol-highlighted@2x.png"; sourceTree = "<group>"; };
+		FA2ED43A15D3D07A00018932 /* PullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshHeaderView.h; sourceTree = "<group>"; };
+		FA2ED43B15D3D07A00018932 /* PullRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshHeaderView.m; sourceTree = "<group>"; };
+		FA333CC715D3EBFC00605F26 /* CustomTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewController.h; sourceTree = "<group>"; };
+		FA333CC815D3EBFC00605F26 /* CustomTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewController.m; sourceTree = "<group>"; };
 		FA3A4B22157485BE0070FB1C /* launch-navbar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-navbar-bg.png"; sourceTree = "<group>"; };
 		FA3A4B23157485BE0070FB1C /* launch-navbar-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-navbar-bg@2x.png"; sourceTree = "<group>"; };
 		FA3A4B2A1574C35A0070FB1C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
@@ -220,6 +226,10 @@
 				FA02A75D158CABBC00DA275C /* CustomSegmentedControl.m */,
 				FA2883041595E53600FFE60F /* TabbedSlideView.h */,
 				FA2883051595E53600FFE60F /* TabbedSlideView.m */,
+				FA2ED43A15D3D07A00018932 /* PullRefreshHeaderView.h */,
+				FA2ED43B15D3D07A00018932 /* PullRefreshHeaderView.m */,
+				FA333CC715D3EBFC00605F26 /* CustomTableViewController.h */,
+				FA333CC815D3EBFC00605F26 /* CustomTableViewController.m */,
 			);
 			name = "Custom Objects";
 			sourceTree = "<group>";
@@ -622,6 +632,8 @@
 				FA22843115B807AB005F5189 /* PeopleDetailViewController.m in Sources */,
 				FA1DB28C15BD436B00CDE810 /* UpdateCell.m in Sources */,
 				FA88C20815D251B4002EA3F6 /* RegisterViewController.m in Sources */,
+				FA2ED43C15D3D07A00018932 /* PullRefreshHeaderView.m in Sources */,
+				FA333CC915D3EBFC00605F26 /* CustomTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
