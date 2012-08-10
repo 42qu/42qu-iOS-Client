@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class RegisterViewController;
+
 @protocol RegisterViewControllerDelegate <NSObject>
+
+- (void)registerViewController:(RegisterViewController *)registerViewController didRegisteredWithAccessToken:(NSString *)accessToken;
 
 @end
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, assign) id<RegisterViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) NSURL *registerURL;
+
+@property (nonatomic, strong) UIWebView *registerWebView;
 
 @end

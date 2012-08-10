@@ -233,4 +233,12 @@ static AccountControl *accountControl = nil;
     self.registerListViewController = nil;
 }
 
+#pragma mark - Register view delegate
+
+- (void)registerViewController:(RegisterViewController *)registerViewController didRegisteredWithAccessToken:(NSString *)accessToken
+{
+    [self saveAccessToken:accessToken];
+    [self.delegate accountControlDidLogin];
+}
+
 @end

@@ -16,6 +16,14 @@
 
 @implementation RegisterViewController
 
+#pragma mark - 
+
+- (void)loadRegisterWebpage
+{
+    NSURLRequest *registerRequest = [NSURLRequest requestWithURL:_registerURL];
+    [_registerWebView loadRequest:registerRequest];
+}
+
 #pragma mark - Animations
 
 - (void)dismiss
@@ -25,9 +33,9 @@
 
 #pragma mark - Actions
 
-- (void)doneButtonPressed
+- (void)refreshButtonPressed
 {
-    [self dismiss];
+    [self loadRegisterWebpage];
 }
 
 #pragma mark - Life cycle
@@ -44,17 +52,50 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Configure nav bar buttons
     UIBarButtonItem *backBarButtonItem = [[[UIBarButtonItem alloc] init] autorelease];
     backBarButtonItem.title = @"Back";
     [(RegisterListViewController *)[self.navigationController.viewControllers objectAtIndex:0] navigationItem].backBarButtonItem = backBarButtonItem;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)] autorelease];
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed)] autorelease];
+    // Initialize web view
+    self.registerWebView = [[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height)] autorelease];
+    _registerWebView.delegate = self;
+    [self.view addSubview:_registerWebView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self loadRegisterWebpage];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Web view delegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *responseURL = request.URL;
+    NSString *responseString = responseURL.absoluteString;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^api://.*"];
+    if ([predicate evaluateWithObject:responseString]) {
+        NSArray *keysAndValuesArray = [[responseString substringFromIndex:7] componentsSeparatedByString:@"&"];
+        NSString *accessToken = nil;
+        for (NSString *keyAndValue in keysAndValuesArray) {
+            if ([keyAndValue rangeOfString:@"access_token="].location == 0) {
+                accessToken = [keyAndValue substringFromIndex:13];
+            }
+        }
+        if (accessToken) {
+            [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken];
+        }
+    }
+    return YES;
 }
 
 @end
