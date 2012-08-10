@@ -103,7 +103,7 @@
             }
         }
         if (accessToken) {
-            if (mail && password &&[self.delegate respondsToSelector:@selector(registerViewController:didRegisteredWithAccessToken:mail:password:)]) {
+            if (mail && password && [self.delegate respondsToSelector:@selector(registerViewController:didRegisteredWithAccessToken:mail:password:)]) {
                 [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken mail:mail password:password];
             } else {
                 [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken];
