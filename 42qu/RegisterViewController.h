@@ -14,6 +14,10 @@
 
 - (void)registerViewController:(RegisterViewController *)registerViewController didRegisteredWithAccessToken:(NSString *)accessToken;
 
+@optional
+
+- (void)registerViewController:(RegisterViewController *)registerViewController didRegisteredWithAccessToken:(NSString *)accessToken mail:(NSString *)mail password:(NSString *)password;
+
 @end
 
 @interface RegisterViewController : UIViewController <UIWebViewDelegate>

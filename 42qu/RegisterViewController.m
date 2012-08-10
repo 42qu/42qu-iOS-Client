@@ -81,19 +81,33 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSURL *responseURL = request.URL;
-    NSString *responseString = responseURL.absoluteString;
+    NSMutableString *responseString = [[[NSMutableString alloc] initWithString:responseURL.absoluteString] autorelease];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^api://.*"];
     if ([predicate evaluateWithObject:responseString]) {
+        [responseString deleteCharactersInRange:NSMakeRange(0, 6)];
+        [responseString deleteCharactersInRange:NSMakeRange([responseString rangeOfString:@"/"].location, responseString.length - [responseString rangeOfString:@"/"].location)];
         NSArray *keysAndValuesArray = [[responseString substringFromIndex:7] componentsSeparatedByString:@"&"];
         NSString *accessToken = nil;
+        NSString *mail = nil;
+        NSString *password = nil;
         for (NSString *keyAndValue in keysAndValuesArray) {
             if ([keyAndValue rangeOfString:@"access_token="].location == 0) {
                 NSString *accessTokenOrig = [keyAndValue substringFromIndex:13];
                 accessToken = [accessTokenOrig stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            } else if ([keyAndValue rangeOfString:@"mail="].location == 0) {
+                NSString *mailOrig = [keyAndValue substringFromIndex:5];
+                mail = [mailOrig stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            } else if ([keyAndValue rangeOfString:@"password="].location == 0) {
+                NSString *passwordOrig = [keyAndValue substringFromIndex:9];
+                password = [passwordOrig stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             }
         }
         if (accessToken) {
-            [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken];
+            if (mail && password &&[self.delegate respondsToSelector:@selector(registerViewController:didRegisteredWithAccessToken:mail:password:)]) {
+                [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken mail:mail password:password];
+            } else {
+                [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken];
+            }
         }
     }
     return YES;
