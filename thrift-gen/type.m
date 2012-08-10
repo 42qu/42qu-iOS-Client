@@ -1575,7 +1575,7 @@
 
 @implementation TaskBasic
 
-- (id) initWithId: (int64_t) id name: (NSString *) name sponsor: (int64_t) sponsor tag_id: (int64_t) tag_id intro: (NSString *) intro state: (int) state area_id: (int64_t) area_id address: (NSString *) address end_time: (timestamp) end_time reward: (NSString *) reward reward_cent: (int64_t) reward_cent apply_count: (int64_t) apply_count invite_count: (int64_t) invite_count accept_count: (int64_t) accept_count
+- (id) initWithId: (int64_t) id name: (NSString *) name sponsor: (int64_t) sponsor tag_id: (int64_t) tag_id intro: (NSString *) intro state: (int) state area_id: (int64_t) area_id address_id: (int64_t) address_id end_time: (timestamp) end_time reward: (NSString *) reward reward_cent: (int64_t) reward_cent apply_count: (int64_t) apply_count invite_count: (int64_t) invite_count accept_count: (int64_t) accept_count
 {
   self = [super init];
   __id = id;
@@ -1592,8 +1592,8 @@
   __state_isset = YES;
   __area_id = area_id;
   __area_id_isset = YES;
-  __address = [address retain];
-  __address_isset = YES;
+  __address_id = address_id;
+  __address_id_isset = YES;
   __end_time = end_time;
   __end_time_isset = YES;
   __reward = [reward retain];
@@ -1647,10 +1647,10 @@
     __area_id = [decoder decodeInt64ForKey: @"area_id"];
     __area_id_isset = YES;
   }
-  if ([decoder containsValueForKey: @"address"])
+  if ([decoder containsValueForKey: @"address_id"])
   {
-    __address = [[decoder decodeObjectForKey: @"address"] retain];
-    __address_isset = YES;
+    __address_id = [decoder decodeInt64ForKey: @"address_id"];
+    __address_id_isset = YES;
   }
   if ([decoder containsValueForKey: @"end_time"])
   {
@@ -1715,9 +1715,9 @@
   {
     [encoder encodeInt64: __area_id forKey: @"area_id"];
   }
-  if (__address_isset)
+  if (__address_id_isset)
   {
-    [encoder encodeObject: __address forKey: @"address"];
+    [encoder encodeInt64: __address_id forKey: @"address_id"];
   }
   if (__end_time_isset)
   {
@@ -1749,7 +1749,6 @@
 {
   [__name release];
   [__intro release];
-  [__address release];
   [__reward release];
   [super dealloc];
 }
@@ -1881,25 +1880,21 @@
   __area_id_isset = NO;
 }
 
-- (NSString *) address {
-  return [[__address retain] autorelease];
+- (int64_t) address_id {
+  return __address_id;
 }
 
-- (void) setAddress: (NSString *) address {
-  [address retain];
-  [__address release];
-  __address = address;
-  __address_isset = YES;
+- (void) setAddress_id: (int64_t) address_id {
+  __address_id = address_id;
+  __address_id_isset = YES;
 }
 
-- (BOOL) addressIsSet {
-  return __address_isset;
+- (BOOL) address_idIsSet {
+  return __address_id_isset;
 }
 
-- (void) unsetAddress {
-  [__address release];
-  __address = nil;
-  __address_isset = NO;
+- (void) unsetAddress_id {
+  __address_id_isset = NO;
 }
 
 - (int64_t) end_time {
@@ -2080,9 +2075,9 @@
         }
         break;
       case 8:
-        if (fieldType == TType_STRING) {
-          NSString * fieldValue = [inProtocol readString];
-          [self setAddress: fieldValue];
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setAddress_id: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2185,12 +2180,10 @@
     [outProtocol writeI64: __area_id];
     [outProtocol writeFieldEnd];
   }
-  if (__address_isset) {
-    if (__address != nil) {
-      [outProtocol writeFieldBeginWithName: @"address" type: TType_STRING fieldID: 8];
-      [outProtocol writeString: __address];
-      [outProtocol writeFieldEnd];
-    }
+  if (__address_id_isset) {
+    [outProtocol writeFieldBeginWithName: @"address_id" type: TType_I64 fieldID: 8];
+    [outProtocol writeI64: __address_id];
+    [outProtocol writeFieldEnd];
   }
   if (__end_time_isset) {
     [outProtocol writeFieldBeginWithName: @"end_time" type: TType_I64 fieldID: 9];
@@ -2244,8 +2237,8 @@
   [ms appendFormat: @"%i", __state];
   [ms appendString: @",area_id:"];
   [ms appendFormat: @"%qi", __area_id];
-  [ms appendString: @",address:"];
-  [ms appendFormat: @"\"%@\"", __address];
+  [ms appendString: @",address_id:"];
+  [ms appendFormat: @"%qi", __address_id];
   [ms appendString: @",end_time:"];
   [ms appendFormat: @"%qi", __end_time];
   [ms appendString: @",reward:"];
