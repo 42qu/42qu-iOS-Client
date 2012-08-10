@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
+#import "AccountControl.h"
+
 #import "AppDelegate.h"
 
 #import "LaunchViewController.h"
@@ -71,12 +73,14 @@
     
     _tabBarController.viewControllers = [NSArray arrayWithObjects:_updateNavigationController, _notificationNavigationController, _peopleNavigationController, _profileNavigationController, nil];
     
-    [self.window addSubview:_tabBarController.view];
+    self.window.rootViewController = _tabBarController;
     
-    // Add launch view controller
-    self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
-    self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
-    [self.window addSubview:_launchNavigationController.view];
+    if ([AccountControl shared].isLoggedIn) {
+        // Add launch view controller
+        self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
+        self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
+        [self.window.rootViewController.view addSubview:_launchNavigationController.view];
+    }
     
     [self.window makeKeyAndVisible];
     return YES;
