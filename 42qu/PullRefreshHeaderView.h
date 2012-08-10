@@ -17,11 +17,11 @@
 
 @end
 
-typedef NS_ENUM(NSInteger, PullRefreshState) {
+typedef enum {
     PullRefreshStateNormal = 0,
     PullRefreshStateReady,
     PullRefreshStateLoading
-};
+} PullRefreshState;
 
 @interface PullRefreshHeaderView : UIView
 
