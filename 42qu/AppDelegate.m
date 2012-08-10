@@ -75,7 +75,7 @@
     
     self.window.rootViewController = _tabBarController;
     
-    if ([AccountControl shared].isLoggedIn) {
+    if (![AccountControl shared].isLoggedIn) {
         // Add launch view controller
         self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
         self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
