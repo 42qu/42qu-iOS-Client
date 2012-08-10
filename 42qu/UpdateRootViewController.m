@@ -6,8 +6,11 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
-#import "UpdateRootViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "API.h"
+#import "AccountControl.h"
+
+#import "UpdateRootViewController.h"
 //#import "PublishViewController.h"
 #import "UpdateCell.h"
 
@@ -36,14 +39,29 @@
 //    [self.navigationController pushViewController:publishViewController animated:NO]; 
 }
 
-- (void)loadMoreData
+- (void)loadData
 {
     
 }
 
 - (void)refreshData
 {
-    
+    SnsClient *snsClient = [API newConnection];
+    @try {
+        TaskFilter *taskFilter = [[[TaskFilter alloc] init] autorelease];
+        taskFilter.state = TaskStatus_Open;
+        taskFilter.sort = TaskSort_ByTime;
+        taskFilter.city_id = 0;
+        taskFilter.tag_id = 0;
+        NSArray *newData = [snsClient task_list:[AccountControl shared].accessToken :TaskListType_All :taskFilter :0 :0];
+        [_updateList removeAllObjects];
+        [_updateList addObjectsFromArray:newData];
+        [self.tableView reloadData];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
+    [API closeConnection];
 }
 
 #pragma mark - Life cycle
@@ -94,16 +112,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return _updateList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

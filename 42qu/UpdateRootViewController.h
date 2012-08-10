@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UpdateRootViewController : UITableViewController
+#import "CustomTableViewController.h"
+
+@interface UpdateRootViewController : CustomTableViewController
 
 @property (nonatomic, strong) NSMutableArray *updateList;
 
