@@ -88,7 +88,8 @@
         NSString *accessToken = nil;
         for (NSString *keyAndValue in keysAndValuesArray) {
             if ([keyAndValue rangeOfString:@"access_token="].location == 0) {
-                accessToken = [keyAndValue substringFromIndex:13];
+                NSString *accessTokenOrig = [keyAndValue substringFromIndex:13];
+                accessToken = [accessTokenOrig stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             }
         }
         if (accessToken) {
