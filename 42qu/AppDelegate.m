@@ -10,23 +10,12 @@
 
 #import "AppDelegate.h"
 
-#import "LaunchViewController.h"
 #import "UpdateRootViewController.h"
 #import "NotificationRootViewController.h"
 #import "PeopleRootViewController.h"
 #import "ProfileRootViewController.h"
 
 @implementation AppDelegate
-
-@synthesize window = _window;
-@synthesize tabBarController = _tabBarController;
-@synthesize launchNavigationController = _launchNavigationController;
-@synthesize launchViewController = _launchViewController;
-
-@synthesize updateNavigationController = _updateNavigationController;
-@synthesize notificationNavigationController = _notificationNavigationController;
-@synthesize peopleNavigationController = _peopleNavigationController;
-@synthesize profileNavigationController = _profileNavigationController;
 
 #pragma mark - Life cycle
 
@@ -36,8 +25,6 @@
     [_notificationNavigationController release];
     [_peopleNavigationController release];
     [_tabBarController release];
-    [_launchViewController release];
-    [_launchNavigationController release];
     [_window release];
     [super dealloc];
 }
@@ -75,12 +62,8 @@
     
     self.window.rootViewController = _tabBarController;
     
-    if (![AccountControl shared].isLoggedIn) {
-        // Add launch view controller
-        self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
-        self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
-        [self.window.rootViewController.view addSubview:_launchNavigationController.view];
-    }
+    // Add launch view controller
+    [[AccountControl shared] showLaunchView];
     
     [self.window makeKeyAndVisible];
     return YES;

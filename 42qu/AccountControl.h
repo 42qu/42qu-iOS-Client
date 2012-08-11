@@ -11,17 +11,12 @@
 #import "LoginView.h"
 #import "RegisterListViewController.h"
 
-@protocol AccountControlDelegate <NSObject>
-
-- (void)accountControlDidLogin;
-- (void)accountControlDidFailLoginWithReason:(NSString *)reason;
-
-@end
+@class LaunchViewController;
 
 @interface AccountControl : NSObject <LoginViewDelegate, RegisterListViewControllerDelegate>
 
-@property (nonatomic, assign) id<AccountControlDelegate> delegate;
-
+@property (nonatomic, assign) UINavigationController *launchNavigationController;
+@property (nonatomic, assign) LaunchViewController *launchViewController;
 @property (nonatomic, assign) LoginView *loginView;
 @property (nonatomic, assign) RegisterListNavigationController *registerListNavigationController;
 @property (nonatomic, assign) RegisterListViewController *registerListViewController;
@@ -43,8 +38,14 @@
 - (NSString *)accessToken;
 - (NSInteger)expiresIn;
 
+// Account
+
+- (BOOL)tryLogin;
+
 // View
 
+- (void)showLaunchView;
+- (void)hideLaunchView;
 - (void)showLoginView;
 - (void)showRegisterListView;
 

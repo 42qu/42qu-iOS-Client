@@ -246,15 +246,6 @@
 			name = "SNS Image";
 			sourceTree = "<group>";
 		};
-		FA1783191577D7C6005C9ECE /* Launch */ = {
-			isa = PBXGroup;
-			children = (
-				FA17831A1577D827005C9ECE /* LaunchViewController.h */,
-				FA17831B1577D827005C9ECE /* LaunchViewController.m */,
-			);
-			name = Launch;
-			sourceTree = "<group>";
-		};
 		FA288400159B148800FFE60F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +261,8 @@
 				FA17830C1577C52D005C9ECE /* SNS Image */,
 				FA402A5C156C919E009EC4FA /* AccountControl.h */,
 				FA402A5D156C919E009EC4FA /* AccountControl.m */,
+				FA17831A1577D827005C9ECE /* LaunchViewController.h */,
+				FA17831B1577D827005C9ECE /* LaunchViewController.m */,
 				FA402AAD156D0B04009EC4FA /* LoginView.h */,
 				FA402AAE156D0B04009EC4FA /* LoginView.m */,
 				FA1783031577B38B005C9ECE /* RegisterListViewController.h */,
@@ -328,7 +321,6 @@
 				FA02A75B158CAB9500DA275C /* Custom Objects */,
 				FA402A85156CA012009EC4FA /* API Utils */,
 				FAB73FF4156B7CE0003CBF67 /* App Delegate */,
-				FA1783191577D7C6005C9ECE /* Launch */,
 				FA402A3D156BAE37009EC4FA /* Account */,
 				FAB73FF2156B7CDD003CBF67 /* Update */,
 				FAB73FFB156B7DF6003CBF67 /* Notification */,

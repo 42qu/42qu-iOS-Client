@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class LaunchViewController;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;
-@property (strong, nonatomic) UINavigationController *launchNavigationController;
-@property (assign, nonatomic) LaunchViewController *launchViewController;
 
 @property (strong, nonatomic) UINavigationController *updateNavigationController;
 @property (strong, nonatomic) UINavigationController *notificationNavigationController;

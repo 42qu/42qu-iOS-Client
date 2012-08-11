@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 Seymour Dev. All rights reserved.
 //
 
+#import "AccountControl.h"
+
 #import "LaunchViewController.h"
 
 #define kFrameViewTopbar CGRectMake(0, 0, 320, 44)
@@ -28,14 +30,12 @@
 - (void)showLoginView
 {
     AccountControl *accountControl = [AccountControl shared];
-    accountControl.delegate = self;
     [accountControl showLoginView];
 }
 
 - (void)showRegisterView
 {
     AccountControl *accountControl = [AccountControl shared];
-    accountControl.delegate = self;
     [accountControl showRegisterListView];
 }
 
@@ -71,19 +71,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    self.loginButton = [[[UIButton alloc] initWithFrame:kFrameButtonLogin] autorelease];
-    [_loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
-    [_loginButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
-    [_loginButton addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_loginButton];
-    
-    self.registerButton = [[[UIButton alloc] initWithFrame:kFrameButtonRegister] autorelease];
-    [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
-    [_registerButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
-    [_registerButton addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_registerButton];
+    [super viewDidLoad];    
 }
 
 - (void)viewDidUnload
@@ -98,23 +86,39 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+#warning Begin animation here
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL isLoggedIn = [AccountControl shared].tryLogin;
+#warning End animation here
+        if (isLoggedIn) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[AccountControl shared] hideLaunchView];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.3f animations:^{
+                    self.loginButton = [[[UIButton alloc] initWithFrame:kFrameButtonLogin] autorelease];
+                    [_loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
+                    [_loginButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
+                    [_loginButton addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+                    [self.view addSubview:_loginButton];
+                    
+                    self.registerButton = [[[UIButton alloc] initWithFrame:kFrameButtonRegister] autorelease];
+                    [_registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
+                    [_registerButton setBackgroundImage:[UIImage imageNamed:@"launch-startbutton-bg"] forState:UIControlStateNormal];
+                    [_registerButton addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+                    [self.view addSubview:_registerButton];
+                }];
+            });
+        }
+    });
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark - Account control delegate
-
-- (void)accountControlDidLogin
-{
-    [self.navigationController.view removeFromSuperview];
-}
-
-- (void)accountControlDidFailLoginWithReason:(NSString *)reason
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Failed", nil) message:reason delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alert show];
-    [alert release];
 }
 
 @end

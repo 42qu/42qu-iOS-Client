@@ -10,6 +10,7 @@
 #import "API.h"
 #import <TSocketClient.h>
 #import <TBinaryProtocol.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "AccountControl.h"
 
@@ -28,6 +29,8 @@
 
 @synthesize isLoggedIn;
 
+#pragma mark - Life cycle
+
 static AccountControl *accountControl = nil;
 
 + (AccountControl *)shared
@@ -43,6 +46,8 @@ static AccountControl *accountControl = nil;
 {
     [super dealloc];
 }
+
+#pragma mark - Data control
 
 // Read
 
@@ -147,6 +152,30 @@ static AccountControl *accountControl = nil;
 
 #pragma mark - Basic operation
 
+- (BOOL)tryLogin
+{
+    if (self.accessToken) {
+#warning may refresh here
+        sleep(1);
+        return YES;
+    }
+    return NO;
+}
+
+- (void)didLogin
+{
+#warning show success info
+    [self performSelector:@selector(hideLaunchView) withObject:nil afterDelay:0.3f];
+}
+
+- (void)didFailLoginWithReason:(NSString *)reason
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Failed", nil) message:reason delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    [self showLaunchView];
+}
+
 - (void)loginWithMail:(NSString *)mail andPassword:(NSString *)password
 {
     [self saveMail:mail];
@@ -160,14 +189,14 @@ static AccountControl *accountControl = nil;
             [self saveExpiresIn:authResponse.expire_in];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self savePassword:password];
-                [self.delegate accountControlDidLogin];
+                [self didLogin];
             });
         }
         @catch (NSException *exception) {
             NSLog(@"%@", exception.reason);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self removePassword];
-                [self.delegate accountControlDidFailLoginWithReason:exception.reason];
+                [self didFailLoginWithReason:exception.reason];
             });
         }
         [API closeConnection];
@@ -180,6 +209,35 @@ static AccountControl *accountControl = nil;
 }
 
 #pragma mark - View operation
+
+- (void)showLaunchView
+{
+    if (!_launchViewController) {
+        self.launchViewController = [[[LaunchViewController alloc] init] autorelease];
+        self.launchNavigationController = [[[UINavigationController alloc] initWithRootViewController:_launchViewController] autorelease];
+        [_launchNavigationController retain];
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate window].rootViewController.view addSubview:_launchNavigationController.view];
+    }
+}
+
+- (void)hideLaunchView
+{
+    if (_launchNavigationController) {
+        [UIView animateWithDuration:0.66f animations:^{
+            CATransition *transition = [CATransition animation];
+            transition.duration = 0.66f;
+            transition.type = kCATransitionReveal;
+            transition.subtype = kCATransitionFromTop;
+            [[(AppDelegate *)[UIApplication sharedApplication].delegate window].rootViewController.view.layer addAnimation:transition forKey:nil];
+            [_launchNavigationController.view removeFromSuperview];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                _launchNavigationController = nil;
+                _launchViewController = nil;
+            }
+        }];
+    }
+}
 
 - (void)showLoginView
 {
@@ -238,7 +296,15 @@ static AccountControl *accountControl = nil;
 - (void)registerViewController:(RegisterViewController *)registerViewController didRegisteredWithAccessToken:(NSString *)accessToken
 {
     [self saveAccessToken:accessToken];
-    [self.delegate accountControlDidLogin];
+    [self didLogin];
+}
+
+- (void)registerViewController:(RegisterViewController *)registerViewController didRegisteredWithAccessToken:(NSString *)accessToken mail:(NSString *)mail password:(NSString *)password
+{
+    [self saveAccessToken:accessToken];
+    [self saveMail:mail];
+    [self savePassword:password];
+    [self performSelector:@selector(didLogin) withObject:nil afterDelay:0.3f];
 }
 
 @end

@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "AccountControl.h"
-
-@interface LaunchViewController : UIViewController <AccountControlDelegate>
+@interface LaunchViewController : UIViewController
 
 @property (nonatomic, strong) UIButton *loginButton;
 @property (nonatomic, strong) UIButton *registerButton;
-
-- (void)loginButtonPressed;
-- (void)registerButtonPressed;
 
 @end

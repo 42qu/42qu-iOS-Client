@@ -85,8 +85,10 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^api://.*"];
     if ([predicate evaluateWithObject:responseString]) {
         [responseString deleteCharactersInRange:NSMakeRange(0, 6)];
-        [responseString deleteCharactersInRange:NSMakeRange([responseString rangeOfString:@"/"].location, responseString.length - [responseString rangeOfString:@"/"].location)];
-        NSArray *keysAndValuesArray = [[responseString substringFromIndex:7] componentsSeparatedByString:@"&"];
+        if ([responseString rangeOfString:@"/"].location != NSNotFound) {
+            [responseString deleteCharactersInRange:NSMakeRange([responseString rangeOfString:@"/"].location, responseString.length - [responseString rangeOfString:@"/"].location)];
+        }
+        NSArray *keysAndValuesArray = [responseString componentsSeparatedByString:@"&"];
         NSString *accessToken = nil;
         NSString *mail = nil;
         NSString *password = nil;
@@ -103,6 +105,7 @@
             }
         }
         if (accessToken) {
+            [self dismiss];
             if (mail && password && [self.delegate respondsToSelector:@selector(registerViewController:didRegisteredWithAccessToken:mail:password:)]) {
                 [self.delegate registerViewController:self didRegisteredWithAccessToken:accessToken mail:mail password:password];
             } else {
