@@ -20,7 +20,8 @@
 typedef enum {
     PullRefreshStateNormal = 0,
     PullRefreshStateReady,
-    PullRefreshStateLoading
+    PullRefreshStateLoading,
+    PullRefreshStateLoaded
 } PullRefreshState;
 
 @interface PullRefreshHeaderView : UIView
@@ -30,7 +31,8 @@ typedef enum {
 @property (nonatomic, assign) PullRefreshState state;
 
 @property (nonatomic, strong) UILabel *statusLabel;
-@property (nonatomic, strong) CALayer *statusImage;
+@property (nonatomic, strong) CALayer *arrowImage;
+@property (nonatomic, strong) CALayer *successImage;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 - (void)pullRefreshScrollViewDidScroll:(UIScrollView *)scrollView;

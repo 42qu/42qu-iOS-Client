@@ -54,6 +54,10 @@
 		FA402ABC156D0EAD009EC4FA /* login-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABA156D0EAD009EC4FA /* login-bg.png */; };
 		FA402ABD156D0EAD009EC4FA /* login-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402ABB156D0EAD009EC4FA /* login-bg@2x.png */; };
 		FA5885681576636700F46BD8 /* exception.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5885671576636700F46BD8 /* exception.m */; };
+		FA66B8D015D770FC008FC1D9 /* pullrefresh-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FA66B8CC15D770FC008FC1D9 /* pullrefresh-arrow.png */; };
+		FA66B8D115D770FC008FC1D9 /* pullrefresh-success.png in Resources */ = {isa = PBXBuildFile; fileRef = FA66B8CD15D770FC008FC1D9 /* pullrefresh-success.png */; };
+		FA66B8D215D770FC008FC1D9 /* pullrefresh-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA66B8CE15D770FC008FC1D9 /* pullrefresh-success@2x.png */; };
+		FA66B8D315D770FC008FC1D9 /* pullrefresh-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA66B8CF15D770FC008FC1D9 /* pullrefresh-arrow@2x.png */; };
 		FA7E3D0B156B613E00687AB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0A156B613E00687AB8 /* UIKit.framework */; };
 		FA7E3D0D156B613E00687AB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0C156B613E00687AB8 /* Foundation.framework */; };
 		FA7E3D0F156B613E00687AB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E3D0E156B613E00687AB8 /* CoreGraphics.framework */; };
@@ -146,6 +150,10 @@
 		FA402ABB156D0EAD009EC4FA /* login-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-bg@2x.png"; sourceTree = "<group>"; };
 		FA5885661576636700F46BD8 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		FA5885671576636700F46BD8 /* exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exception.m; sourceTree = "<group>"; };
+		FA66B8CC15D770FC008FC1D9 /* pullrefresh-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pullrefresh-arrow.png"; sourceTree = "<group>"; };
+		FA66B8CD15D770FC008FC1D9 /* pullrefresh-success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pullrefresh-success.png"; sourceTree = "<group>"; };
+		FA66B8CE15D770FC008FC1D9 /* pullrefresh-success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pullrefresh-success@2x.png"; sourceTree = "<group>"; };
+		FA66B8CF15D770FC008FC1D9 /* pullrefresh-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pullrefresh-arrow@2x.png"; sourceTree = "<group>"; };
 		FA7E3D06156B613D00687AB8 /* 42qu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 42qu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7E3D0A156B613E00687AB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA7E3D0C156B613E00687AB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -349,6 +357,10 @@
 		FAA5CA68157C89E800912D9E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA66B8CC15D770FC008FC1D9 /* pullrefresh-arrow.png */,
+				FA66B8CD15D770FC008FC1D9 /* pullrefresh-success.png */,
+				FA66B8CE15D770FC008FC1D9 /* pullrefresh-success@2x.png */,
+				FA66B8CF15D770FC008FC1D9 /* pullrefresh-arrow@2x.png */,
 				FAC856BF157B1D5500B42DF6 /* launch-startbutton-bg.png */,
 				FAC856C0157B1D5500B42DF6 /* launch-startbutton-bg@2x.png */,
 				FA3A4B22157485BE0070FB1C /* launch-navbar-bg.png */,
@@ -582,6 +594,10 @@
 				FA288429159B7A6200FFE60F /* tabbar-people@2x.png in Resources */,
 				FA28842A159B7A6200FFE60F /* tabbar-profile.png in Resources */,
 				FA28842B159B7A6200FFE60F /* tabbar-profile@2x.png in Resources */,
+				FA66B8D015D770FC008FC1D9 /* pullrefresh-arrow.png in Resources */,
+				FA66B8D115D770FC008FC1D9 /* pullrefresh-success.png in Resources */,
+				FA66B8D215D770FC008FC1D9 /* pullrefresh-success@2x.png in Resources */,
+				FA66B8D315D770FC008FC1D9 /* pullrefresh-arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
