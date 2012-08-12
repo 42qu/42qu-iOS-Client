@@ -30,6 +30,9 @@
 // Active
 - (void)loadDataInBackground
 {
+    if (_isLoading || _isRefreshing) {
+        return;
+    }
     [self dataWillBeginLoading];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self loadData];
@@ -41,6 +44,9 @@
 
 - (void)refreshDataInBackground
 {
+    if (_isLoading || _isRefreshing) {
+        return;
+    }
     [self dataWillBeginRefreshing];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self refreshData];

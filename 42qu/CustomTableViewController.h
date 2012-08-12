@@ -15,4 +15,7 @@
 @property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, strong) PullRefreshHeaderView *pullRefreshHeaderView;
 
+- (void)loadDataInBackground;
+- (void)refreshDataInBackground;
+
 @end
