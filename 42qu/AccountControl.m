@@ -181,8 +181,7 @@ static AccountControl *accountControl = nil;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         SnsClient *snsClient = [API newConnection];
         @try {
-            AuthRequest *authRequest = [[[AuthRequest alloc] initWithClient_id:CLIENT_ID client_secret:CLIENT_SECRET] autorelease];
-            AuthResponse *authResponse = [snsClient login_by_mail:authRequest :mail :password];
+            AuthResponse *authResponse = [snsClient login_by_mail:CLIENT_ID :CLIENT_SECRET :mail :password];
             [self saveUserID:authResponse.user_id];
             [self saveAccessToken:authResponse.access_token];
             [self saveExpiresIn:authResponse.expire_in];
