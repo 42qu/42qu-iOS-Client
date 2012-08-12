@@ -156,7 +156,7 @@ static AccountControl *accountControl = nil;
 {
     if (self.accessToken) {
 #warning may refresh here
-        return NO;
+        return YES;
     }
     return NO;
 }
