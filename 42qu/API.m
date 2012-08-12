@@ -35,6 +35,7 @@ static NSMutableArray *connections = nil;
 {
     [connections removeObject:snsClient];
     [snsClient release];
+    snsClient = nil;
 }
 
 + (void)closeAllConnections
