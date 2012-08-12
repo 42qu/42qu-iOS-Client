@@ -15,24 +15,33 @@
 
 @implementation API
 
-static SnsClient *snsClient = nil;
+static NSMutableArray *connections = nil;
 
 + (SnsClient *)newConnection
 {
-    if (!snsClient) {
-        TSocketClient *transport = [[TSocketClient alloc] initWithHostname:API_HOSTNAME port:API_PORT];
-        TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:transport strictRead:YES strictWrite:YES];
-        [transport release];
-        snsClient = [[SnsClient alloc] initWithProtocol:protocol];
-        [protocol release];
+    if (!connections) {
+        connections = [[NSMutableArray alloc] init];
     }
+    TSocketClient *transport = [[TSocketClient alloc] initWithHostname:API_HOSTNAME port:API_PORT];
+    TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:transport strictRead:YES strictWrite:YES];
+    [transport release];
+    SnsClient *snsClient = [[SnsClient alloc] initWithProtocol:protocol];
+    [protocol release];
+    [connections addObject:snsClient];
     return snsClient;
 }
 
-+ (void)closeConnection
++ (void)closeConnection:(SnsClient *)snsClient
 {
+    [connections removeObject:snsClient];
     [snsClient release];
-    snsClient = nil;
+}
+
++ (void)closeAllConnections
+{
+    [connections removeAllObjects];
+    [connections release];
+    connections = nil;
 }
 
 @end

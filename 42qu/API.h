@@ -18,6 +18,7 @@
 @interface API : NSObject
 
 + (SnsClient *)newConnection;
-+ (void)closeConnection;
++ (void)closeConnection:(SnsClient *)snsClient;
++ (void)closeAllConnections;
 
 @end

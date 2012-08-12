@@ -156,8 +156,7 @@ static AccountControl *accountControl = nil;
 {
     if (self.accessToken) {
 #warning may refresh here
-        sleep(1);
-        return YES;
+        return NO;
     }
     return NO;
 }
@@ -199,7 +198,7 @@ static AccountControl *accountControl = nil;
                 [self didFailLoginWithReason:exception.reason];
             });
         }
-        [API closeConnection];
+        [API closeConnection:snsClient];
     });
 }
 

@@ -61,7 +61,7 @@
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
     }
-    [API closeConnection];
+    [API closeConnection:snsClient];
 }
 
 #pragma mark - Life cycle
