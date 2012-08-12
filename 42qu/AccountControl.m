@@ -231,6 +231,7 @@ static AccountControl *accountControl = nil;
             [_launchNavigationController.view removeFromSuperview];
         } completion:^(BOOL finished) {
             if (finished) {
+                [_launchNavigationController release];
                 _launchNavigationController = nil;
                 _launchViewController = nil;
             }
