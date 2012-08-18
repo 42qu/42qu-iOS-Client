@@ -85,6 +85,7 @@
 		FAC856C2157B1D5500B42DF6 /* launch-startbutton-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC856C0157B1D5500B42DF6 /* launch-startbutton-bg@2x.png */; };
 		FAF57A531570D294002B26CE /* service.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A051570AFE8002B26CE /* service.m */; };
 		FAF57A541570D294002B26CE /* type.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF57A071570AFE8002B26CE /* type.m */; };
+		FAF87DE115DF38F100B3910D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF87DE015DF38F100B3910D /* PeopleCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,8 @@
 		FAF57A051570AFE8002B26CE /* service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = service.m; sourceTree = "<group>"; };
 		FAF57A061570AFE8002B26CE /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
 		FAF57A071570AFE8002B26CE /* type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = type.m; sourceTree = "<group>"; };
+		FAF87DDF15DF38F100B3910D /* PeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
+		FAF87DE015DF38F100B3910D /* PeopleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +488,8 @@
 		FAB73FFC156B7DFC003CBF67 /* People */ = {
 			isa = PBXGroup;
 			children = (
+				FAF87DDF15DF38F100B3910D /* PeopleCell.h */,
+				FAF87DE015DF38F100B3910D /* PeopleCell.m */,
 				FAB74009156B818A003CBF67 /* PeopleRootViewController.h */,
 				FAB7400A156B818A003CBF67 /* PeopleRootViewController.m */,
 				FA02A74B158CA62300DA275C /* PeopleDetailViewController.h */,
@@ -642,6 +647,7 @@
 				FA88C20815D251B4002EA3F6 /* RegisterViewController.m in Sources */,
 				FA2ED43C15D3D07A00018932 /* PullRefreshHeaderView.m in Sources */,
 				FA333CC915D3EBFC00605F26 /* CustomTableViewController.m in Sources */,
+				FAF87DE115DF38F100B3910D /* PeopleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

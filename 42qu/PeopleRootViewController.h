@@ -10,4 +10,6 @@
 
 @interface PeopleRootViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *peopleList;
+
 @end

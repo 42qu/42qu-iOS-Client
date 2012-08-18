@@ -7,7 +7,10 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+
 #import "PeopleRootViewController.h"
+#import "PeopleCell.h"
+
 #import "PeopleDetailViewController.h"
 
 @interface PeopleRootViewController ()
@@ -16,7 +19,7 @@
 
 @implementation PeopleRootViewController
 
-#pragma mark - Actions
+#pragma mark - Animations
 
 - (void)showMyself
 {
@@ -28,6 +31,13 @@
     transition.duration = 0.3f;
     [self.navigationController.view.layer addAnimation:transition forKey:nil];
     [self.navigationController pushViewController:peopleDetailViewController animated:NO];
+}
+
+#pragma mark - Actions
+
+- (void)meButtonPressed
+{
+    [self showMyself];
 }
 
 #pragma mark - Life cycle
@@ -45,7 +55,9 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Me", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showMyself)] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Me", nil) style:UIBarButtonItemStylePlain target:self action:@selector(meButtonPressed)] autorelease];
+    
+    self.peopleList = [[[NSMutableArray alloc] init] autorelease];
 }
 
 - (void)viewDidUnload
@@ -64,22 +76,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return _peopleList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
     
     // Configure the cell...
     
